@@ -13,27 +13,23 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="411dp"
-            android:layout_height="280dp"
-            android:layout_marginBottom="451dp"
+            android:layout_width="410dp"
+            android:layout_height="240dp"
             android:src="@drawable/logo"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.19999999" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/signUpCloseBtn"
+            android:id="@+id/signInCloseBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
             android:background="@android:color/transparent"
             android:padding="16dp"
             android:src="@drawable/ic_baseline_close_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -47,7 +43,7 @@
 
 
             <EditText
-                android:id="@+id/signUpEmail"
+                android:id="@+id/signInEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -62,7 +58,7 @@
                 android:padding="16dp" />
 
             <EditText
-                android:id="@+id/signUpPassword"
+                android:id="@+id/signInPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -85,7 +81,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginRight="16dp"
-                android:elevation="20dp"
+                android:elevation="200dp"
                 android:gravity="right"
                 android:text="Forgot Password ?"
                 android:textColor="@color/colorWhite" />
@@ -93,11 +89,15 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/singUpBtn"
+            android:id="@+id/signInBtn"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
             android:text="Sign In"
+            android:textColor="@color/colorLogoBlue"
+            android:elevation="200dp"
+            android:enabled="false"
             android:background="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -108,21 +108,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="OR"
             android:elevation="200dp"
+            android:text="OR"
             android:textColor="@color/colorWhite"
-            app:layout_constraintBottom_toTopOf="@+id/alreadyHaveAnAccount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/singUpBtn" />
+            app:layout_constraintTop_toBottomOf="@+id/signInBtn" />
 
         <TextView
             android:id="@+id/dontHaveAnAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="80dp"
-            android:text="Don't Have An Account!"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="70dp"
+            android:elevation="200dp"
+            android:text="Don't Have An Account Sign Up!"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
             android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -137,7 +138,7 @@
             android:background="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="@+id/textView"
             app:layout_constraintEnd_toStartOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/singUpBtn"
+            app:layout_constraintStart_toStartOf="@+id/signInBtn"
             app:layout_constraintTop_toTopOf="@+id/textView" />
 
         <View
@@ -147,18 +148,18 @@
             android:layout_marginStart="8dp"
             android:background="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="@+id/textView"
-            app:layout_constraintEnd_toEndOf="@+id/singUpBtn"
+            app:layout_constraintEnd_toEndOf="@+id/signInBtn"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toTopOf="@+id/textView" />
 
         <ProgressBar
-            android:id="@+id/singInProgressBar"
+            android:id="@+id/signInProgressBar"
             style="?android:attr/progressBarStyle"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/singUpBtn"
+            app:layout_constraintBottom_toTopOf="@+id/signInBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />

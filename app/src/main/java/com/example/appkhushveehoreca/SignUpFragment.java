@@ -29,8 +29,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import org.w3c.dom.Text;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,14 +60,15 @@ public class SignUpFragment extends Fragment {
         parentFrameLayout = getActivity().findViewById(R.id.registerFrameLayout);
 
         email = view.findViewById(R.id.signUpEmail);
-        name = view.findViewById(R.id.singUpFullName);
+        name = view.findViewById(R.id.signUpFullName);
         mobileNumber = view.findViewById(R.id.signUpNumber);
         password = view.findViewById(R.id.signUpPassword);
 
-        closeBtn = view.findViewById(R.id.signUpCloseBtn);
-        signUpBtn = view.findViewById(R.id.singUpBtn);
+        closeBtn = view.findViewById(R.id.signInCloseBtn);
 
-        progressBar = view.findViewById(R.id.singUpProgressBar);
+        signUpBtn = view.findViewById(R.id.signInBtn);
+
+        progressBar = view.findViewById(R.id.signUpProgressBar);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -85,6 +84,13 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 setFragment(new SingInFragment());
+            }
+        });
+
+        closeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainIntent();
             }
         });
 
@@ -218,11 +224,7 @@ public class SignUpFragment extends Fragment {
                                             @Override
                                             public void onComplete(@NonNull Task<DocumentReference> task) {
                                                 if(task.isSuccessful()){
-
-                                                    Intent mainIntent = new Intent(getActivity(),MainActivity.class);
-                                                    startActivity(mainIntent);
-                                                    getActivity().finish();
-
+                                                    mainIntent();
                                                 }else{
                                                     progressBar.setVisibility(View.INVISIBLE);
                                                     signUpBtn.setEnabled(true);
@@ -246,5 +248,10 @@ public class SignUpFragment extends Fragment {
 
         }
 
+    }
+    private void mainIntent(){
+        Intent mainIntent = new Intent(getActivity(),MainActivity.class);
+        startActivity(mainIntent);
+        getActivity().finish();
     }
 }
