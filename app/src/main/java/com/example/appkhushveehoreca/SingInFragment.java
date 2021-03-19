@@ -34,7 +34,7 @@ public class SingInFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private TextView dontHaveAnAccount1;
+    private TextView dontHaveAnAccount1,forgotPassword;
     private FrameLayout parentFrameLayout;
 
     private EditText email,password;
@@ -55,6 +55,8 @@ public class SingInFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_sing_in, container, false);
         parentFrameLayout = getActivity().findViewById(R.id.registerFrameLayout);
         dontHaveAnAccount1 = view.findViewById(R.id.dontHaveAnAccount);
+
+        forgotPassword = view.findViewById(R.id.signInForgotPassword);
 
         email = view.findViewById(R.id.signInEmail);
         password = view.findViewById(R.id.signInPassword);
@@ -79,6 +81,13 @@ public class SingInFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 setFragment(new SignUpFragment());
+            }
+        });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setFragment(new ResetPasswordFragment());
             }
         });
 
