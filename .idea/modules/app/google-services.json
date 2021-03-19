@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "544340614412",
+    "project_id": "appkhushveehoreca",
+    "storage_bucket": "appkhushveehoreca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544340614412:android:bc8437f0d6dbc04b94bd29",
+        "android_client_info": {
+          "package_name": "com.example.appkhushveehoreca"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "544340614412-opjknn0cb3dctdovvlpi0fmtj9foirds.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appkhushveehoreca",
+            "certificate_hash": "ea6dbab7c783742e7bdf30bbcfce4bd05d16c1ca"
+          }
+        },
+        {
+          "client_id": "544340614412-fk3v0a4gh0ura9jegqhiopa9l147e0b9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANDVQAWCt66TWxHU9biBjWNMtGsLnskBY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "544340614412-fk3v0a4gh0ura9jegqhiopa9l147e0b9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
