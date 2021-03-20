@@ -3,7 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_my_khushveeHoreca"
+            android:icon="@drawable/ic_baseline_drag_handle_24"
+            android:title="Khushvee Horeca" />
         <item
             android:id="@+id/nav_my_order"
             android:icon="@drawable/ic_baseline_work_24"
@@ -21,4 +25,9 @@
             android:icon="@drawable/ic_baseline_person_24"
             android:title="My Account" />
     </group>
+
+    <item
+        android:id="@+id/nav_sign_out"
+        android:icon="@drawable/ic_baseline_fast_rewind_24"
+        android:title="Sign Out" />
 </menu>
