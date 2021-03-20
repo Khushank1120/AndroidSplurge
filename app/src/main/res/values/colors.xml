@@ -11,5 +11,6 @@
     <color name="colorP">#1A3FCC</color>
     <color name="btncolor">#1A3FCC</color>
     <color name="resetPasswordBackgroundColor">#E33666FF</color>
+    <color name="errorRedColor">#DF3528</color>
 
 </resources>

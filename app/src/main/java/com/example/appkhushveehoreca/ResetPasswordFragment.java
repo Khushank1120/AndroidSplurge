@@ -93,6 +93,9 @@ public class ResetPasswordFragment extends Fragment {
             public void onClick(View v) {
 
                 TransitionManager.beginDelayedTransition(emailIconContainer);
+                emailIconText.setVisibility(View.GONE);
+
+                TransitionManager.beginDelayedTransition(emailIconContainer);
                 emailIcon.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.VISIBLE);
 
@@ -105,16 +108,22 @@ public class ResetPasswordFragment extends Fragment {
 
                                 if(task.isSuccessful()){
 
-
                                     /// todo left to add buttons ///
 
+                                    Toast.makeText(getActivity(), "Email sent successfully! Check Your Inbox", Toast.LENGTH_SHORT).show();
 
-                                    Toast.makeText(getActivity(), "email sent successfully", Toast.LENGTH_SHORT).show();
                                 }else{
                                     String error = task.getException().getMessage();
-                                    Toast.makeText(getActivity() , error, Toast.LENGTH_SHORT).show();
+
+                                    emailIconText.setText(error);
+                                    emailIconText.setTextColor(getResources().getColor(R.color.errorRedColor));
+                                    TransitionManager.beginDelayedTransition(emailIconContainer);
+                                    emailIconText.setVisibility(View.VISIBLE);
+                                    resetPasswordBtn.setEnabled(true);
+
                                 }
-                                resetPasswordBtn.setEnabled(true);
+                                progressBar.setVisibility(View.GONE);
+
                             }
                         });
             }

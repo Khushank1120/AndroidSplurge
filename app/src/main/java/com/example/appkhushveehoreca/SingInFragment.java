@@ -27,6 +27,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import static com.example.appkhushveehoreca.RegisterActivity.onResetPasswordFragment;
+
 
 public class SingInFragment extends Fragment {
 
@@ -87,6 +89,7 @@ public class SingInFragment extends Fragment {
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                onResetPasswordFragment = true;
                 setFragment(new ResetPasswordFragment());
             }
         });
