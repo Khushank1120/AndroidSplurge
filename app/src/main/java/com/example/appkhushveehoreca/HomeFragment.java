@@ -208,6 +208,17 @@ public class HomeFragment extends Fragment {
         ////// Grid Product Layout ///////
 
 
+        //////////////////////
+
+        RecyclerView testing = view.findViewById(R.id.testing);
+        LinearLayoutManager testingLayoutManager = new LinearLayoutManager(getContext());
+        testingLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        testing.setLayoutManager(testingLayoutManager);
+
+        /////////////////////
+
+
+
         return view;
     }
 
