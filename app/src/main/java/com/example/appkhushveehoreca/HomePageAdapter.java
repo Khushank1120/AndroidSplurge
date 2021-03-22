@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,11 +34,12 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         switch (homePageModelList.get(position).getType()){
             case 0:
                 return HomePageModel.BANNER_SLIDER;
-                case 1:
-                    return HomePageModel.STRIP_AD_BANNER;
+            case 1:
+                return HomePageModel.STRIP_AD_BANNER;
             case 2:
                 return HomePageModel.HORIZONTAL_PRODUCT_VIEW;
-
+            case 3:
+                return HomePageModel.GRID_PRODUCT_VIEW;
             default:
                 return -1;
         }
@@ -51,12 +53,18 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             case HomePageModel.BANNER_SLIDER:
                 View bannerSliderView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.sliding_ad_layout,viewGroup,false);
                 return new BannerSliderViewHolder(bannerSliderView);
+
             case HomePageModel.STRIP_AD_BANNER:
                 View stripAdView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.strip_ad_layout,viewGroup,false);
                 return new StripAdBannerViewHolder(stripAdView);
+
             case HomePageModel.HORIZONTAL_PRODUCT_VIEW:
                 View horizontalProductView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.horizontal_scroll_layout,viewGroup,false);
                 return new HorizontalProductViewHolder(horizontalProductView);
+
+            case HomePageModel.GRID_PRODUCT_VIEW:
+                View gridProductView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.grid_product_layout,viewGroup,false);
+                return new GridProductViewHolder(gridProductView);
             default:
                 return null;
         }
@@ -75,10 +83,15 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                     ((StripAdBannerViewHolder)viewHolder).setStripAd(resource,color);
                     break;
             case HomePageModel.HORIZONTAL_PRODUCT_VIEW:
-                String title = homePageModelList.get(position).getTitle();
+                String horizontalLayoutTitle = homePageModelList.get(position).getTitle();
                 List<HorizontalProductScrollModel> horizontalProductScrollModelList = homePageModelList.get(position).getHorizontalProductScrollModelList();
-                ((HorizontalProductViewHolder)viewHolder).setHorizontalProductLayout(horizontalProductScrollModelList,title);
+                ((HorizontalProductViewHolder)viewHolder).setHorizontalProductLayout(horizontalProductScrollModelList,horizontalLayoutTitle);
                 break;
+
+                case HomePageModel.GRID_PRODUCT_VIEW:
+                    String gridLayoutTitle = homePageModelList.get(position).getTitle();
+                    List<HorizontalProductScrollModel> gridProductScrollModelList = homePageModelList.get(position).getHorizontalProductScrollModelList();
+                    ((GridProductViewHolder)viewHolder).setGridProductLayout(gridProductScrollModelList,gridLayoutTitle);
             default:
                 return;
         }
@@ -237,6 +250,27 @@ public class HomePageAdapter extends RecyclerView.Adapter {
 
             horizontalRecyclerView.setAdapter(horizontalProductScrollAdapter);
             horizontalProductScrollAdapter.notifyDataSetChanged();
+
+        }
+    }
+
+    private class GridProductViewHolder extends RecyclerView.ViewHolder{
+
+        private TextView gridLayoutTitle;
+        private Button gridLayoutViewAllBtn;
+        private GridView gridView;
+
+        public GridProductViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            gridLayoutTitle = itemView.findViewById(R.id.grid_product_layout_title);
+            gridLayoutViewAllBtn = itemView.findViewById(R.id.grid_product_layout_viewall_btn);
+            gridView = itemView.findViewById(R.id.grid_product_layout_gridview);
+        }
+
+        private void setGridProductLayout(List<HorizontalProductScrollModel> horizontalProductScrollModelList,String title){
+            gridLayoutTitle.setText(title);
+            gridView.setAdapter(new GridProductLayoutAdapter(horizontalProductScrollModelList));
 
         }
     }

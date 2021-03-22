@@ -7,6 +7,7 @@ public class HomePageModel {
     public static final int BANNER_SLIDER = 0;
     public static final int STRIP_AD_BANNER = 1;
     public static final int HORIZONTAL_PRODUCT_VIEW = 2;
+    public static final int GRID_PRODUCT_VIEW = 3 ;
 
     private int type;
 
@@ -57,7 +58,7 @@ public class HomePageModel {
 
 
 
-    /////// Horizontal Product Layout
+    /////// Horizontal Product Layout && Grid Product Layout as only layout difference
 
     private String title;
     private List<HorizontalProductScrollModel> horizontalProductScrollModelList;
@@ -81,6 +82,5 @@ public class HomePageModel {
     }
 
     /////// Horizontal Product Layout
-
 
 }
