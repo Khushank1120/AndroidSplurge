@@ -185,7 +185,6 @@ public class HomeFragment extends Fragment {
 
         HorizontalProductScrollAdapter horizontalProductScrollAdapter = new HorizontalProductScrollAdapter(horizontalProductScrollModelList);
 
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         horizontalRecyclerView.setLayoutManager(linearLayoutManager);
