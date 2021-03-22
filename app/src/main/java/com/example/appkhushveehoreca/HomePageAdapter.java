@@ -1,12 +1,15 @@
 package com.example.appkhushveehoreca;
 
+import android.graphics.Color;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
@@ -27,6 +30,8 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         switch (homePageModelList.get(position).getType()){
             case 0:
                 return HomePageModel.BANNER_SLIDER;
+                case 1:
+                    return HomePageModel.STRIP_AD_BANNER;
             default:
                 return -1;
         }
@@ -38,8 +43,12 @@ public class HomePageAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         switch (viewType){
             case HomePageModel.BANNER_SLIDER:
-                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.sliding_ad_layout,viewGroup,false);
-                return new BannerSliderViewHolder(view);
+                View bannerSliderView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.sliding_ad_layout,viewGroup,false);
+                return new BannerSliderViewHolder(bannerSliderView);
+
+            case HomePageModel.STRIP_AD_BANNER:
+                View stripAdView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.strip_ad_layout,viewGroup,false);
+                return new StripAdBannerViewHolder(stripAdView);
             default:
                 return null;
         }
@@ -50,7 +59,14 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         switch (homePageModelList.get(position).getType()){
             case HomePageModel.BANNER_SLIDER:
                 List<SliderModel> sliderModelList = homePageModelList.get(position).getSliderModelList();
+                ((BannerSliderViewHolder)viewHolder).setBannerSliderViewPager(sliderModelList);
+                break;
 
+                case HomePageModel.STRIP_AD_BANNER:
+                    int resource = homePageModelList.get(position).getResource();
+                    String color = homePageModelList.get(position).getBackgroundColor();
+                    ((StripAdBannerViewHolder)viewHolder).setStripAd(resource,color);
+                    break;
             default:
                 return;
         }
@@ -59,7 +75,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return homePageModelList.size();
     }
 
     public class BannerSliderViewHolder extends RecyclerView.ViewHolder{
@@ -77,7 +93,6 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             bannerSliderViewPager = itemView.findViewById(R.id.banner_slider_view_pager);
 
          }
-
          private void setBannerSliderViewPager(final List<SliderModel> sliderModelList){
 
              SliderAdapter sliderAdapter = new SliderAdapter(sliderModelList);
@@ -158,6 +173,25 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         }
          private void stopBannerSlideshow(){
             timer.cancel();
+        }
+    }
+
+    public class StripAdBannerViewHolder extends RecyclerView.ViewHolder{
+
+        private ImageView stripAdImage;
+        private ConstraintLayout stripAdContainer;
+
+        public StripAdBannerViewHolder(@NonNull View itemView) {
+            super(itemView);
+            stripAdImage = itemView.findViewById(R.id.strip_ad_image);
+            stripAdContainer = itemView.findViewById(R.id.strip_ad_container);
+
+        }
+
+        private void setStripAd(int resource, String color){
+            stripAdImage.setImageResource(resource);
+            stripAdContainer.setBackgroundColor(Color.parseColor(color));
+
         }
     }
 
