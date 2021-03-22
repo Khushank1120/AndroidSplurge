@@ -4,6 +4,7 @@ import java.util.List;
 
 public class HomePageModel {
 
+    public static final int BANNER_SLIDER = 0;
     private int type;
 
     ///////// Banner Slider
