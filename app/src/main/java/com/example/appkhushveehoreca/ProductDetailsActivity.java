@@ -5,10 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -18,6 +22,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     private ViewPager productImagesViewPager;
     private TabLayout viewPagerIndicator;
+    private FloatingActionButton addToWishlistBtn;
+    private static boolean ALREADY_ADDED_TO_WISHLIST = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +38,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         productImagesViewPager = findViewById(R.id.product_images_viewpager);
         viewPagerIndicator = findViewById(R.id.viewpager_indicator);
+        addToWishlistBtn = findViewById(R.id.add_to_wishlist_btn);
+
 
         List<Integer> productImages = new ArrayList<>();
                productImages.add(R.drawable.steelone);
@@ -42,6 +51,21 @@ public class ProductDetailsActivity extends AppCompatActivity {
                productImagesViewPager.setAdapter(productImagesAdapter);
 
         viewPagerIndicator.setupWithViewPager(productImagesViewPager,true);
+        addToWishlistBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if(ALREADY_ADDED_TO_WISHLIST){
+                    ALREADY_ADDED_TO_WISHLIST = false;
+                    addToWishlistBtn.setSupportImageTintList(ColorStateList.valueOf(Color.parseColor("#CCCCCC")));
+                }else{
+                    ALREADY_ADDED_TO_WISHLIST = true;
+                    addToWishlistBtn.setSupportImageTintList(getResources().getColorStateList(R.color.colorLogoBlue));
+
+                }
+
+            }
+        });
 
     }
 
