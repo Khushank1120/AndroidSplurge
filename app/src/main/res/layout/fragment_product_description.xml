@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProductDescriptionFragment">
+
+    <TextView
+        android:id="@+id/tv_product_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textColor="@color/colorBlack"
+        android:text="Quality, Style and experience for your table....
+Established in the year 2020 , We, Khushvee Horeca with the team of diligent professionals is rapidly expanding its business in country by presenting high quality products to consumers. We are reliable Manufacturer, Supplier, Exporters and Distributors of Melamine Crockery, Acrylic Crockery, Cutlery, Glassware, Tableware, Chaffing Dishes,
+Experts keep long-term relation with consumers and offer these in proper packing to ensure damage free delivery. Best raw input is used for the manufacturing of these products of optimal quality. Besides, we apply acceptable price for all our Hotel, Restaurant Catering Ware. Professionals work keenly and offer these products in eye catchy patrons to meet desire of patrons." />
+
+</FrameLayout>

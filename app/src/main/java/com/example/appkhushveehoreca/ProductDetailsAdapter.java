@@ -18,8 +18,14 @@ public class ProductDetailsAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int i) {
         switch (i){
             case 0:
+                ProductDescriptionFragment productDescriptionFragment1 = new ProductDescriptionFragment();
+                return productDescriptionFragment1;
             case 1:
+                ProductSpecificationFragment productSpecificationFragment = new ProductSpecificationFragment();
+                return productSpecificationFragment;
             case 2:
+                ProductDescriptionFragment productDescriptionFragment2 = new ProductDescriptionFragment();
+                return productDescriptionFragment2;
             default:
                 return null;
         }
