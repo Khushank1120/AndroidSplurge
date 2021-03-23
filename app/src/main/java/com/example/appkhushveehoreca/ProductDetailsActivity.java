@@ -22,8 +22,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     private ViewPager productImagesViewPager;
     private TabLayout viewPagerIndicator;
+
+    private ViewPager productDetailsViewpager;
+    private TabLayout productDetailsTablayout;
+
     private FloatingActionButton addToWishlistBtn;
     private static boolean ALREADY_ADDED_TO_WISHLIST = false;
+
 
 
     @Override
@@ -40,6 +45,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
         viewPagerIndicator = findViewById(R.id.viewpager_indicator);
         addToWishlistBtn = findViewById(R.id.add_to_wishlist_btn);
 
+        productDetailsViewpager = findViewById(R.id.product_details_viewpager);
+        productDetailsTablayout = findViewById(R.id.product_details_tablayout);
 
         List<Integer> productImages = new ArrayList<>();
                productImages.add(R.drawable.steelone);
