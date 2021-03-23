@@ -58,7 +58,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         private void setCategoryIcon(){
             /// todo set category icons here;
 
-
         }
 
         private void setCategory(final String name, final int position){
@@ -72,7 +71,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                         categoryIntent.putExtra("CategoryName", name);
                         itemView.getContext().startActivity(categoryIntent);
                     }
-
                 }
             });
         }
