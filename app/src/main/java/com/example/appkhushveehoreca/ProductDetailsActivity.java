@@ -31,6 +31,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
 
 
+    ///////// Rating Layout not done as not needed /////////////
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
