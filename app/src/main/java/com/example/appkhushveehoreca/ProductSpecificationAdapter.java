@@ -1,8 +1,11 @@
 package com.example.appkhushveehoreca;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,12 +21,40 @@ public class ProductSpecificationAdapter extends RecyclerView.Adapter<ProductSpe
         this.productSpecificationModelList = productSpecificationModelList;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        switch (productSpecificationModelList.get(position).getType()){
+            case 0:
+                return ProductSpecificationModel.SPECIFICATION_TITLE;
+            case 1:
+                return ProductSpecificationModel.SPECIFICATION_BODY;
+            default: return -1;
+
+        }
+    }
+
     @NonNull
     @Override
-    public ProductSpecificationAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.product_specification_item_layout,viewGroup,false);
-        return new ViewHolder(view);
+    public ProductSpecificationAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        switch (viewType){
+            case ProductSpecificationModel.SPECIFICATION_TITLE:
+                TextView title = new TextView(viewGroup.getContext());
+                title.setTypeface(null, Typeface.BOLD);
+                title.setTextColor(Color.parseColor("#000000"));
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            case ProductSpecificationModel.SPECIFICATION_BODY:
+                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.product_specification_item_layout,viewGroup,false);
+                return new ViewHolder(view);
+            default:
+                return null;
+
+        }
+
+
     }
+
+
 
     @Override
     public void onBindViewHolder(@NonNull ProductSpecificationAdapter.ViewHolder viewHolder, int position) {
