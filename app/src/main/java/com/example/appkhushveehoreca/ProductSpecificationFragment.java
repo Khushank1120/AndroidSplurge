@@ -37,11 +37,13 @@ public class ProductSpecificationFragment extends Fragment {
         productSpecificationRecyclerView.setLayoutManager(linearLayoutManager);
 
         List<ProductSpecificationModel> productSpecificationModelList = new ArrayList<>();
-        productSpecificationModelList.add(new ProductSpecificationModel("SC-125","Steel"));
-        productSpecificationModelList.add(new ProductSpecificationModel("125","ceramic"));
-        productSpecificationModelList.add(new ProductSpecificationModel("SC5","wooden"));
-        productSpecificationModelList.add(new ProductSpecificationModel("SC-5","copper"));
-        productSpecificationModelList.add(new ProductSpecificationModel("SC","pot"));
+        productSpecificationModelList.add(new ProductSpecificationModel(0,"Product Info"));
+        productSpecificationModelList.add(new ProductSpecificationModel(1,"-125","Steel"));
+        productSpecificationModelList.add(new ProductSpecificationModel(1,"SC-","Wooden"));
+        productSpecificationModelList.add(new ProductSpecificationModel(1,"-","Ceramic"));
+        productSpecificationModelList.add(new ProductSpecificationModel(1,"SC-125","Pot"));
+
+
 
         ProductSpecificationAdapter productSpecificationAdapter = new ProductSpecificationAdapter(productSpecificationModelList);
         productSpecificationRecyclerView.setAdapter(productSpecificationAdapter);

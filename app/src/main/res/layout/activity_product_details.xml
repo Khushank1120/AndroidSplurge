@@ -42,6 +42,10 @@
 
             <include layout="@layout/product_description_layout"/>
 
+            <include layout="@layout/product_details_only_layout"/>
+
+<!--            ////// Rating Layout not included as not needed ///////-->
+
         </LinearLayout>
     </ScrollView>
 
