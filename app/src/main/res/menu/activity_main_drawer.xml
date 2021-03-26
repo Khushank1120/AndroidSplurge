@@ -13,9 +13,9 @@
             android:icon="@drawable/ic_baseline_work_24"
             android:title="My Orders" />
         <item
-            android:id="@+id/nav_my_cart"
-            android:icon="@drawable/ic_baseline_shopping_cart_24"
-            android:title="My Cart" />
+            android:id="@+id/nav_my_offers"
+            android:icon="@drawable/ic_baseline_card_reward_24"
+            android:title="Offers" />
         <item
             android:id="@+id/nav_my_wishlist"
             android:icon="@drawable/ic_baseline_bookmark_24"

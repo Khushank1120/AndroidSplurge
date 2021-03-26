@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorAccent">
+
+
+    <ImageView
+        android:id="@+id/coupon_icon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_card_reward_24"
+        app:tint="@color/colorLogoBlue" />
+
+    <TextView
+        android:id="@+id/coupon_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:padding="2dp"
+        android:text=" Contact us for special Offer's "
+        android:textColor="@color/colorLogoBlue"
+        android:textStyle="bold"
+        android:background="#EFEFEF"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/coupon_icon"
+        app:layout_constraintStart_toEndOf="@+id/coupon_icon"
+        app:layout_constraintTop_toTopOf="@+id/coupon_icon" />
+
+    <TextView
+        android:id="@+id/coupon_validity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#EFEFEF"
+        android:padding="2dp"
+        android:text=" Till 20th June "
+        android:elevation="10dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/coupon_body"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="left"
+        android:elevation="10dp"
+        android:padding="5dp"
+        android:background="#EFEFEF"
+        android:text="Get special deals on products. Just contact us through mail or call us on 91323142421."
+        android:textColor="@color/colorLogoBlue"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coupon_title" />
+</androidx.constraintlayout.widget.ConstraintLayout>
