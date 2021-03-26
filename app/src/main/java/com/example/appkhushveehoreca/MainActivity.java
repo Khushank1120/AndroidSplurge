@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private static final int HOME_FRAGMENT = 0;
     private static final int REWARDS_FRAGMENT = 1;
+    private static final int ACCOUNT_FRAGMENT = 2;
 
 
 
@@ -144,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             invalidateOptionsMenu();
             setFragment(new HomeFragment(),HOME_FRAGMENT);
         }else if(id == R.id.nav_my_account){
-
+            goToFragment("My Account",new MyAccountFragment(),ACCOUNT_FRAGMENT);
         }else if(id == R.id.nav_my_offers){
             goToFragment("My Rewards",new MyRewardsFragment(),REWARDS_FRAGMENT);
         }else if(id == R.id.nav_my_wishlist){
