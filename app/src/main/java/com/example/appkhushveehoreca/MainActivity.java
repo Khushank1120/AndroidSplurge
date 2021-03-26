@@ -23,21 +23,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     private static final int HOME_FRAGMENT = 0;
+    private static final int REWARDS_FRAGMENT = 1;
+
+
 
     private AppBarConfiguration mAppBarConfiguration;
     private FrameLayout frameLayout;
     private ImageView actionBarLogo;
     private static int currentFragment = -1;
     private NavigationView navigationView;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         actionBarLogo = findViewById(R.id.actionBarLogo);
         setSupportActionBar(toolbar);
-
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -70,7 +73,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(drawer.isDrawerOpen(GravityCompat.START)){
             drawer.closeDrawer(GravityCompat.START);
         }else{
-            super.onBackPressed();
+            if(currentFragment == HOME_FRAGMENT){
+                super.onBackPressed();
+            }else{
+                actionBarLogo.setVisibility(View.VISIBLE);
+                invalidateOptionsMenu();
+                setFragment(new HomeFragment(),HOME_FRAGMENT);
+                navigationView.getMenu().getItem(0).setChecked(true);
+            }
         }
 
     }
@@ -82,10 +92,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(currentFragment == HOME_FRAGMENT) {
             getMenuInflater().inflate(R.menu.main, menu);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
-
         }
+//        else{
+//            getSupportActionBar().setDisplayShowTitleEnabled(true);
+//        }
         return true;
-
     }
 
     @Override
@@ -111,28 +122,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+    public void goToFragment(String title,Fragment fragment, int fragmentNo){
+        actionBarLogo.setVisibility(View.GONE);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle(title);
+        invalidateOptionsMenu();
+        setFragment(fragment,fragmentNo);
+//        if(fragmentNo == REWARDS_FRAGMENT){
+//            navigationView.getMenu().getItem(1).setChecked(true);
+//        }
+    }
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
+        ////// Handle navigation view clicks here ///////
+
         int id = item.getItemId();
-
-
         if(id == R.id.nav_my_khushveeHoreca){
-            setFragment(new HomeFragment(),HOME_FRAGMENT);
             actionBarLogo.setVisibility(View.VISIBLE);
-
-        }else if (id == R.id.nav_my_order){
-
+            invalidateOptionsMenu();
+            setFragment(new HomeFragment(),HOME_FRAGMENT);
         }else if(id == R.id.nav_my_account){
 
         }else if(id == R.id.nav_my_offers){
-
+            goToFragment("My Rewards",new MyRewardsFragment(),REWARDS_FRAGMENT);
         }else if(id == R.id.nav_my_wishlist){
 
         }else if(id == R.id.nav_sign_out) {
 
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -142,9 +161,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(fragmentNo != currentFragment) {
             currentFragment = fragmentNo;
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(frameLayout.getId(), fragment);
+            fragmentTransaction.replace(frameLayout.getId(),fragment);
             fragmentTransaction.commit();
-
         }
     }
 }

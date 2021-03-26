@@ -8,10 +8,10 @@
             android:id="@+id/nav_my_khushveeHoreca"
             android:icon="@drawable/ic_baseline_drag_handle_24"
             android:title="Khushvee Horeca" />
-        <item
-            android:id="@+id/nav_my_order"
-            android:icon="@drawable/ic_baseline_work_24"
-            android:title="My Orders" />
+<!--        <item-->
+<!--            android:id="@+id/nav_my_order"-->
+<!--            android:icon="@drawable/ic_baseline_work_24"-->
+<!--            android:title="My Orders" />-->
         <item
             android:id="@+id/nav_my_offers"
             android:icon="@drawable/ic_baseline_card_reward_24"
