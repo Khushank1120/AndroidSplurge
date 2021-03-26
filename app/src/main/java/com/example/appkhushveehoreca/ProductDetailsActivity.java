@@ -30,7 +30,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private static boolean ALREADY_ADDED_TO_WISHLIST = false;
 
 
-
     ///////// Rating Layout not done as not needed /////////////
 
 

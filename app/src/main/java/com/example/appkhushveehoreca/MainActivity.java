@@ -3,7 +3,9 @@ package com.example.appkhushveehoreca;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -20,16 +22,21 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
+    private static final int HOME_FRAGMENT = 0;
+
     private AppBarConfiguration mAppBarConfiguration;
     private FrameLayout frameLayout;
+    private ImageView actionBarLogo;
+    private static int currentFragment = -1;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        actionBarLogo = findViewById(R.id.actionBarLogo);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -38,12 +45,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
 
         frameLayout = findViewById(R.id.main_frame_layout);
-        setFragment(new HomeFragment());
+        setFragment(new HomeFragment(),HOME_FRAGMENT);
 
 
         // Passing each menu ID as a set of Ids because each
@@ -71,8 +78,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+
+        if(currentFragment == HOME_FRAGMENT) {
+            getMenuInflater().inflate(R.menu.main, menu);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        }
         return true;
+
     }
 
     @Override
@@ -105,6 +118,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         if(id == R.id.nav_my_khushveeHoreca){
+            setFragment(new HomeFragment(),HOME_FRAGMENT);
+            actionBarLogo.setVisibility(View.VISIBLE);
 
         }else if (id == R.id.nav_my_order){
 
@@ -123,10 +138,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private void setFragment(Fragment fragment){
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(frameLayout.getId(),fragment);
-        fragmentTransaction.commit();
+    private void setFragment(Fragment fragment,int fragmentNo){
+        if(fragmentNo != currentFragment) {
+            currentFragment = fragmentNo;
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(frameLayout.getId(), fragment);
+            fragmentTransaction.commit();
 
+        }
     }
 }
