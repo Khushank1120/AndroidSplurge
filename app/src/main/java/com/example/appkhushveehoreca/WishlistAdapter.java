@@ -1,5 +1,6 @@
 package com.example.appkhushveehoreca;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,6 +98,14 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
                 }
             });
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent productDetailsIntent = new Intent(itemView.getContext(),ProductDetailsActivity.class);
+                    itemView.getContext().startActivity(productDetailsIntent);
+                }
+            });
         }
+
     }
 }
