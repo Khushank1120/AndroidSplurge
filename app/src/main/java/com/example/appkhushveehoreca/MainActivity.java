@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int HOME_FRAGMENT = 0;
     private static final int REWARDS_FRAGMENT = 1;
     private static final int ACCOUNT_FRAGMENT = 2;
+    private static final int WISHLIST_FRAGMENT = 3;
+
 
 
 
@@ -149,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else if(id == R.id.nav_my_offers){
             goToFragment("My Rewards",new MyRewardsFragment(),REWARDS_FRAGMENT);
         }else if(id == R.id.nav_my_wishlist){
-
+            goToFragment("My WishList",new MyWishlistFragment(),WISHLIST_FRAGMENT);
         }else if(id == R.id.nav_sign_out) {
 
         }

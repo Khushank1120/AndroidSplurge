@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/coupon_icon"
+        android:id="@+id/free_coupon"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="16dp"
@@ -29,9 +29,9 @@
         android:textStyle="bold"
         android:background="#EFEFEF"
         android:elevation="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/coupon_icon"
-        app:layout_constraintStart_toEndOf="@+id/coupon_icon"
-        app:layout_constraintTop_toTopOf="@+id/coupon_icon" />
+        app:layout_constraintBottom_toBottomOf="@+id/free_coupon"
+        app:layout_constraintStart_toEndOf="@+id/free_coupon"
+        app:layout_constraintTop_toTopOf="@+id/free_coupon" />
 
     <TextView
         android:id="@+id/coupon_validity"

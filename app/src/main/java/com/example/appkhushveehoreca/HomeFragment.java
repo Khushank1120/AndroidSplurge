@@ -85,11 +85,9 @@ public class HomeFragment extends Fragment {
         ///////// Banner Slider Temporary ////////
 
 
-
         ////// Strip Ad Temporary
 
         ////// Strip Ad Temporary ////////
-
 
 
         ////// Horizontal Product Layout
@@ -107,7 +105,6 @@ public class HomeFragment extends Fragment {
 
 
         ////// Horizontal Product Layout //////
-
 
 
         //////////////////////
@@ -129,7 +126,6 @@ public class HomeFragment extends Fragment {
         adapter.notifyDataSetChanged();
 
         /////////////////////
-
 
         return view;
     }
