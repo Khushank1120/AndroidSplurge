@@ -136,7 +136,6 @@ public class HomePageAdapter extends RecyclerView.Adapter {
              arrangedList.add(sliderModelList.get(0));
              arrangedList.add(sliderModelList.get(1));
 
-
              SliderAdapter sliderAdapter = new SliderAdapter(arrangedList);
              bannerSliderViewPager.setAdapter(sliderAdapter);
              bannerSliderViewPager.setClipToPadding(false);
