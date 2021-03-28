@@ -40,9 +40,10 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView categoryRecyclerView;
     private CategoryAdapter categoryAdapter;
-    private RecyclerView testing;
+    private RecyclerView homePageRecyclerView;
     private List <CategoryModel> categoryModelList;
     private FirebaseFirestore firebaseFirestore;
+    private HomePageAdapter adapter;
 
 
     @Override
@@ -83,15 +84,6 @@ public class HomeFragment extends Fragment {
 
         ///////// Banner Slider Temporary
 
-        final List<SliderModel>sliderModelList = new ArrayList<SliderModel>();
-
-        sliderModelList.add(new SliderModel(R.mipmap.banner,"#FFFFFF"));
-        sliderModelList.add(new SliderModel(R.mipmap.defaultprofilepic,"#FFFFFF"));
-        sliderModelList.add(new SliderModel(R.drawable.ic_baseline_add_24,"#FFFFFF"));
-        sliderModelList.add(new SliderModel(R.drawable.ic_baseline_bookmark_24,"#FFFFFF"));
-        sliderModelList.add(new SliderModel(R.drawable.ic_baseline_lock_24,"#FFFFFF"));
-        sliderModelList.add(new SliderModel(R.drawable.ic_baseline_email_24,"#FFFFFF"));
-        sliderModelList.add(new SliderModel(R.drawable.ic_baseline_home_24,"#FFFFFF"));
 
         ///////// Banner Slider Temporary ////////
 
@@ -103,16 +95,16 @@ public class HomeFragment extends Fragment {
 
         ////// Horizontal Product Layout
 
-        List<HorizontalProductScrollModel> horizontalProductScrollModelList = new ArrayList<>();
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenone,"WoodenOne", "SDw","sd","RS1250"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodentwo,"WoodenOne", "SDewe","sd","RS1250"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenthree,"WoodenOne", "SewD","sd","RS1250"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenfour,"WoodenOne", "SD","sd","RS1250"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenfive,"WoodenOne", "SD","sd","RS1250"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodensix,"WoodenOne", "SD","sd","RS1250"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.ic_baseline_add_24,"Add", "SD","sd","RS1250"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.ic_baseline_bookmark_24,"Bookmark", "SD","sd","RS1250"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.ic_baseline_close_24,"Close", "SD","sd","RS1250"));
+//        List<HorizontalProductScrollModel> horizontalProductScrollModelList = new ArrayList<>();
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenone,"WoodenOne", "SDw","sd","RS1250"));
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodentwo,"WoodenOne", "SDewe","sd","RS1250"));
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenthree,"WoodenOne", "SewD","sd","RS1250"));
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenfour,"WoodenOne", "SD","sd","RS1250"));
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenfive,"WoodenOne", "SD","sd","RS1250"));
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodensix,"WoodenOne", "SD","sd","RS1250"));
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.ic_baseline_add_24,"Add", "SD","sd","RS1250"));
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.ic_baseline_bookmark_24,"Bookmark", "SD","sd","RS1250"));
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.ic_baseline_close_24,"Close", "SD","sd","RS1250"));
 
 
         ////// Horizontal Product Layout //////
@@ -120,24 +112,52 @@ public class HomeFragment extends Fragment {
 
         //////////////////////
 
-        testing = view.findViewById(R.id.home_page_recyclerview);
+        homePageRecyclerView = view.findViewById(R.id.home_page_recyclerview);
         LinearLayoutManager testingLayoutManager = new LinearLayoutManager(getContext());
         testingLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        testing.setLayoutManager(testingLayoutManager);
+        homePageRecyclerView.setLayoutManager(testingLayoutManager);
+        final List<HomePageModel> homePageModelList = new ArrayList<>();
+        adapter = new HomePageAdapter(homePageModelList);
+        homePageRecyclerView.setAdapter(adapter);
 
-        List<HomePageModel> homePageModelList = new ArrayList<>();
-        homePageModelList.add(new HomePageModel(0,sliderModelList));
-        homePageModelList.add(new HomePageModel(1,R.drawable.stripad,"#000000"));
-        homePageModelList.add(new HomePageModel(2,"Latest Products",horizontalProductScrollModelList));
-        homePageModelList.add(new HomePageModel(3,"Latest Products New",horizontalProductScrollModelList));
-        homePageModelList.add(new HomePageModel(0,sliderModelList));
+        firebaseFirestore.collection("CATEGORIES")
+                .document("HOME")
+                .collection("TOP_DEALS").orderBy("index").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
 
-        homePageModelList.add(new HomePageModel(1,R.drawable.stripad,"#000000"));
-        homePageModelList.add(new HomePageModel(2,"Latest Products",horizontalProductScrollModelList));
-        homePageModelList.add(new HomePageModel(3,"Latest Products New",horizontalProductScrollModelList));
+                                if((long)documentSnapshot.get("view_type") == 0){
 
-        HomePageAdapter adapter = new HomePageAdapter(homePageModelList);
-        testing.setAdapter(adapter);
+                                    List<SliderModel> sliderModelList = new ArrayList<>();
+                                    long no_of_banners = (long) documentSnapshot.get("no_of_banners");
+                                    for(long x = 1;x < no_of_banners + 1; x++){
+                                        sliderModelList.add(new SliderModel(documentSnapshot.get("banner_" + x).toString()
+                                                ,documentSnapshot.get("banner_"+ x +"_background").toString()));
+                                    }
+                                    homePageModelList.add(new HomePageModel(0,sliderModelList));
+
+                                }else if ((long)documentSnapshot.get("view_type") == 1){
+
+                                    homePageModelList.add(new HomePageModel(1,documentSnapshot.get("strip_ad_banner").toString(),
+                                            documentSnapshot.get("background").toString()));
+
+                                }else if ((long)documentSnapshot.get("view_type") == 2){
+
+                                }else if ((long)documentSnapshot.get("view_type") == 3){
+
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
+                        }else{
+                            String error = task.getException().getMessage();
+                            Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
         adapter.notifyDataSetChanged();
 
         /////////////////////
