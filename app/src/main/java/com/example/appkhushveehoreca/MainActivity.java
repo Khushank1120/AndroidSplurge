@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private AppBarConfiguration mAppBarConfiguration;
     private FrameLayout frameLayout;
     private ImageView actionBarLogo;
-    private static int currentFragment = -1;
+    private int currentFragment = -1;
     private NavigationView navigationView;
     private Toolbar toolbar;
 

@@ -68,19 +68,13 @@ public class HomeFragment extends Fragment {
 
         final List<SliderModel>sliderModelList = new ArrayList<SliderModel>();
 
-        sliderModelList.add(new SliderModel(R.drawable.ic_baseline_email_24,"#FFFFFF"));
-        sliderModelList.add(new SliderModel(R.drawable.ic_baseline_home_24,"#FFFFFF"));
         sliderModelList.add(new SliderModel(R.mipmap.banner,"#FFFFFF"));
-
         sliderModelList.add(new SliderModel(R.mipmap.defaultprofilepic,"#FFFFFF"));
         sliderModelList.add(new SliderModel(R.drawable.ic_baseline_add_24,"#FFFFFF"));
         sliderModelList.add(new SliderModel(R.drawable.ic_baseline_bookmark_24,"#FFFFFF"));
         sliderModelList.add(new SliderModel(R.drawable.ic_baseline_lock_24,"#FFFFFF"));
         sliderModelList.add(new SliderModel(R.drawable.ic_baseline_email_24,"#FFFFFF"));
-
         sliderModelList.add(new SliderModel(R.drawable.ic_baseline_home_24,"#FFFFFF"));
-        sliderModelList.add(new SliderModel(R.mipmap.banner,"#FFFFFF"));
-        sliderModelList.add(new SliderModel(R.mipmap.defaultprofilepic,"#FFFFFF"));
 
         ///////// Banner Slider Temporary ////////
 
