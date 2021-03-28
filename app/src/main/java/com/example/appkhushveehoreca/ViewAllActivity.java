@@ -63,21 +63,6 @@ public class ViewAllActivity extends AppCompatActivity {
 
             gridView.setVisibility(View.VISIBLE);
             List<HorizontalProductScrollModel> horizontalProductScrollModelList = new ArrayList<>();
-            horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenone, "WoodenOne", "SDw", "sd", "RS1250"));
-            horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodentwo, "WoodenOne", "SDewe", "sd", "RS1250"));
-            horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenthree, "WoodenOne", "SewD", "sd", "RS1250"));
-            horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenfour, "WoodenOne", "SD", "sd", "RS1250"));
-            horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenfive, "WoodenOne", "SD", "sd", "RS1250"));
-            horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodensix, "WoodenOne", "SD", "sd", "RS1250"));
-            horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenone, "WoodenOne", "SDw", "sd", "RS1250"));
-            horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodentwo, "WoodenOne", "SDewe", "sd", "RS1250"));
-            horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenthree, "WoodenOne", "SewD", "sd", "RS1250"));
-            horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenone, "WoodenOne", "SDw", "sd", "RS1250"));
-            horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodentwo, "WoodenOne", "SDewe", "sd", "RS1250"));
-            horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenthree, "WoodenOne", "SewD", "sd", "RS1250"));
-            horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenfour, "WoodenOne", "SD", "sd", "RS1250"));
-            horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenfive, "WoodenOne", "SD", "sd", "RS1250"));
-            horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodensix, "WoodenOne", "SD", "sd", "RS1250"));
 
             GridProductLayoutAdapter gridProductLayoutAdapter = new GridProductLayoutAdapter(horizontalProductScrollModelList);
             gridView.setAdapter(gridProductLayoutAdapter);
