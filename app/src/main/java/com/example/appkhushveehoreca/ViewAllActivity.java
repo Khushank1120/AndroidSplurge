@@ -18,6 +18,7 @@ public class ViewAllActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private GridView gridView;
+    public static  List<WishlistModel> wishlistModelList;
     public static List<HorizontalProductScrollModel> horizontalProductScrollModelList;
 
     @Override
@@ -42,17 +43,6 @@ public class ViewAllActivity extends AppCompatActivity {
             layoutManager.setOrientation(RecyclerView.VERTICAL);
             recyclerView.setLayoutManager(layoutManager);
 
-            List<WishlistModel> wishlistModelList = new ArrayList<>();
-
-            wishlistModelList.add(new WishlistModel(R.drawable.steelfour, "Steel Vessel", "SC-125", "Contact us for", "Rs.1200/-", "Rs.1400/-"));
-            wishlistModelList.add(new WishlistModel(R.drawable.steelthree, "Steel Vessel", "SC-125", "Contact us for", "Rs.1200/-", "Rs.1400/-"));
-            wishlistModelList.add(new WishlistModel(R.drawable.steelone, "Steel Vessel", "SC-125", "Contact us for", "Rs.1200/-", "Rs.1400/-"));
-            wishlistModelList.add(new WishlistModel(R.drawable.steeltwo, "Steel Vessel", "SC-125", "Contact us for", "Rs.1200/-", "Rs.1400/-"));
-
-            wishlistModelList.add(new WishlistModel(R.drawable.steelfour, "Steel Vessel", "SC-125", "Contact us for", "Rs.1200/-", "Rs.1400/-"));
-            wishlistModelList.add(new WishlistModel(R.drawable.steelthree, "Steel Vessel", "SC-125", "Contact us for", "Rs.1200/-", "Rs.1400/-"));
-            wishlistModelList.add(new WishlistModel(R.drawable.steelone, "Steel Vessel", "SC-125", "Contact us for", "Rs.1200/-", "Rs.1400/-"));
-            wishlistModelList.add(new WishlistModel(R.drawable.steeltwo, "Steel Vessel", "SC-125", "Contact us for", "Rs.1200/-", "Rs.1400/-"));
 
             WishlistAdapter adapter = new WishlistAdapter(wishlistModelList, false);
             recyclerView.setAdapter(adapter);

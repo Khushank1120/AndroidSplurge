@@ -3,14 +3,14 @@ package com.example.appkhushveehoreca;
 public class WishlistModel {
 
 
-    private int productImage;
+    private String productImage;
     private String productTitle;
     private String productTitle1;
     private String freeCoupons;
     private String productPrice;
     private String cuttedPrice;
 
-    public WishlistModel(int productImage, String productTitle, String productTitle1, String freeCoupons, String productPrice, String cuttedPrice) {
+    public WishlistModel(String productImage, String productTitle, String productTitle1, String freeCoupons, String productPrice, String cuttedPrice) {
         this.productImage = productImage;
         this.productTitle = productTitle;
         this.productTitle1 = productTitle1;
@@ -19,11 +19,11 @@ public class WishlistModel {
         this.cuttedPrice = cuttedPrice;
     }
 
-    public int getProductImage() {
+    public String getProductImage() {
         return productImage;
     }
 
-    public void setProductImage(int productImage) {
+    public void setProductImage(String productImage) {
         this.productImage = productImage;
     }
 

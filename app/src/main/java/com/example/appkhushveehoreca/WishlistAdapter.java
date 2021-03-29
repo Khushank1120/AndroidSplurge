@@ -12,6 +12,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.List;
 
 public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHolder> {
@@ -37,7 +40,7 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
 
-        int resource = wishlistModelList.get(position).getProductImage();
+        String resource = wishlistModelList.get(position).getProductImage();
         String title = wishlistModelList.get(position).getProductTitle();
         String title1 = wishlistModelList.get(position).getProductTitle1();
         String freeCoupon = wishlistModelList.get(position).getFreeCoupons();
@@ -78,12 +81,12 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
             deleteBtn = itemView.findViewById(R.id.delete_btn);
 
         }
-        private void setData(int resource, String title, String title1, String freeCouponsNo, String price, String cuttedPriceValue){
-            productImage.setImageResource(resource);
+        private void setData(String resource, String title, String title1, String freeCouponsNo, String price, String cuttedPriceValue){
+            Glide.with(itemView.getContext()).load(resource).apply(new RequestOptions().placeholder(R.drawable.ic_baseline_home_24)).into(productImage);
             productTitle.setText(title);
             productTitle1.setText(title1);
             freeCoupons.setText(freeCouponsNo);
-            productPrice.setText(price);
+            productPrice.setText("RS."+price+"/-");
             cuttedPrice.setText(cuttedPriceValue);
 
             if(wishlist){
