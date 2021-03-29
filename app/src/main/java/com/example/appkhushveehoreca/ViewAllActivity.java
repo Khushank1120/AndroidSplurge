@@ -16,11 +16,9 @@ import java.util.List;
 
 public class ViewAllActivity extends AppCompatActivity {
 
-
     private RecyclerView recyclerView;
     private GridView gridView;
     public static List<HorizontalProductScrollModel> horizontalProductScrollModelList;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +62,7 @@ public class ViewAllActivity extends AppCompatActivity {
             gridView.setVisibility(View.VISIBLE);
             GridProductLayoutAdapter gridProductLayoutAdapter = new GridProductLayoutAdapter(horizontalProductScrollModelList);
             gridView.setAdapter(gridProductLayoutAdapter);
-
         }
-
     }
 
     @Override
