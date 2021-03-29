@@ -1,6 +1,9 @@
 package com.example.appkhushveehoreca;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -34,7 +38,10 @@ import java.util.TimerTask;
 
 import static com.example.appkhushveehoreca.DBqueries.categoryModelList;
 import static com.example.appkhushveehoreca.DBqueries.firebaseFirestore;
+import static com.example.appkhushveehoreca.DBqueries.homePageModelList;
 import static com.example.appkhushveehoreca.DBqueries.loadCategories;
+import static com.example.appkhushveehoreca.DBqueries.loadFragmentData;
+
 
 public class HomeFragment extends Fragment {
 
@@ -46,6 +53,7 @@ public class HomeFragment extends Fragment {
     private CategoryAdapter categoryAdapter;
     private RecyclerView homePageRecyclerView;
     private HomePageAdapter adapter;
+    private ImageView noInternetConnection;
 
 
     @Override
@@ -53,120 +61,48 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        noInternetConnection = view.findViewById(R.id.no_internet_connection);
 
-        categoryRecyclerView = (RecyclerView) view.findViewById(R.id.category_recyclerview);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        categoryRecyclerView.setLayoutManager(layoutManager);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
-        categoryAdapter = new CategoryAdapter(categoryModelList);
-        categoryRecyclerView.setAdapter(categoryAdapter);
+        if(networkInfo != null && networkInfo.isConnected() == true){
+            noInternetConnection.setVisibility(View.GONE);
 
-        if(categoryModelList.size() == 0){
-            loadCategories(categoryAdapter,getContext());
+            categoryRecyclerView = (RecyclerView) view.findViewById(R.id.category_recyclerview);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+            layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            categoryRecyclerView.setLayoutManager(layoutManager);
+            categoryAdapter = new CategoryAdapter(categoryModelList);
+            categoryRecyclerView.setAdapter(categoryAdapter);
+
+            if(categoryModelList.size() == 0){
+                loadCategories(categoryAdapter,getContext());
+            }else{
+                categoryAdapter.notifyDataSetChanged();
+            }
+
+            homePageRecyclerView = view.findViewById(R.id.home_page_recyclerview);
+            LinearLayoutManager testingLayoutManager = new LinearLayoutManager(getContext());
+            testingLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            homePageRecyclerView.setLayoutManager(testingLayoutManager);
+            adapter = new HomePageAdapter(homePageModelList);
+            homePageRecyclerView.setAdapter(adapter);
+
+            if(homePageModelList.size() == 0){
+                loadFragmentData(adapter,getContext());
+            }else{
+                categoryAdapter.notifyDataSetChanged();
+            }
+
         }else{
-            categoryAdapter.notifyDataSetChanged();
+            Glide.with(this).load(R.drawable.nointernetconnection).into(noInternetConnection);
+            noInternetConnection.setVisibility(View.VISIBLE);
         }
 
 
-        ///////// Banner Slider Temporary
-
-
-        ///////// Banner Slider Temporary ////////
-
-
-        ////// Strip Ad Temporary
-
-        ////// Strip Ad Temporary ////////
-
-
-        ////// Horizontal Product Layout
-
-//        List<HorizontalProductScrollModel> horizontalProductScrollModelList = new ArrayList<>();
-//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenone,"WoodenOne", "SDw","sd","RS1250"));
-//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodentwo,"WoodenOne", "SDewe","sd","RS1250"));
-//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenthree,"WoodenOne", "SewD","sd","RS1250"));
-//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenfour,"WoodenOne", "SD","sd","RS1250"));
-//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodenfive,"WoodenOne", "SD","sd","RS1250"));
-//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.woodensix,"WoodenOne", "SD","sd","RS1250"));
-//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.ic_baseline_add_24,"Add", "SD","sd","RS1250"));
-//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.ic_baseline_bookmark_24,"Bookmark", "SD","sd","RS1250"));
-//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.ic_baseline_close_24,"Close", "SD","sd","RS1250"));
-
-
-        ////// Horizontal Product Layout //////
-
-
-        //////////////////////
-
-        homePageRecyclerView = view.findViewById(R.id.home_page_recyclerview);
-        LinearLayoutManager testingLayoutManager = new LinearLayoutManager(getContext());
-        testingLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        homePageRecyclerView.setLayoutManager(testingLayoutManager);
-        final List<HomePageModel> homePageModelList = new ArrayList<>();
-        adapter = new HomePageAdapter(homePageModelList);
-        homePageRecyclerView.setAdapter(adapter);
-
-        firebaseFirestore.collection("CATEGORIES")
-                .document("HOME")
-                .collection("TOP_DEALS").orderBy("index").get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
-
-                                if((long)documentSnapshot.get("view_type") == 0){
-                                    List<SliderModel> sliderModelList = new ArrayList<>();
-                                    long no_of_banners = (long) documentSnapshot.get("no_of_banners");
-                                    for(long x = 1;x < no_of_banners + 1; x++){
-                                        sliderModelList.add(new SliderModel(documentSnapshot.get("banner_" + x).toString()
-                                                ,documentSnapshot.get("banner_"+ x +"_background").toString()));
-                                    }
-                                    homePageModelList.add(new HomePageModel(0,sliderModelList));
-                                }else if ((long)documentSnapshot.get("view_type") == 1){
-                                    homePageModelList.add(new HomePageModel(1,documentSnapshot.get("strip_ad_banner").toString(),
-                                            documentSnapshot.get("background").toString()));
-                                }else if ((long)documentSnapshot.get("view_type") == 2){
-                                    List<HorizontalProductScrollModel> horizontalProductScrollModelList = new ArrayList<>();
-                                    long no_of_products = (long) documentSnapshot.get("no_of_products");
-                                    for(long x = 1;x < no_of_products + 1; x++){
-                                        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(documentSnapshot.get("product_ID_"+x).toString()
-                                        ,documentSnapshot.get("product_image_"+ x).toString()
-                                                ,documentSnapshot.get("product_title_"+ x).toString()
-                                                ,documentSnapshot.get("product_subtitle_"+ x).toString()
-                                                ,documentSnapshot.get("product_subtitle2_"+ x).toString()
-                                                ,documentSnapshot.get("product_price_"+ x).toString()));
-                                    }
-                                    homePageModelList.add(new HomePageModel(2,documentSnapshot.get("layout_title").toString(),documentSnapshot.get("layout_background").toString(),horizontalProductScrollModelList));
-                                }else if ((long)documentSnapshot.get("view_type") == 3){
-                                    List<HorizontalProductScrollModel> gridModelList = new ArrayList<>();
-                                    long no_of_products = (long) documentSnapshot.get("no_of_products");
-                                    for(long x = 1;x < no_of_products + 1; x++){
-                                        gridModelList.add(new HorizontalProductScrollModel(documentSnapshot.get("product_ID_"+x).toString()
-                                                ,documentSnapshot.get("product_image_"+ x).toString()
-                                                ,documentSnapshot.get("product_title_"+ x).toString()
-                                                ,documentSnapshot.get("product_subtitle_"+ x).toString()
-                                                ,documentSnapshot.get("product_subtitle2_"+ x).toString()
-                                                ,documentSnapshot.get("product_price_"+ x).toString()));
-                                    }
-                                    homePageModelList.add(new HomePageModel(3,documentSnapshot.get("layout_title").toString(),documentSnapshot.get("layout_background").toString(),gridModelList));
-
-                                }
-                            }
-                            adapter.notifyDataSetChanged();
-                        }else{
-                            String error = task.getException().getMessage();
-                            Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-
         adapter.notifyDataSetChanged();
-
-        /////////////////////
 
         return view;
     }
-
 }

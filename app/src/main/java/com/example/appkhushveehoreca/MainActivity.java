@@ -32,9 +32,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int WISHLIST_FRAGMENT = 3;
 
 
-    private AppBarConfiguration mAppBarConfiguration;
     private FrameLayout frameLayout;
-    private ImageView noInternetConnection;
     private ImageView actionBarLogo;
     private int currentFragment = -1;
     private NavigationView navigationView;
@@ -44,36 +42,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        frameLayout = findViewById(R.id.main_frame_layout);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         actionBarLogo = findViewById(R.id.actionBarLogo);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
-
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this,drawer,toolbar,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        setFragment(new HomeFragment(),HOME_FRAGMENT);
 
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
 
-        frameLayout = findViewById(R.id.main_frame_layout);
-        noInternetConnection = findViewById(R.id.no_internet_connection);
-
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-
-        if(networkInfo != null && networkInfo.isConnected() == true){
-            noInternetConnection.setVisibility(View.GONE);
-            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                    this,drawer,toolbar,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-            drawer.addDrawerListener(toggle);
-            toggle.syncState();
-            setFragment(new HomeFragment(),HOME_FRAGMENT);
-
-        }else{
-            Glide.with(this).load(R.drawable.nointernetconnection).into(noInternetConnection);
-            noInternetConnection.setVisibility(View.VISIBLE);
-
-        }
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -85,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 //        NavigationUI.setupWithNavController(navigationView, navController);
     }
+
 
     @Override
     public void onBackPressed(){
