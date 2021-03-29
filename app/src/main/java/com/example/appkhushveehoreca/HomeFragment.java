@@ -32,6 +32,10 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.example.appkhushveehoreca.DBqueries.categoryModelList;
+import static com.example.appkhushveehoreca.DBqueries.firebaseFirestore;
+import static com.example.appkhushveehoreca.DBqueries.loadCategories;
+
 public class HomeFragment extends Fragment {
 
     public HomeFragment() {
@@ -41,8 +45,6 @@ public class HomeFragment extends Fragment {
     private RecyclerView categoryRecyclerView;
     private CategoryAdapter categoryAdapter;
     private RecyclerView homePageRecyclerView;
-    private List <CategoryModel> categoryModelList;
-    private FirebaseFirestore firebaseFirestore;
     private HomePageAdapter adapter;
 
 
@@ -57,29 +59,14 @@ public class HomeFragment extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         categoryRecyclerView.setLayoutManager(layoutManager);
 
-
-        categoryModelList = new ArrayList<CategoryModel>();
-
         categoryAdapter = new CategoryAdapter(categoryModelList);
         categoryRecyclerView.setAdapter(categoryAdapter);
 
-        firebaseFirestore = FirebaseFirestore.getInstance();
-        firebaseFirestore.collection("CATEGORIES").orderBy("index").get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
-                                categoryModelList.add(new CategoryModel(documentSnapshot.get("icon").toString(),documentSnapshot.get("categoryName").toString()));
-                            }
-                            categoryAdapter.notifyDataSetChanged();
-                        }else{
-                            String error = task.getException().getMessage();
-                            Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-
+        if(categoryModelList.size() == 0){
+            loadCategories(categoryAdapter,getContext());
+        }else{
+            categoryAdapter.notifyDataSetChanged();
+        }
 
 
         ///////// Banner Slider Temporary
@@ -153,6 +140,17 @@ public class HomeFragment extends Fragment {
                                     }
                                     homePageModelList.add(new HomePageModel(2,documentSnapshot.get("layout_title").toString(),documentSnapshot.get("layout_background").toString(),horizontalProductScrollModelList));
                                 }else if ((long)documentSnapshot.get("view_type") == 3){
+                                    List<HorizontalProductScrollModel> gridModelList = new ArrayList<>();
+                                    long no_of_products = (long) documentSnapshot.get("no_of_products");
+                                    for(long x = 1;x < no_of_products + 1; x++){
+                                        gridModelList.add(new HorizontalProductScrollModel(documentSnapshot.get("product_ID_"+x).toString()
+                                                ,documentSnapshot.get("product_image_"+ x).toString()
+                                                ,documentSnapshot.get("product_title_"+ x).toString()
+                                                ,documentSnapshot.get("product_subtitle_"+ x).toString()
+                                                ,documentSnapshot.get("product_subtitle2_"+ x).toString()
+                                                ,documentSnapshot.get("product_price_"+ x).toString()));
+                                    }
+                                    homePageModelList.add(new HomePageModel(3,documentSnapshot.get("layout_title").toString(),documentSnapshot.get("layout_background").toString(),gridModelList));
 
                                 }
                             }
