@@ -13,9 +13,14 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.appkhushveehoreca.DBqueries.lists;
+import static com.example.appkhushveehoreca.DBqueries.loadCategoriesNames;
+import static com.example.appkhushveehoreca.DBqueries.loadFragmentData;
+
 public class CategoryActivity extends AppCompatActivity {
 
     private RecyclerView categoryRecyclerView;
+    private HomePageAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,19 +34,33 @@ public class CategoryActivity extends AppCompatActivity {
 
         categoryRecyclerView = findViewById(R.id.category_recyclerview);
 
-
         //////////////////////
 
-         LinearLayoutManager testingLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager testingLayoutManager = new LinearLayoutManager(this);
         testingLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         categoryRecyclerView.setLayoutManager(testingLayoutManager);
 
-        List<HomePageModel> homePageModelList = new ArrayList<>();
+//        List<HomePageModel> homePageModelList = new ArrayList<>();
 
-        HomePageAdapter adapter = new HomePageAdapter(homePageModelList);
+// for reusing the data and not everytime fetching from Firebase
+        HomePageAdapter adapter;
+        int listPosition = 0;
+        for(int x=0; x < loadCategoriesNames.size(); x++){
+            if(loadCategoriesNames.get(x).equals(title.toUpperCase())){
+                listPosition = x;
+            }
+        }
+        if(listPosition == 0){
+            loadCategoriesNames.add(title.toUpperCase());
+            lists.add(new ArrayList<HomePageModel>());
+            adapter = new HomePageAdapter(lists.get(loadCategoriesNames.size()-1));
+            loadFragmentData(adapter,this,loadCategoriesNames.size()-1,title);
+        }else{
+            adapter = new HomePageAdapter(lists.get(listPosition));
+        }
+
         categoryRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-
 
     }
 

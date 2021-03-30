@@ -22,7 +22,6 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
     private List<WishlistModel> wishlistModelList;
     private Boolean wishlist;
 
-
     public WishlistAdapter(List<WishlistModel> wishlistModelList,Boolean wishlist){
         this.wishlistModelList = wishlistModelList;
         this.wishlist = wishlist;
@@ -58,7 +57,6 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-
         private ImageView productImage;
         private TextView productTitle;
         private TextView productTitle1;
@@ -67,7 +65,6 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
         private TextView productPrice;
         private TextView cuttedPrice;
         private Button deleteBtn;
-
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
