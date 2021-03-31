@@ -13,10 +13,10 @@
         android:icon="@drawable/ic_baseline_notifications_24"
         android:title="notification"
         app:showAsAction="always" />
-    <item
-        android:id="@+id/main_cart_icon"
-        android:orderInCategory="100"
-        android:title="cart"
-        android:icon="@drawable/ic_baseline_shopping_cart_24"
-        app:showAsAction="always" />
+<!--    <item-->
+<!--        android:id="@+id/main_cart_icon"-->
+<!--        android:orderInCategory="100"-->
+<!--        android:title="cart"-->
+<!--        android:icon="@drawable/ic_baseline_shopping_cart_24"-->
+<!--        app:showAsAction="always" />-->
 </menu>

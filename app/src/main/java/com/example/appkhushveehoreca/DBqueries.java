@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,7 +31,7 @@ public class DBqueries {
 
     /// List inside list parent child logic
 
-    public static void loadCategories(final CategoryAdapter categoryAdapter, final Context context){
+    public static void loadCategories(final RecyclerView categoriesRecyclerView, final Context context){
 
         firebaseFirestore.collection("CATEGORIES").orderBy("index").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -40,6 +41,8 @@ public class DBqueries {
                             for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
                                 categoryModelList.add(new CategoryModel(documentSnapshot.get("icon").toString(),documentSnapshot.get("categoryName").toString()));
                             }
+                            CategoryAdapter categoryAdapter = new CategoryAdapter(categoryModelList);
+                            categoriesRecyclerView.setAdapter(categoryAdapter);
                             categoryAdapter.notifyDataSetChanged();
                         }else{
                             String error = task.getException().getMessage();
@@ -50,7 +53,7 @@ public class DBqueries {
 
     }
 
-    public static void loadFragmentData(final HomePageAdapter adapter, final Context context, final int index, String categoryName){
+    public static void loadFragmentData(final RecyclerView homePageRecyclerView, final Context context, final int index, String categoryName){
 
         firebaseFirestore.collection("CATEGORIES")
                 .document(categoryName.toUpperCase())
@@ -112,16 +115,18 @@ public class DBqueries {
                                 }
 //                                adapter.notifyDataSetChanged();
                             }
-                            adapter.notifyDataSetChanged();
+                            HomePageAdapter homePageAdapter = new HomePageAdapter(lists.get(index));
+                            homePageRecyclerView.setAdapter(homePageAdapter);
+                            homePageAdapter.notifyDataSetChanged();
                             HomeFragment.swipeRefreshLayout.setRefreshing(false);
                         }else{
                             String error = task.getException().getMessage();
                             Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
                         }
-                        adapter.notifyDataSetChanged();
+//                        adapter.notifyDataSetChanged();
                     }
                 });
-        adapter.notifyDataSetChanged();
+//        adapter.notifyDataSetChanged();
     }
 
 }

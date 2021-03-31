@@ -20,6 +20,7 @@ import static com.example.appkhushveehoreca.DBqueries.loadFragmentData;
 public class CategoryActivity extends AppCompatActivity {
 
     private RecyclerView categoryRecyclerView;
+    private List<HomePageModel> homePageModelFakeList = new ArrayList<>();
     private HomePageAdapter adapter;
 
     @Override
@@ -32,6 +33,31 @@ public class CategoryActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+        ///// home page fake list
+
+        List<SliderModel> sliderModelFakeList = new ArrayList<>();
+        sliderModelFakeList.add(new SliderModel("null","#ffffff"));
+        sliderModelFakeList.add(new SliderModel("null","#ffffff"));
+        sliderModelFakeList.add(new SliderModel("null","#ffffff"));
+        sliderModelFakeList.add(new SliderModel("null","#ffffff"));
+        sliderModelFakeList.add(new SliderModel("null","#ffffff"));
+
+        List<HorizontalProductScrollModel> horizontalProductScrollModelFakeList = new ArrayList<>();
+        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","",""));
+        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","",""));
+        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","",""));
+        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","",""));
+        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","",""));
+        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","",""));
+
+        homePageModelFakeList.add(new HomePageModel(0,sliderModelFakeList));
+        homePageModelFakeList.add(new HomePageModel(1,"","#ffffff"));
+        homePageModelFakeList.add(new HomePageModel(2,"","#ffffff",horizontalProductScrollModelFakeList,new ArrayList<WishlistModel>()));
+        homePageModelFakeList.add(new HomePageModel(3,"","#ffffff",horizontalProductScrollModelFakeList));
+
+        ///// home page fake list ////////
+
         categoryRecyclerView = findViewById(R.id.category_recyclerview);
 
         //////////////////////
@@ -40,10 +66,12 @@ public class CategoryActivity extends AppCompatActivity {
         testingLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         categoryRecyclerView.setLayoutManager(testingLayoutManager);
 
+        adapter = new HomePageAdapter(homePageModelFakeList);
+
 //        List<HomePageModel> homePageModelList = new ArrayList<>();
 
-// for reusing the data and not everytime fetching from Firebase
-        HomePageAdapter adapter;
+//        for reusing the data and not everytime fetching from Firebase
+
         int listPosition = 0;
         for(int x=0; x < loadCategoriesNames.size(); x++){
             if(loadCategoriesNames.get(x).equals(title.toUpperCase())){
@@ -53,12 +81,10 @@ public class CategoryActivity extends AppCompatActivity {
         if(listPosition == 0){
             loadCategoriesNames.add(title.toUpperCase());
             lists.add(new ArrayList<HomePageModel>());
-            adapter = new HomePageAdapter(lists.get(loadCategoriesNames.size()-1));
-            loadFragmentData(adapter,this,loadCategoriesNames.size()-1,title);
+            loadFragmentData(categoryRecyclerView,this,loadCategoriesNames.size()-1,title);
         }else{
             adapter = new HomePageAdapter(lists.get(listPosition));
         }
-
         categoryRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
