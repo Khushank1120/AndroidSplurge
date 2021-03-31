@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -49,7 +50,7 @@ public class DBqueries {
 
     }
 
-    public static void loadFragmentData(final HomePageAdapter adapter, final Context context,final int index,String categoryName){
+    public static void loadFragmentData(final HomePageAdapter adapter, final Context context, final int index, String categoryName){
 
         firebaseFirestore.collection("CATEGORIES")
                 .document(categoryName.toUpperCase())
@@ -109,9 +110,10 @@ public class DBqueries {
                                     }
                                     lists.get(index).add(new HomePageModel(3,documentSnapshot.get("layout_title").toString(),documentSnapshot.get("layout_background").toString(),gridModelList));
                                 }
-                                adapter.notifyDataSetChanged();
+//                                adapter.notifyDataSetChanged();
                             }
                             adapter.notifyDataSetChanged();
+                            HomeFragment.swipeRefreshLayout.setRefreshing(false);
                         }else{
                             String error = task.getException().getMessage();
                             Toast.makeText(context, error, Toast.LENGTH_SHORT).show();

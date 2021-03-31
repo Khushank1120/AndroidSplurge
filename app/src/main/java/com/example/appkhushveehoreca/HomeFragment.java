@@ -3,6 +3,7 @@ package com.example.appkhushveehoreca;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
+import android.net.Network;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
@@ -50,6 +52,9 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
+    private ConnectivityManager connectivityManager;
+    private NetworkInfo networkInfo;
+    public static SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView categoryRecyclerView;
     private CategoryAdapter categoryAdapter;
     private RecyclerView homePageRecyclerView;
@@ -62,10 +67,11 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        swipeRefreshLayout = view.findViewById(R.id.refresh_layout);
         noInternetConnection = view.findViewById(R.id.no_internet_connection);
 
-        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        networkInfo = connectivityManager.getActiveNetworkInfo();
 
         if(networkInfo != null && networkInfo.isConnected() == true){
             noInternetConnection.setVisibility(View.GONE);
@@ -104,8 +110,36 @@ public class HomeFragment extends Fragment {
             noInternetConnection.setVisibility(View.VISIBLE);
         }
 
+//        adapter.notifyDataSetChanged();
 
-        adapter.notifyDataSetChanged();
+        ///////// refresh layout
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+
+                categoryModelList.clear();
+                lists.clear();
+                loadCategoriesNames.clear();
+                if (networkInfo != null && networkInfo.isConnected() == true) {
+                    noInternetConnection.setVisibility(View.GONE);
+
+                    loadCategories(categoryAdapter,getContext());
+
+                    loadCategoriesNames.add("Home");
+                    lists.add(new ArrayList<HomePageModel>());
+                    loadFragmentData(adapter,getContext(),0,"Home");
+
+                } else {
+                    Glide.with(getContext()).load(R.drawable.nointernetconnection).into(noInternetConnection);
+                    noInternetConnection.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        ///////// refresh layout
+
 
         return view;
     }
