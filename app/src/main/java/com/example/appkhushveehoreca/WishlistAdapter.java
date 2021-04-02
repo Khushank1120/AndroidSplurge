@@ -78,17 +78,17 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
             deleteBtn = itemView.findViewById(R.id.delete_btn);
 
         }
-        private void setData(String resource, String title, String title1, String freeCouponsNo, String price, String cuttedPriceValue){
+        private void setData(String resource, String title, String title1, String freeCouponsNo, String price, String cuttedPriceValue) {
             Glide.with(itemView.getContext()).load(resource).apply(new RequestOptions().placeholder(R.drawable.ic_baseline_home_24)).into(productImage);
             productTitle.setText(title);
             productTitle1.setText(title1);
             freeCoupons.setText(freeCouponsNo);
-            productPrice.setText("RS."+price+"/-");
+            productPrice.setText("RS." + price + "/-");
             cuttedPrice.setText(cuttedPriceValue);
 
-            if(wishlist){
+            if (wishlist) {
                 deleteBtn.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 deleteBtn.setVisibility(View.GONE);
             }
             deleteBtn.setOnClickListener(new View.OnClickListener() {
@@ -98,14 +98,15 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
                 }
             });
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent productDetailsIntent = new Intent(itemView.getContext(),ProductDetailsActivity.class);
-                    itemView.getContext().startActivity(productDetailsIntent);
-                }
-            });
+            if (title.equals("")) {
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent productDetailsIntent = new Intent(itemView.getContext(), ProductDetailsActivity.class);
+                        itemView.getContext().startActivity(productDetailsIntent);
+                    }
+                });
+            }
         }
-
     }
 }

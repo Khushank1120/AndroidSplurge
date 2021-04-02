@@ -159,8 +159,6 @@ public class HomeFragment extends Fragment {
             retryBtn.setVisibility(View.VISIBLE);
         }
 
-//        adapter.notifyDataSetChanged();
-
         ///////// refresh layout
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -169,7 +167,6 @@ public class HomeFragment extends Fragment {
                 swipeRefreshLayout.setRefreshing(true);
                 reloadPage();
             }
-
         });
 
         retryBtn.setOnClickListener(new View.OnClickListener() {
@@ -178,6 +175,8 @@ public class HomeFragment extends Fragment {
                 reloadPage();
             }
         });
+
+        adapter.notifyDataSetChanged();
         ///////// refresh layout
         return view;
     }

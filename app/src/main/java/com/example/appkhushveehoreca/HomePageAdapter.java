@@ -76,6 +76,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             case HomePageModel.GRID_PRODUCT_VIEW:
                 View gridProductView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.grid_product_layout,viewGroup,false);
                 return new GridProductViewHolder(gridProductView);
+
             default:
                 return null;
         }
@@ -336,7 +337,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 productPrice.setText("RS." + horizontalProductScrollModelList.get(x).getProductPrice() + "/-");
 
 
-                if(!title.equals("")) {
+                if(title.equals("")) {
                     gridProductLayout.getChildAt(x).setBackgroundColor(Color.parseColor("#ffffff"));
                     gridProductLayout.getChildAt(x).setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -346,7 +347,6 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                         }
                     });
                 }
-
             }
 
             if(!title.equals("")) {
@@ -363,5 +363,4 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             }
         }
     }
-
 }
