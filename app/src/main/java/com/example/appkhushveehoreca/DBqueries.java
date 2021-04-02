@@ -9,6 +9,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -17,6 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBqueries {
+
+    public static FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    public static FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
     public static FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     public static List<CategoryModel> categoryModelList = new ArrayList<>();
@@ -50,7 +55,6 @@ public class DBqueries {
                         }
                     }
                 });
-
     }
 
     public static void loadFragmentData(final RecyclerView homePageRecyclerView, final Context context, final int index, String categoryName){
@@ -96,24 +100,23 @@ public class DBqueries {
                                                 ,documentSnapshot.get("product_price_"+ x).toString()
                                                 ,documentSnapshot.get("cutted_price_"+ x).toString()
                                         ));
-
                                     }
                                     lists.get(index).add(new HomePageModel(2,documentSnapshot.get("layout_title").toString(),documentSnapshot.get("layout_background").toString(),horizontalProductScrollModelList,viewAllProductList));
 
                                 }else if ((long)documentSnapshot.get("view_type") == 3){
                                     List<HorizontalProductScrollModel> gridModelList = new ArrayList<>();
                                     long no_of_products = (long) documentSnapshot.get("no_of_products");
-                                    for(long x = 1;x < no_of_products + 1 ; x++){
+                                    for(long x = 1;x < no_of_products + 1; x++){
                                         gridModelList.add(new HorizontalProductScrollModel(documentSnapshot.get("product_ID_" + x).toString()
                                                 ,documentSnapshot.get("product_image_"+ x).toString()
                                                 ,documentSnapshot.get("product_title_"+ x).toString()
                                                 ,documentSnapshot.get("product_subtitle_"+ x).toString()
                                                 ,documentSnapshot.get("product_subtitle2_"+ x).toString()
-                                                ,documentSnapshot.get("product_price_"+ x).toString()));
+                                                ,documentSnapshot.get("product_price_"+ x).toString()
+                                        ));
                                     }
                                     lists.get(index).add(new HomePageModel(3,documentSnapshot.get("layout_title").toString(),documentSnapshot.get("layout_background").toString(),gridModelList));
                                 }
-//                                adapter.notifyDataSetChanged();
                             }
                             HomePageAdapter homePageAdapter = new HomePageAdapter(lists.get(index));
                             homePageRecyclerView.setAdapter(homePageAdapter);
@@ -123,10 +126,8 @@ public class DBqueries {
                             String error = task.getException().getMessage();
                             Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
                         }
-//                        adapter.notifyDataSetChanged();
                     }
                 });
-//        adapter.notifyDataSetChanged();
     }
 
 }

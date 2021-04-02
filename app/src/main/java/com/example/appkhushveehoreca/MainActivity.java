@@ -1,6 +1,8 @@
 package com.example.appkhushveehoreca;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -22,6 +25,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import static com.example.appkhushveehoreca.DBqueries.currentUser;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private int currentFragment = -1;
     private NavigationView navigationView;
     private Toolbar toolbar;
+    private Dialog signUpDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         actionBarLogo = findViewById(R.id.actionBarLogo);
         setSupportActionBar(toolbar);
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -68,6 +75,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 //        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 //        NavigationUI.setupWithNavController(navigationView, navController);
+
+        if(currentUser == null){
+            navigationView.getMenu().getItem(navigationView.getMenu().size() - 1).setEnabled(false);
+        }else{
+            navigationView.getMenu().getItem(navigationView.getMenu().size() - 1).setEnabled(true);
+        }
+
+//        final Dialog signInDialog = new Dialog(MainActivity.this);
+//        signInDialog.setContentView(R.layout.);
+//        signInDialog.setCancelable(true);
+
     }
 
 
@@ -117,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             /// todo: notification
 
             return true;
-            }else if (id == R.id.main_cart_icon){
+        }else if (id == R.id.main_cart_icon){
 
             /// todo: cart
 
@@ -142,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
 
         ////// Handle navigation view clicks here ///////
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         int id = item.getItemId();
         if(id == R.id.nav_my_khushveeHoreca){
@@ -155,9 +174,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else if(id == R.id.nav_my_wishlist){
             goToFragment("My WishList",new MyWishlistFragment(),WISHLIST_FRAGMENT);
         }else if(id == R.id.nav_sign_out) {
-
+            FirebaseAuth.getInstance().signOut();
+            Intent registerIntent = new Intent(MainActivity.this,RegisterActivity.class);
+            startActivity(registerIntent);
+            finish();
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
