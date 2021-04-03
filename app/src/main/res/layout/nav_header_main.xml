@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Not Signed In!"
+        android:text="Welcome To Khushvee Horeca"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintBottom_toTopOf="@+id/mainEmail"
         app:layout_constraintStart_toStartOf="parent" />
@@ -37,7 +37,7 @@
         android:id="@+id/mainEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email Address"
+        android:text="Quality, Style and experience for your table...."
         android:textColor="#80ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
