@@ -21,6 +21,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.Objects;
+
 import static com.example.appkhushveehoreca.DBqueries.currentUser;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private int currentFragment = -1;
     private NavigationView navigationView;
     private Toolbar toolbar;
-    private Dialog signUpDialog;
+//    private Dialog signUpDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if(currentFragment == HOME_FRAGMENT) {
             getMenuInflater().inflate(R.menu.main, menu);
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         }
 //        else{
 //            getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -142,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void goToFragment(String title,Fragment fragment, int fragmentNo){
         actionBarLogo.setVisibility(View.GONE);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(true);
         getSupportActionBar().setTitle(title);
         invalidateOptionsMenu();
         setFragment(fragment,fragmentNo);
@@ -153,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     MenuItem menuItem;
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         ////// Handle navigation view clicks here ///////
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
