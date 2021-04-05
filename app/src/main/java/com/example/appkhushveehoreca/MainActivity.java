@@ -1,6 +1,5 @@
 package com.example.appkhushveehoreca;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -33,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int ACCOUNT_FRAGMENT = 2;
     private static final int WISHLIST_FRAGMENT = 3;
 
+    public MenuItem whatsAppIcon;
 
     private FrameLayout frameLayout;
     private ImageView actionBarLogo;
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
 
+        whatsAppIcon = findViewById(R.id.whatsapp_icon);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -132,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             /// todo: notification
 
             return true;
-        }else if (id == R.id.main_cart_icon){
+        }else if (id == R.id.whatsapp_icon){
 
             /// todo: cart
 
@@ -197,4 +198,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.commit();
         }
     }
+
 }

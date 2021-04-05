@@ -25,6 +25,8 @@ public class MyAccountFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_my_account, container, false);
 
         TextView ourLocation = view.findViewById(R.id.location_textView);
+        TextView whatsapp = view.findViewById(R.id.whatsapp_textview);
+        whatsapp.setMovementMethod(LinkMovementMethod.getInstance());
         ourLocation.setMovementMethod(LinkMovementMethod.getInstance());
                 return view;
     }

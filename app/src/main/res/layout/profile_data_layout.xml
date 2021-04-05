@@ -58,12 +58,25 @@
             android:id="@+id/useremail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="For inquiry and best offers! \n Call us:9909975572 \n Email:khushveehorecas@gmail.com \n \n Address:56, Sankalp Industrial park, Opp. HP CNG Mother Station, N.H.8, Nr. S.P. Ring Road, Nana Chiloda-382330, Ahmedabad, Gujarat, India."
+            android:text="For inquiry and best offers! \n Call us:9909975572 \n Email:khushveehorecas@gmail.com \n \n Address:56, Sankalp Industrial park, Opp. HP CNG Mother Station, N.H.8, Nr. S.P. Ring Road, Nana Chiloda-382330, Ahmedabad, Gujarat, India. \n
+CLICK ON THE BELOW ICON TO REACH US ON WHATSAPP :"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
             android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/whatsapp_textview"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/WhatsApp"
+            android:textColor="#24D432"
+            android:textColorLink="#24D432"
+            android:layout_weight="0"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/whatsapp1" />
 
         <ImageView
             android:layout_width="match_parent"

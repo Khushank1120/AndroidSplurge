@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/profile_data_layout"/>
+            <include layout="@layout/profile_data_layout" />
 
             <Button
                 android:id="@+id/sign_out_btn"
