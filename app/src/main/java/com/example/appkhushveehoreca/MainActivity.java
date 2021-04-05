@@ -151,30 +151,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        }
     }
 
+    MenuItem menuItem;
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
         ////// Handle navigation view clicks here ///////
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-        int id = item.getItemId();
-        if(id == R.id.nav_my_khushveeHoreca){
-            actionBarLogo.setVisibility(View.VISIBLE);
-            invalidateOptionsMenu();
-            setFragment(new HomeFragment(),HOME_FRAGMENT);
-        }else if(id == R.id.nav_my_account){
-            goToFragment("My Account",new MyAccountFragment(),ACCOUNT_FRAGMENT);
-        }else if(id == R.id.nav_my_offers){
-            goToFragment("My Rewards",new MyRewardsFragment(),REWARDS_FRAGMENT);
-        }else if(id == R.id.nav_my_wishlist){
-            goToFragment("My WishList",new MyWishlistFragment(),WISHLIST_FRAGMENT);
-        }else if(id == R.id.nav_sign_out) {
-            FirebaseAuth.getInstance().signOut();
-            Intent registerIntent = new Intent(MainActivity.this,RegisterActivity.class);
-            startActivity(registerIntent);
-            finish();
-        }
         drawer.closeDrawer(GravityCompat.START);
+        menuItem = item;
+
+        drawer.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                int id = menuItem.getItemId();
+                if(id == R.id.nav_my_khushveeHoreca){
+                    actionBarLogo.setVisibility(View.VISIBLE);
+                    invalidateOptionsMenu();
+                    setFragment(new HomeFragment(),HOME_FRAGMENT);
+                }else if(id == R.id.nav_my_account){
+                    goToFragment("My Account",new MyAccountFragment(),ACCOUNT_FRAGMENT);
+                }else if(id == R.id.nav_my_offers){
+                    goToFragment("My Rewards",new MyRewardsFragment(),REWARDS_FRAGMENT);
+                }else if(id == R.id.nav_my_wishlist){
+                    goToFragment("My WishList",new MyWishlistFragment(),WISHLIST_FRAGMENT);
+                }else if(id == R.id.nav_sign_out) {
+                    FirebaseAuth.getInstance().signOut();
+                    Intent registerIntent = new Intent(MainActivity.this,RegisterActivity.class);
+                    startActivity(registerIntent);
+                    finish();
+                }
+            }
+        });
+
         return true;
     }
 
