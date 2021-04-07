@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             return true;
         }else if (id == R.id.whatsapp_icon){
-
+            startActivity(new Intent(this, WhatsAppActivity.class));
             /// todo: cart
 
             return true;
