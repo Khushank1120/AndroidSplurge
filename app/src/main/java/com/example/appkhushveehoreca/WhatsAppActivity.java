@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.net.URI;
 
 public class WhatsAppActivity extends AppCompatActivity {
 
