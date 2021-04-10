@@ -16,15 +16,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/profileimage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="50dp"
+        android:layout_width="300dp"
+        android:layout_height="140dp"
+        android:layout_marginBottom="60dp"
         android:elevation="10dp"
-        android:src="@mipmap/defaultprofilepic"
-        app:civ_border_color="@color/colorWhite"
-        app:civ_border_width="5dp"
+        android:src="@drawable/logo"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout4"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,8 +56,9 @@
             android:id="@+id/useremail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="For inquiry and best offers! \n Call us:9909975572 \n Email:khushveehorecas@gmail.com \n \n Address:56, Sankalp Industrial park, Opp. HP CNG Mother Station, N.H.8, Nr. S.P. Ring Road, Nana Chiloda-382330, Ahmedabad, Gujarat, India. \n
+            android:text="For inquiry and best offers! \n Call us on:9909975572 \n Email:khushveehorecas@gmail.com \n \n Address:56, Sankalp Industrial park, Opp. HP CNG Mother Station, N.H.8, Nr. S.P. Ring Road, Nana Chiloda-382330, Ahmedabad, Gujarat, India. \n
 CLICK ON THE BELOW ICON TO REACH US ON WHATSAPP :"
+            android:textStyle="bold"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             android:textAlignment="center"
