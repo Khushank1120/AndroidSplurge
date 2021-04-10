@@ -50,7 +50,6 @@ public class WhatsAppActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private boolean appInstalledOrNot(String url) {
