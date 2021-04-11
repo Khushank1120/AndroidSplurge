@@ -35,6 +35,7 @@ public class ViewAllActivity extends AppCompatActivity {
 
         int layout_code = getIntent().getIntExtra("layout_code",-1);
 
+        ////// Layout code 0 for horizontal products list and 1 for gridView Layout
 
         if(layout_code == 0) {
             recyclerView.setVisibility(View.VISIBLE);
