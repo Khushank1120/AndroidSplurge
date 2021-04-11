@@ -28,7 +28,6 @@ public class DBqueries {
 
 //    public static List<HomePageModel> homePageModelList = new ArrayList<>();
 
-
     ///// Categories List //////
 
     public static List<List<HomePageModel>> lists = new ArrayList<>();
@@ -120,14 +119,14 @@ public class DBqueries {
                             }
                             HomePageAdapter homePageAdapter = new HomePageAdapter(lists.get(index));
                             homePageRecyclerView.setAdapter(homePageAdapter);
-                            homePageAdapter.notifyDataSetChanged();
                             HomeFragment.swipeRefreshLayout.setRefreshing(false);
+                            homePageAdapter.notifyDataSetChanged();
                         }else{
                             String error = task.getException().getMessage();
                             Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-    }
 
+    }
 }
