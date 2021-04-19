@@ -49,7 +49,6 @@ public class ViewAllActivity extends AppCompatActivity {
         }else if(layout_code == 1) {
             gridView.setVisibility(View.VISIBLE);
             GridProductLayoutAdapter gridProductLayoutAdapter = new GridProductLayoutAdapter(horizontalProductScrollModelList);
-
             gridView.setAdapter(gridProductLayoutAdapter);
         }
     }
