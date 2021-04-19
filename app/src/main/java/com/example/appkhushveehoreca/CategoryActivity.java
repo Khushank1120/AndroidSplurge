@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.example.appkhushveehoreca.DBqueries.lists;
 import static com.example.appkhushveehoreca.DBqueries.loadCategoriesNames;
@@ -27,10 +28,10 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         String title = getIntent().getStringExtra("CategoryName");
-        getSupportActionBar().setTitle(title);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 

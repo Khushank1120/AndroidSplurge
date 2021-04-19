@@ -55,7 +55,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public int getItemCount() {
         return categoryModelList.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
         private ImageView categoryIcon;
         private TextView categoryName;
