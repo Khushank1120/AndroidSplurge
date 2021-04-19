@@ -1,5 +1,6 @@
 package com.example.appkhushveehoreca;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -89,11 +90,11 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 List<SliderModel> sliderModelList = homePageModelList.get(position).getSliderModelList();
                 ((BannerSliderViewHolder)viewHolder).setBannerSliderViewPager(sliderModelList);
                 break;
-                case HomePageModel.STRIP_AD_BANNER:
-                    String resource = homePageModelList.get(position).getResource();
-                    String color = homePageModelList.get(position).getBackgroundColor();
-                    ((StripAdBannerViewHolder)viewHolder).setStripAd(resource,color);
-                    break;
+            case HomePageModel.STRIP_AD_BANNER:
+                String resource = homePageModelList.get(position).getResource();
+                String color = homePageModelList.get(position).getBackgroundColor();
+                ((StripAdBannerViewHolder)viewHolder).setStripAd(resource,color);
+                break;
             case HomePageModel.HORIZONTAL_PRODUCT_VIEW:
                 String layoutColor = homePageModelList.get(position).getBackgroundColor();
                 String horizontalLayoutTitle = homePageModelList.get(position).getTitle();
@@ -101,12 +102,11 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 List<HorizontalProductScrollModel> horizontalProductScrollModelList = homePageModelList.get(position).getHorizontalProductScrollModelList();
                 ((HorizontalProductViewHolder)viewHolder).setHorizontalProductLayout(horizontalProductScrollModelList,horizontalLayoutTitle,layoutColor,viewAllproductList);
                 break;
-
-                case HomePageModel.GRID_PRODUCT_VIEW:
-                    String gridLayoutColor = homePageModelList.get(position).getBackgroundColor();
-                    String gridLayoutTitle = homePageModelList.get(position).getTitle();
-                    List<HorizontalProductScrollModel> gridProductScrollModelList = homePageModelList.get(position).getHorizontalProductScrollModelList();
-                    ((GridProductViewHolder)viewHolder).setGridProductLayout(gridProductScrollModelList,gridLayoutTitle,gridLayoutColor);
+            case HomePageModel.GRID_PRODUCT_VIEW:
+                String gridLayoutColor = homePageModelList.get(position).getBackgroundColor();
+                String gridLayoutTitle = homePageModelList.get(position).getTitle();
+                List<HorizontalProductScrollModel> gridProductScrollModelList = homePageModelList.get(position).getHorizontalProductScrollModelList();
+                ((GridProductViewHolder)viewHolder).setGridProductLayout(gridProductScrollModelList,gridLayoutTitle,gridLayoutColor);
             default:
                 return;
         }
@@ -123,7 +123,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         return homePageModelList.size();
     }
 
-    public class BannerSliderViewHolder extends RecyclerView.ViewHolder{
+    public static class BannerSliderViewHolder extends RecyclerView.ViewHolder{
 
         private ViewPager bannerSliderViewPager;
         private int currentPage;
@@ -137,6 +137,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             bannerSliderViewPager = itemView.findViewById(R.id.banner_slider_view_pager);
 
          }
+         @SuppressLint("ClickableViewAccessibility")
          private void setBannerSliderViewPager(final List<SliderModel> sliderModelList){
              currentPage = 2;
              if(timer != null){
@@ -183,6 +184,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
              startBannerSlideShow(arrangedList);
 
              bannerSliderViewPager.setOnTouchListener(new View.OnTouchListener() {
+                 @SuppressLint("ClickableViewAccessibility")
                  @Override
                  public boolean onTouch(View v, MotionEvent event) {
                      pageLooper(arrangedList);
@@ -233,7 +235,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public class StripAdBannerViewHolder extends RecyclerView.ViewHolder{
+    public static class StripAdBannerViewHolder extends RecyclerView.ViewHolder{
 
         private ImageView stripAdImage;
         private ConstraintLayout stripAdContainer;
@@ -302,7 +304,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         }
     }
 
-    private class GridProductViewHolder extends RecyclerView.ViewHolder{
+    private static class GridProductViewHolder extends RecyclerView.ViewHolder{
 
         private ConstraintLayout container;
         private TextView gridLayoutTitle;
@@ -318,6 +320,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             gridProductLayout = itemView.findViewById(R.id.grid_layout);
         }
 
+        @SuppressLint("SetTextI18n")
         private void setGridProductLayout(final List<HorizontalProductScrollModel> horizontalProductScrollModelList, final String title, String color){
             container.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(color)));
             gridLayoutTitle.setText(title);
