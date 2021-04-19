@@ -12,11 +12,10 @@ import android.view.View;
 import android.widget.GridView;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ViewAllActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private GridView gridView;
     public static  List<WishlistModel> wishlistModelList;
     public static List<HorizontalProductScrollModel> horizontalProductScrollModelList;
 
@@ -26,12 +25,12 @@ public class ViewAllActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_all);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(true);
         getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        recyclerView = findViewById(R.id.recycler_view);
-        gridView = findViewById(R.id.grid_view);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        GridView gridView = findViewById(R.id.grid_view);
 
         int layout_code = getIntent().getIntExtra("layout_code",-1);
 
