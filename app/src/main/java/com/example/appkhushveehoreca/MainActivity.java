@@ -22,7 +22,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import java.util.Objects;
 
-import static com.example.appkhushveehoreca.DBqueries.currentUser;
+import static com.example.appkhushveehoreca.DBQueries.currentUser;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

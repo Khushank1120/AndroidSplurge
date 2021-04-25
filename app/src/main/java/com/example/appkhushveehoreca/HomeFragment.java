@@ -24,11 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import static com.example.appkhushveehoreca.DBqueries.categoryModelList;
-import static com.example.appkhushveehoreca.DBqueries.lists;
-import static com.example.appkhushveehoreca.DBqueries.loadCategories;
-import static com.example.appkhushveehoreca.DBqueries.loadCategoriesNames;
-import static com.example.appkhushveehoreca.DBqueries.loadFragmentData;
+import static com.example.appkhushveehoreca.DBQueries.categoryModelList;
+import static com.example.appkhushveehoreca.DBQueries.lists;
+import static com.example.appkhushveehoreca.DBQueries.loadCategories;
+import static com.example.appkhushveehoreca.DBQueries.loadCategoriesNames;
+import static com.example.appkhushveehoreca.DBQueries.loadFragmentData;
 
 
 public class HomeFragment extends Fragment {
