@@ -23,7 +23,6 @@ public class ActivityFirstBeforeSignUp extends AppCompatActivity {
     private PlateAdapter plateAdapter;
     private LinearLayout emailContinue;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
