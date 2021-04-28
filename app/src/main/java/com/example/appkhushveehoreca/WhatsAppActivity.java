@@ -43,7 +43,7 @@ public class WhatsAppActivity extends AppCompatActivity {
 
                 if (installed){
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("http://api.whatsapp.com/send?phone=9909975572&text=" + message));
+                    intent.setData(Uri.parse("http://api.whatsapp.com/send?phone=+919909975572&text="+message));
                     startActivity(intent);
                 }else{
                     Toast.makeText(WhatsAppActivity.this, "WhatsApp not Installed on your Device!", Toast.LENGTH_LONG).show();
@@ -52,11 +52,11 @@ public class WhatsAppActivity extends AppCompatActivity {
         });
     }
 
-    private boolean appInstalledOrNot(String url) {
+    private boolean appInstalledOrNot(String s) {
         PackageManager packageManager = getPackageManager();
         boolean app_installed;
         try {
-            packageManager.getPackageInfo(url,PackageManager.GET_ACTIVITIES);
+            packageManager.getPackageInfo(s,PackageManager.GET_ACTIVITIES);
             app_installed = true;
         }catch (PackageManager.NameNotFoundException e){
             app_installed = false;
@@ -68,6 +68,5 @@ public class WhatsAppActivity extends AppCompatActivity {
     public void goToHomePage(View view) {
         Intent intent = new Intent(WhatsAppActivity.this, MainActivity.class);
         startActivity(intent);
-
     }
 }

@@ -39,6 +39,7 @@ public class ActivityFirstBeforeSignUp extends AppCompatActivity {
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
 //            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
             emailContinue = (LinearLayout) findViewById(R.id.linearLayout2);
             recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -49,11 +50,11 @@ public class ActivityFirstBeforeSignUp extends AppCompatActivity {
 
 
             plateModelList = new ArrayList<>();
-            plateModelList.add(new PlateModel(R.drawable.splashlogin1));
             plateModelList.add(new PlateModel(R.drawable.splashlogin2));
+            plateModelList.add(new PlateModel(R.drawable.splashlogin1));
             plateModelList.add(new PlateModel(R.drawable.splashlogin3));
-            plateModelList.add(new PlateModel(R.drawable.splashlogin4));
             plateModelList.add(new PlateModel(R.drawable.splashlogin5));
+            plateModelList.add(new PlateModel(R.drawable.splashlogin4));
             plateModelList.add(new PlateModel(R.drawable.splashlogin6));
 
             plateAdapter = new PlateAdapter(plateModelList, this);
