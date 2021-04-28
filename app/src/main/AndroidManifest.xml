@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WhatsAppActivity"></activity>
+        <activity android:name=".ActivityFirstBeforeSignUp"></activity>
+        <activity android:name=".WhatsAppActivity" />
         <activity android:name=".ViewAllActivity" />
         <activity android:name=".ProductDetailsActivity" />
         <activity android:name=".CategoryActivity" />
