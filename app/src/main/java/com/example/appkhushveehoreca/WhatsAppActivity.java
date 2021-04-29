@@ -43,7 +43,7 @@ public class WhatsAppActivity extends AppCompatActivity {
 
                 if (installed){
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("http://api.whatsapp.com/send?phone=+919909975572&text="+message));
+                    intent.setData(Uri.parse("https://api.whatsapp.com/send?phone=+919909975572&text="+message));
                     startActivity(intent);
                 }else{
                     Toast.makeText(WhatsAppActivity.this, "WhatsApp not Installed on your Device!", Toast.LENGTH_LONG).show();
