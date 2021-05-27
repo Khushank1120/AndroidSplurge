@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         ////// Handle navigation view clicks here ///////
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         menuItem = item;
 
@@ -184,6 +184,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     startActivity(registerIntent);
                     finish();
                 }
+                drawer.removeDrawerListener(this);
             }
         });
 
