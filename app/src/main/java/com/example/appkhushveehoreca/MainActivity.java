@@ -125,8 +125,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         if(id ==  R.id.main_search_icon){
 
-            /// todo: search
-
+            Intent searchIntent = new Intent(this, SearchActivity.class);
+            startActivity(searchIntent);
             return true;
         }else if(id == R.id.main_notification_icon){
 

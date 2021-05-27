@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -111,7 +112,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
             finish();
             return true;
         }else if(id == R.id.main_search_icon){
-            //// todo: search
+
+            Intent searchIntent = new Intent(this, SearchActivity.class);
+            startActivity(searchIntent);
+
             return true;
         }else if (id == R.id.main_cart_icon){
 

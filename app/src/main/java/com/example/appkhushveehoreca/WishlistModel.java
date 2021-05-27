@@ -4,19 +4,35 @@ public class WishlistModel {
 
 
     private String productImage;
+
+
+
+    private String productId;
     private String productTitle;
     private String productTitle1;
     private String freeCoupons;
     private String productPrice;
     private String cuttedPrice;
 
-    public WishlistModel(String productImage, String productTitle, String productTitle1, String freeCoupons, String productPrice, String cuttedPrice) {
+    public WishlistModel(String id, String productImage, String productTitle, String productTitle1, String freeCoupons, String productPrice, String cuttedPrice) {
         this.productImage = productImage;
         this.productTitle = productTitle;
         this.productTitle1 = productTitle1;
         this.freeCoupons = freeCoupons;
         this.productPrice = productPrice;
         this.cuttedPrice = cuttedPrice;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public WishlistModel(String productId) {
+        this.productId = productId;
     }
 
     public String getProductImage() {
