@@ -7,12 +7,11 @@
     tools:context=".SearchActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/search_toolbar"
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorLogoBlue"
         app:contentInsetStart="0dp"
-        android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,22 +23,20 @@
             android:layout_height="match_parent"
             app:defaultQueryHint="Search for Products"
             app:iconifiedByDefault="false"
-            >
-        </androidx.appcompat.widget.SearchView>
-
+            />
 
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
-        android:id="@+id/textview"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Product Not Found"
         android:layout_margin="36dp"
+        android:text="Product Not Found!"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/search_toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -47,8 +44,9 @@
         android:layout_height="0dp"
         android:background="@color/colorWhite"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/toolbar"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/search_toolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

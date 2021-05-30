@@ -28,26 +28,27 @@ public class SearchActivity extends AppCompatActivity {
     private SearchView searchView;
     private TextView textView;
     private RecyclerView recyclerView;
-
+    private Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        searchView =(SearchView) findViewById(R.id.search_view);
-        textView = findViewById(R.id.textview);
+
+        searchView = findViewById(R.id.search_view);
+        textView = findViewById(R.id.textView);
         recyclerView = findViewById(R.id.recycler_view);
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
-
         recyclerView.setLayoutManager(layoutManager);
 
-        final List<WishlistModel> list = new ArrayList<>();
-        final List<String> ids = new ArrayList<>();
+        final List<WishlistModel> list=new ArrayList<>();
+        final List<String> ids=new ArrayList<>();
 
-        final Adapter adapter = new Adapter(list,false);
+        adapter = new Adapter(list,false);
+        adapter.setFromSearch(true);
         recyclerView.setAdapter(adapter);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -56,8 +57,9 @@ public class SearchActivity extends AppCompatActivity {
                 list.clear();
                 ids.clear();
 
-                final String[] tags = s.split(" ");
-                for (final String tag: tags){
+                final String[] tags = s.toLowerCase().split(" ");
+                for (final String tag:tags){
+                    tag.trim();
                     FirebaseFirestore.getInstance().collection("PRODUCTS").whereArrayContains("tags" ,tag)
                             .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
@@ -71,25 +73,31 @@ public class SearchActivity extends AppCompatActivity {
                                             , Objects.requireNonNull(documentSnapshot.get("product_price")).toString()
                                             , Objects.requireNonNull(documentSnapshot.get("cutted_price")).toString());
 
+                                    model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
+
                                     if(!ids.contains(model.getProductId()));
                                     list.add(model);
                                     ids.add(model.getProductId());
 
                                 }
-                                if(tag.equals(tags[tags.length-1])){
-                                    if(list.size() == 0){
-                                        textView.setVisibility(View.VISIBLE);
-                                        recyclerView.setVisibility(View.GONE);
-                                    }else{
-                                        textView.setVisibility(View.GONE);
-                                        recyclerView.setVisibility(View.VISIBLE);
-                                        adapter.getFilter().filter(s);
-                                    }
-                                }
 
-                            }else{
+                            }
+
+                            if(tag.equals(tags[tags.length-1])){
+
+                                if(list.size() == 0){
+                                    textView.setVisibility(View.VISIBLE);
+                                    recyclerView.setVisibility(View.GONE);
+                                }else {
+                                    textView.setVisibility(View.GONE);
+                                    recyclerView.setVisibility(View.VISIBLE);
+                                    adapter.getFilter().filter(s);
+                                }
+                            }
+
+                            else {
                                 String error = task.getException().getMessage();
-                                Toast.makeText(SearchActivity.this,"",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SearchActivity.this, error, Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -107,7 +115,7 @@ public class SearchActivity extends AppCompatActivity {
 
     class Adapter extends WishlistAdapter implements Filterable{
 
-
+        private List<WishlistModel> originalList;
         public Adapter(List<WishlistModel> wishlistModelList, Boolean wishlist) {
             super(wishlistModelList, wishlist);
         }
@@ -131,6 +139,4 @@ public class SearchActivity extends AppCompatActivity {
             };
         }
     }
-
-
 }

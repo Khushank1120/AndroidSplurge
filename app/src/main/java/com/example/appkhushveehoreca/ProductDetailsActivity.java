@@ -27,6 +27,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private ViewPager productDetailsViewpager;
     private TabLayout productDetailsTablayout;
 
+    public static  boolean fromSearch = false;
+
     private FloatingActionButton addToWishlistBtn;
     private static boolean ALREADY_ADDED_TO_WISHLIST = false;
 
@@ -106,17 +108,27 @@ public class ProductDetailsActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        fromSearch = false;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if(id == android.R.id.home){
             finish();
             return true;
         }else if(id == R.id.main_search_icon){
+            if (fromSearch){
+                finish();
+            }else{
+                Intent searchIntent = new Intent(this, SearchActivity.class);
+                startActivity(searchIntent);
 
-            Intent searchIntent = new Intent(this, SearchActivity.class);
-            startActivity(searchIntent);
+                return true;
+            }
 
-            return true;
         }else if (id == R.id.main_cart_icon){
 
             /// todo: cart
