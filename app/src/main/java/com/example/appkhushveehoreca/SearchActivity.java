@@ -6,7 +6,6 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import androidx.appcompat.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
