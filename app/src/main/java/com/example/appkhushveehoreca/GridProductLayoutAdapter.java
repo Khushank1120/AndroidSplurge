@@ -1,5 +1,6 @@
 package com.example.appkhushveehoreca;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,12 +51,15 @@ public class GridProductLayoutAdapter extends BaseAdapter {
             TextView productDescription = view.findViewById(R.id.h_s_product_description);
             TextView productDescription1 = view.findViewById(R.id.h_s_product_description1);
             TextView productPrice = view.findViewById(R.id.h_s_product_price);
+            TextView cuttedPrice = view.findViewById(R.id.h_s_cutted_price);
+
 
             Glide.with(parent.getContext()).load(horizontalProductScrollModelList.get(position).getProductImage()).apply(new RequestOptions().placeholder(R.drawable.placeholder)).into(productImage);
             productTitle.setText(horizontalProductScrollModelList.get(position).getProductTitle());
             productDescription.setText(horizontalProductScrollModelList.get(position).getProductDescription());
             productDescription1.setText(horizontalProductScrollModelList.get(position).getProductDescription1());
-            productPrice.setText("RS."+horizontalProductScrollModelList.get(position).getProductPrice()+"/-");
+            productPrice.setText("Rs."+horizontalProductScrollModelList.get(position).getProductPrice()+"/-");
+            cuttedPrice.setText("Rs."+horizontalProductScrollModelList.get(position).getCuttedPrice()+"/-");
 
         }else{
             view = convertView;

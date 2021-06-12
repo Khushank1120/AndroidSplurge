@@ -40,8 +40,10 @@ public class HorizontalProductScrollAdapter extends RecyclerView.Adapter<Horizon
         String description = horizontalProductScrollModelList.get(position).getProductDescription();
         String description1 = horizontalProductScrollModelList.get(position).getProductDescription1();
         String price = horizontalProductScrollModelList.get(position).getProductPrice();
+        String cuttedPrice = horizontalProductScrollModelList.get(position).getCuttedPrice();
 
-        viewHolder.setData(resource,title,description,description1,price);
+
+        viewHolder.setData(resource,title,description,description1,price,cuttedPrice);
 
     }
 
@@ -61,6 +63,9 @@ public class HorizontalProductScrollAdapter extends RecyclerView.Adapter<Horizon
         private TextView productDescription;
         private TextView productDescription1;
         private TextView productPrice;
+        private TextView cuttedPrice;
+
+
 
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
@@ -70,15 +75,17 @@ public class HorizontalProductScrollAdapter extends RecyclerView.Adapter<Horizon
             productDescription = itemView.findViewById(R.id.h_s_product_description);
             productDescription1 = itemView.findViewById(R.id.h_s_product_description1);
             productPrice = itemView.findViewById(R.id.h_s_product_price);
+            cuttedPrice = itemView.findViewById(R.id.h_s_cutted_price);
 
         }
 
-        private void setData(String resource, String title, String description, String description1, String price) {
+        public void setData(String resource, String title, String description, String description1, String price, String cuttedPriceValue) {
             Glide.with(itemView.getContext()).load(resource).apply(new RequestOptions().placeholder(R.drawable.placeholder)).into(productImage);
             productTitle.setText(title);
             productDescription.setText(description);
             productDescription1.setText(description1);
             productPrice.setText("Rs." + price + "/-");
+            cuttedPrice.setText("RS." + cuttedPriceValue + "/-");
 
             if(title.equals("")) {
                 itemView.setOnClickListener(new View.OnClickListener() {
@@ -91,5 +98,7 @@ public class HorizontalProductScrollAdapter extends RecyclerView.Adapter<Horizon
                 });
             }
         }
+
+        }
     }
-}
+

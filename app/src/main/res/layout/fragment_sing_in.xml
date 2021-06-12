@@ -90,7 +90,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/signInBtn"
+            android:id="@+id/signUpBtn"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -114,7 +114,7 @@
             android:textColor="@color/colorWhite"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signInBtn" />
+            app:layout_constraintTop_toBottomOf="@+id/signUpBtn" />
 
         <TextView
             android:id="@+id/dontHaveAnAccount"
@@ -126,6 +126,8 @@
             android:text="Don't Have An Account Sign Up!"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -139,7 +141,7 @@
             android:background="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="@+id/textView"
             app:layout_constraintEnd_toStartOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/signInBtn"
+            app:layout_constraintStart_toStartOf="@+id/signUpBtn"
             app:layout_constraintTop_toTopOf="@+id/textView" />
 
         <View
@@ -149,7 +151,7 @@
             android:layout_marginStart="8dp"
             android:background="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="@+id/textView"
-            app:layout_constraintEnd_toEndOf="@+id/signInBtn"
+            app:layout_constraintEnd_toEndOf="@+id/signUpBtn"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toTopOf="@+id/textView" />
@@ -160,7 +162,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/signInBtn"
+            app:layout_constraintBottom_toTopOf="@+id/signUpBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />

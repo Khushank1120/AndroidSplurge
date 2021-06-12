@@ -94,7 +94,10 @@ public class DBQueries {
                                                 , Objects.requireNonNull(documentSnapshot.get("product_title_" + x)).toString()
                                                 , Objects.requireNonNull(documentSnapshot.get("product_subtitle_" + x)).toString()
                                                 , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_" + x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_price_" + x)).toString()));
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_" + x)).toString()
+                                        ));
+
 
                                         viewAllProductList.add(new WishlistModel(documentSnapshot.getId(), Objects.requireNonNull(documentSnapshot.get("product_image_" + x)).toString()
                                                 , Objects.requireNonNull(documentSnapshot.get("product_title_" + x)).toString()
@@ -116,6 +119,7 @@ public class DBQueries {
                                                 , Objects.requireNonNull(documentSnapshot.get("product_subtitle_" + x)).toString()
                                                 , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_" + x)).toString()
                                                 , Objects.requireNonNull(documentSnapshot.get("product_price_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_" + x)).toString()
                                         ));
                                     }
                                     lists.get(index).add(new HomePageModel(3, Objects.requireNonNull(documentSnapshot.get("layout_title")).toString(), Objects.requireNonNull(documentSnapshot.get("layout_background")).toString(),gridLayoutModelList));

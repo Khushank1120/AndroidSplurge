@@ -86,7 +86,7 @@
     <View
         android:id="@+id/price_cut"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:background="@color/colorBlack"
         app:layout_constraintBottom_toBottomOf="@+id/cutted_price"
         app:layout_constraintEnd_toEndOf="@+id/cutted_price"

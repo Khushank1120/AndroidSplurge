@@ -128,8 +128,8 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         private ViewPager bannerSliderViewPager;
         private int currentPage;
         private Timer timer;
-        final private long DELAY_TIME=3000;
-        final private long PERIOD_TIME=3000;
+        final private long DELAY_TIME=2000;
+        final private long PERIOD_TIME=2000;
         private List<SliderModel> arrangedList;
 
          public BannerSliderViewHolder(@NonNull View itemView) {
@@ -331,13 +331,16 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 TextView productDescription = gridProductLayout.getChildAt(x).findViewById(R.id.h_s_product_description);
                 TextView productDescription1 = gridProductLayout.getChildAt(x).findViewById(R.id.h_s_product_description1);
                 TextView productPrice = gridProductLayout.getChildAt(x).findViewById(R.id.h_s_product_price);
+                TextView cuttedPrice = gridProductLayout.getChildAt(x).findViewById(R.id.h_s_cutted_price);
+
 
                 Glide.with(itemView.getContext()).load(horizontalProductScrollModelList.get(x).getProductImage()).apply(new RequestOptions().placeholder(R.drawable.placeholdersmall)).into(productImage);
 
                 productTitle.setText(horizontalProductScrollModelList.get(x).getProductTitle());
                 productDescription.setText(horizontalProductScrollModelList.get(x).getProductDescription());
                 productDescription1.setText(horizontalProductScrollModelList.get(x).getProductDescription1());
-                productPrice.setText("RS." + horizontalProductScrollModelList.get(x).getProductPrice() + "/-");
+                productPrice.setText("Rs." + horizontalProductScrollModelList.get(x).getProductPrice() + "/-");
+                cuttedPrice.setText("Rs." + horizontalProductScrollModelList.get(x).getCuttedPrice() + "/-");;
 
 
                 if(title.equals("")) {

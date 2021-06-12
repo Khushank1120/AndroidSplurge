@@ -46,12 +46,12 @@ public class CategoryActivity extends AppCompatActivity {
         sliderModelFakeList.add(new SliderModel("null","#ffffff"));
 
         List<HorizontalProductScrollModel> horizontalProductScrollModelFakeList = new ArrayList<>();
-        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","",""));
-        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","",""));
-        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","",""));
-        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","",""));
-        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","",""));
-        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","",""));
+        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","","",""));
+        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","","",""));
+        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","","",""));
+        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","","",""));
+        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","","",""));
+        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","","",""));
 
         homePageModelFakeList.add(new HomePageModel(0,sliderModelFakeList));
         homePageModelFakeList.add(new HomePageModel(1,"","#ffffff"));

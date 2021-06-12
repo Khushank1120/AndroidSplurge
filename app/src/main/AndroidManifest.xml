@@ -13,10 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".VerifyPhoneNo"></activity>
+        <activity android:name=".SearchActivity" />
         <activity
             android:name=".ActivityFirstBeforeSignUp"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".WhatsAppActivity" />
         <activity android:name=".ViewAllActivity" />
         <activity android:name=".ProductDetailsActivity" />

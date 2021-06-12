@@ -111,12 +111,12 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/signInBtn"
+            android:id="@+id/signUpBtn"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@color/colorAccent"
-            android:text="Sign Up!"
+            android:text="Get OTP and Sign Up!"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:textColor="@color/colorLogoBlue"
             android:enabled="false"
@@ -134,7 +134,7 @@
             android:textColor="@color/colorWhite"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signInBtn" />
+            app:layout_constraintTop_toBottomOf="@+id/signUpBtn" />
 
 
         <View
@@ -145,7 +145,7 @@
             android:background="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="@+id/textView"
             app:layout_constraintEnd_toStartOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/signInBtn"
+            app:layout_constraintStart_toStartOf="@+id/signUpBtn"
             app:layout_constraintTop_toTopOf="@+id/textView" />
 
         <View
@@ -155,7 +155,7 @@
             android:layout_marginStart="8dp"
             android:background="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="@+id/textView"
-            app:layout_constraintEnd_toEndOf="@+id/signInBtn"
+            app:layout_constraintEnd_toEndOf="@+id/signUpBtn"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toTopOf="@+id/textView" />
@@ -168,6 +168,8 @@
             android:text="Already Have An Account Sign In!"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />

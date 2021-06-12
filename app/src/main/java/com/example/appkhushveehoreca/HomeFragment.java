@@ -93,12 +93,12 @@ public class HomeFragment extends Fragment {
         sliderModelFakeList.add(new SliderModel("null","#dfdfdf"));
 
         List<HorizontalProductScrollModel> horizontalProductScrollModelFakeList = new ArrayList<>();
-        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","",""));
-        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","",""));
-        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","",""));
-        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","",""));
-        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","",""));
-        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","",""));
+        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","","",""));
+        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","","",""));
+        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","","",""));
+        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","","",""));
+        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","","",""));
+        horizontalProductScrollModelFakeList.add(new HorizontalProductScrollModel("","","","","","",""));
 
         homePageModelFakeList.add(new HomePageModel(0,sliderModelFakeList));
         homePageModelFakeList.add(new HomePageModel(1,"","#dfdfdf"));

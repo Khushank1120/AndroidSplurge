@@ -8,14 +8,18 @@ public class HorizontalProductScrollModel {
     private String productDescription;
     private String productDescription1;
     private String productPrice;
+    private String cuttedPrice;
 
-    public HorizontalProductScrollModel(String productID,String productImage, String productTitle, String productDescription, String productDescription1, String productPrice) {
+
+    public HorizontalProductScrollModel(String productID,String productImage, String productTitle, String productDescription, String productDescription1, String productPrice, String cuttedPrice) {
         this.productID = productID;
         this.productImage = productImage;
         this.productTitle = productTitle;
         this.productDescription = productDescription;
         this.productDescription1 = productDescription1;
         this.productPrice = productPrice;
+        this.cuttedPrice = cuttedPrice;
+
     }
 
     public String getProductID() {
@@ -64,5 +68,13 @@ public class HorizontalProductScrollModel {
 
     public void setProductPrice(String productPrice) {
         this.productPrice = productPrice;
+    }
+
+    public String getCuttedPrice() {
+        return cuttedPrice;
+    }
+
+    public void setCuttedPrice(String cuttedPrice) {
+        this.cuttedPrice = cuttedPrice;
     }
 }

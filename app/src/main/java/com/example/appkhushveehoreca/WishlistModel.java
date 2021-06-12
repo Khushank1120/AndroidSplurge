@@ -6,9 +6,6 @@ public class WishlistModel {
 
 
     private String productImage;
-
-
-
     private String productId;
     private String productTitle;
     private String productTitle1;
