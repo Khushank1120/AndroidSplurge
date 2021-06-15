@@ -1,6 +1,7 @@
 package com.example.appkhushveehoreca;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.util.Objects;
 
 
 public class WhatsAppActivity extends AppCompatActivity {
@@ -23,15 +26,14 @@ public class WhatsAppActivity extends AppCompatActivity {
 
         Button sendButton = findViewById(R.id.button_send);
         final EditText editTextMessage = findViewById(R.id.editText_whatsApp);
-        ImageView backToHome = findViewById(R.id.imageView_backHome);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        String title = "Contact Us through WhatsApp";
+        Objects.requireNonNull(getSupportActionBar()).setTitle(title);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
 
-        backToHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToHomePage(v);
-            }
-        });
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,8 +67,4 @@ public class WhatsAppActivity extends AppCompatActivity {
         return app_installed;
     }
 
-    public void goToHomePage(View view) {
-        Intent intent = new Intent(WhatsAppActivity.this, MainActivity.class);
-        startActivity(intent);
-    }
 }

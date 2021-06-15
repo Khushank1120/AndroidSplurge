@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:background="@drawable/slider_background"
-    android:elevation="10dp">
+    android:elevation="5dp">
 
     <TextView
         android:id="@+id/grid_product_layout_title"
@@ -62,7 +62,8 @@
 
         <include
             layout="@layout/horizontal_scroll_item_layout"
-            app:layout_columnWeight="1" />
+            app:layout_columnWeight="1"
+            />
 
 
     </androidx.gridlayout.widget.GridLayout>

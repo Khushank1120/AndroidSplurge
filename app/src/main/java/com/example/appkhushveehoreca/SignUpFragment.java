@@ -24,13 +24,17 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class SignUpFragment extends Fragment {
 
@@ -66,7 +70,7 @@ public class SignUpFragment extends Fragment {
 
         closeBtn = view.findViewById(R.id.signInCloseBtn);
 
-        signUpBtn = view.findViewById(R.id.signInBtn);
+        signUpBtn = view.findViewById(R.id.signUpBtn);
 
         progressBar = view.findViewById(R.id.signUpProgressBar);
 
@@ -76,6 +80,7 @@ public class SignUpFragment extends Fragment {
 
         return view;
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -165,6 +170,45 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+
+                if(mobileNumber.getText().toString().trim().isEmpty()){
+                    Toast.makeText(getActivity(), "Enter Mobile Number", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Intent intent = new Intent(getContext(),VerifyPhoneNo.class);
+                intent.putExtra("mobilenumber",mobileNumber.getText().toString());
+                startActivity(intent);
+
+                PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                        "+91" + mobileNumber.getText().toString(),
+                        60,
+                        TimeUnit.SECONDS,
+                        getActivity(),
+                        new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
+                            @Override
+                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                                progressBar.setVisibility(View.GONE);
+                                signUpBtn.setVisibility(View.VISIBLE);
+                            }
+
+                            @Override
+                            public void onVerificationFailed(@NonNull FirebaseException e) {
+                                progressBar.setVisibility(View.GONE);
+                                signUpBtn.setVisibility(View.VISIBLE);
+                            }
+
+                            @Override
+                            public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                progressBar.setVisibility(View.GONE);
+                                signUpBtn.setVisibility(View.VISIBLE);
+                                Intent intent = new Intent(getActivity(),MainActivity.class);
+                                intent.putExtra("mobilenumber",mobileNumber.getText().toString());
+                                intent.putExtra("verificationId", verificationId);
+                                startActivity(intent);
+                            }
+                        }
+                );
+
                 /// todo send data to Firebase
                 checkEmailAndPassword();
 
@@ -178,6 +222,7 @@ public class SignUpFragment extends Fragment {
     }
 
     private void checkInputs() {
+
         if(!TextUtils.isEmpty(email.getText())){
             if(!TextUtils.isEmpty(name.getText())){
                 if(!TextUtils.isEmpty(mobileNumber.getText()) && mobileNumber.length() >=10){
@@ -215,8 +260,10 @@ public class SignUpFragment extends Fragment {
                             if(task.isSuccessful()){
 
                                 Map<Object,String> userdata = new HashMap<>();
+                                userdata.put("email",email.getText().toString());
                                 userdata.put("fullname",name.getText().toString());
                                 userdata.put("mobilenumber",mobileNumber.getText().toString());
+
 
                                 firebaseFirestore.collection("USERS")
                                         .add(userdata)
@@ -249,6 +296,7 @@ public class SignUpFragment extends Fragment {
         }
 
     }
+
     private void mainIntent(){
         Intent mainIntent = new Intent(getActivity(),MainActivity.class);
         startActivity(mainIntent);

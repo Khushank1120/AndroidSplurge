@@ -66,7 +66,7 @@ public class SingInFragment extends Fragment {
         progressBar = view.findViewById(R.id.signInProgressBar);
 
         closeBtn = view.findViewById(R.id.signInCloseBtn);
-        signInBtn = view.findViewById(R.id.signInBtn);
+        signInBtn = view.findViewById(R.id.signUpBtn);
 
         firebaseAuth = FirebaseAuth.getInstance();
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppKhushveeHoreca</string>
+    <string name="app_name">Khushvee Horeca</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main">MainActivity</string>
@@ -11,11 +11,18 @@
     <string name="action_settings">Settings</string>
 
     <string name="OurLocation">
-        <a href="https://www.google.com/maps/place/KHUSHVEE+HORECA/@23.1072167,72.670719,17z/data=!3m1!4b1!4m5!3m4!1s0x395e872760ee3f8b:0x47ed490b45be39b!8m2!3d23.1072118!4d72.6729077">Click to see location</a>
+        <a href="https://www.google.com/maps/place/KHUSHVEE+HORECA/@23.1072167,72.670719,17z/data=!3m1!4b1!4m5!3m4!1s0x395e872760ee3f8b:0x47ed490b45be39b!8m2!3d23.1072118!4d72.6729077">Click here to see location</a>
     </string>
 
     <string name="WhatsApp">
         <a href="https://wa.me/919909975572">W ----------------- p W -- - - - - - - - - p  W - - - - - - - - - - p  W - - - - - - - - ---p W--- - - - - - - - - - - p </a>
+    </string>
+    <string name="WhatsApp1">
+        <a href="https://wa.me/919909975572">Send Inquiry </a>
+    </string>
+
+    <string name="VisionArtWebLink">
+        <a href="https://visionartinfotech.com/">www.visionartinfotech.com</a>
     </string>
 
     <string name="menu_home">Home</string>

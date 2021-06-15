@@ -18,7 +18,9 @@
         <activity
             android:name=".ActivityFirstBeforeSignUp"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".WhatsAppActivity" />
+        <activity android:name=".WhatsAppActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
         <activity android:name=".ViewAllActivity" />
         <activity android:name=".ProductDetailsActivity" />
         <activity android:name=".CategoryActivity" />

@@ -276,7 +276,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             ///// in put extra 0 is for recycler view code and 1 for grid view code ///////
             container.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(color)));
             horizontalLayoutTitle.setText(title);
-            if(horizontalProductScrollModelList.size() >= 8 ){
+            if(horizontalProductScrollModelList.size() >= 5 ){
                 horizontalLayoutViewAllBtn.setVisibility(View.VISIBLE);
                 horizontalLayoutViewAllBtn.setOnClickListener(new View.OnClickListener() {
                     @Override

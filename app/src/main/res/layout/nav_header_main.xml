@@ -14,14 +14,14 @@
 
     <ImageView
         android:id="@+id/main_profile_image"
-        android:layout_width="85dp"
+        android:layout_width="125dp"
         android:layout_height="80dp"
         android:elevation="10dp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         app:layout_constraintBottom_toTopOf="@+id/mainFullName"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/defaultprofilepic" />
+        app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/mainFullName"
@@ -42,13 +42,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/add_profile_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
-        android:elevation="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/main_profile_image"
-        app:layout_constraintEnd_toEndOf="@+id/main_profile_image"
-        app:srcCompat="@drawable/ic_baseline_add_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

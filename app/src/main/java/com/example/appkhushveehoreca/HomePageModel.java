@@ -106,5 +106,4 @@ public class HomePageModel {
         this.horizontalProductScrollModelList = horizontalProductScrollModelList;
     }
 
-
 }

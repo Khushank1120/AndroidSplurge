@@ -26,8 +26,11 @@ public class MyAccountFragment extends Fragment {
 
         TextView ourLocation = view.findViewById(R.id.location_textView);
         TextView whatsapp = view.findViewById(R.id.whatsapp_textview);
+        TextView visionArtWebLink = view.findViewById(R.id.visionArtWebLink);
         whatsapp.setMovementMethod(LinkMovementMethod.getInstance());
         ourLocation.setMovementMethod(LinkMovementMethod.getInstance());
-                return view;
+        visionArtWebLink.setMovementMethod(LinkMovementMethod.getInstance());
+
+        return view;
     }
 }

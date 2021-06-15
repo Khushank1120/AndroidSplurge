@@ -171,6 +171,7 @@ public class HomeFragment extends Fragment {
             categoryModelList.clear();
             lists.clear();
             loadCategoriesNames.clear();
+
             if (networkInfo != null && networkInfo.isConnected() == true) {
                 noInternetConnection.setVisibility(View.GONE);
                 retryBtn.setVisibility(View.GONE);
