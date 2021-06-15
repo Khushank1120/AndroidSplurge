@@ -30,9 +30,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import static com.example.appkhushveehoreca.RegisterActivity.onResetPasswordFragment;
 
 
-public class SingInFragment extends Fragment {
+public class SignInFragment extends Fragment {
 
-    public SingInFragment() {
+    public SignInFragment() {
         // Required empty public constructor
     }
 

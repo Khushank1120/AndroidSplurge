@@ -20,7 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         frameLayout = findViewById(R.id.registerFrameLayout);
-        setDefaultFragment(new SingInFragment());
+        setDefaultFragment(new SignInFragment());
 
     }
 
@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
         if(keyCode == KeyEvent.KEYCODE_BACK){
             if(onResetPasswordFragment){
                 onResetPasswordFragment = false;
-                setFragment(new SingInFragment());
+                setFragment(new SignInFragment());
                 return false;
 
             }

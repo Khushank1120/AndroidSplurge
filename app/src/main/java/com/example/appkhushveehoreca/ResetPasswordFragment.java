@@ -132,7 +132,7 @@ public class ResetPasswordFragment extends Fragment {
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setFragment(new SingInFragment());
+                setFragment(new SignInFragment());
             }
         });
 

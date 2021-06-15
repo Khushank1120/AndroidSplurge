@@ -88,7 +88,7 @@ public class SignUpFragment extends Fragment {
         alreadyHaveAnAccount1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setFragment(new SingInFragment());
+                setFragment(new SignInFragment());
             }
         });
 
@@ -169,45 +169,6 @@ public class SignUpFragment extends Fragment {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                if(mobileNumber.getText().toString().trim().isEmpty()){
-                    Toast.makeText(getActivity(), "Enter Mobile Number", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Intent intent = new Intent(getContext(),VerifyPhoneNo.class);
-                intent.putExtra("mobilenumber",mobileNumber.getText().toString());
-                startActivity(intent);
-
-                PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                        "+91" + mobileNumber.getText().toString(),
-                        60,
-                        TimeUnit.SECONDS,
-                        getActivity(),
-                        new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
-                            @Override
-                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                                progressBar.setVisibility(View.GONE);
-                                signUpBtn.setVisibility(View.VISIBLE);
-                            }
-
-                            @Override
-                            public void onVerificationFailed(@NonNull FirebaseException e) {
-                                progressBar.setVisibility(View.GONE);
-                                signUpBtn.setVisibility(View.VISIBLE);
-                            }
-
-                            @Override
-                            public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                                progressBar.setVisibility(View.GONE);
-                                signUpBtn.setVisibility(View.VISIBLE);
-                                Intent intent = new Intent(getActivity(),MainActivity.class);
-                                intent.putExtra("mobilenumber",mobileNumber.getText().toString());
-                                intent.putExtra("verificationId", verificationId);
-                                startActivity(intent);
-                            }
-                        }
-                );
 
                 /// todo send data to Firebase
                 checkEmailAndPassword();
