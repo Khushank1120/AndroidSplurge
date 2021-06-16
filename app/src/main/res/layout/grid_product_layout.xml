@@ -71,7 +71,7 @@
     <View
         android:id="@+id/divider5"
         android:layout_width="0dp"
-        android:layout_height="2dp"
+        android:layout_height="3dp"
         android:background="@color/colorLogoBlue"
         app:layout_constraintBottom_toBottomOf="@+id/grid_layout"
         app:layout_constraintEnd_toEndOf="@+id/grid_layout"
@@ -80,7 +80,7 @@
 
     <View
         android:id="@+id/divider6"
-        android:layout_width="2dp"
+        android:layout_width="3dp"
         android:layout_height="0dp"
         android:background="@color/colorLogoBlue"
         app:layout_constraintBottom_toBottomOf="@+id/grid_layout"

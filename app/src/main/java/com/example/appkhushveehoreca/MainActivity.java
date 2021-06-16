@@ -176,8 +176,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     goToFragment("My Account",new MyAccountFragment(),ACCOUNT_FRAGMENT);
                 }else if(id == R.id.nav_my_offers){
                     goToFragment("My Rewards",new MyRewardsFragment(),REWARDS_FRAGMENT);
-                }else if(id == R.id.nav_my_wishlist){
-                    goToFragment("My WishList",new MyWishlistFragment(),WISHLIST_FRAGMENT);
                 }else if(id == R.id.nav_sign_out) {
                     FirebaseAuth.getInstance().signOut();
                     Intent registerIntent = new Intent(MainActivity.this,RegisterActivity.class);

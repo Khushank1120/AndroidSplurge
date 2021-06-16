@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Objects;
@@ -27,12 +29,13 @@ public class WhatsAppActivity extends AppCompatActivity {
         Button sendButton = findViewById(R.id.button_send);
         final EditText editTextMessage = findViewById(R.id.editText_whatsApp);
 
+        TextView whatsapp = findViewById(R.id.whatsapp_textview);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         String title = "Contact Us through WhatsApp";
         Objects.requireNonNull(getSupportActionBar()).setTitle(title);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
+        whatsapp.setMovementMethod(LinkMovementMethod.getInstance());
 
 
         sendButton.setOnClickListener(new View.OnClickListener() {
