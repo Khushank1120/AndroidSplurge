@@ -58,27 +58,83 @@ public class SearchActivity extends AppCompatActivity {
 
                 final String[] tags = s.toLowerCase().split(" ");
 
+
+                ////// For Steel Products //////
+
                 for (final String tag:tags){
                     tag.trim();
-                    FirebaseFirestore.getInstance().collection("PRODUCTS").whereArrayContains("tags" ,tag)
+                    FirebaseFirestore.getInstance().collection("CATEGORIES").document("STEEL")
+                            .collection("TOP_DEALS").whereArrayContains("tags" ,tag)
                             .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if(task.isSuccessful()){
-                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()){
-                                    WishlistModel model = new WishlistModel(documentSnapshot.getId(),documentSnapshot.get("product_image_1").toString()
-                                            , Objects.requireNonNull(documentSnapshot.get("product_title")).toString()
-                                            , Objects.requireNonNull(documentSnapshot.get("product_subtitle")).toString()
-                                            , Objects.requireNonNull(documentSnapshot.get("product_subtitle2")).toString()
-                                            , Objects.requireNonNull(documentSnapshot.get("product_price")).toString()
-                                            , Objects.requireNonNull(documentSnapshot.get("cutted_price")).toString());
+                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                                    long no_of_products = (long) documentSnapshot.get("no_of_products");
+                                    for (long x = 1; x < no_of_products + 1; x++) {
+                                        WishlistModel model = new WishlistModel(documentSnapshot.getId(), documentSnapshot.get("product_image_" + x).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_"+ x)).toString());
 
-                                    model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
+                                        model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
 
-                                    if(!ids.contains(model.getProductId()));
-                                    list.add(model);
-                                    ids.add(model.getProductId());
+                                        if (!ids.contains(model.getProductId())) ;
+                                        list.add(model);
+                                        ids.add(model.getProductId());
+                                    }
+                                    }
 
+                            }
+
+                            if(tag.equals(tags[tags.length-1])){
+
+                                if(list.size() == 0){
+                                    textView.setVisibility(View.VISIBLE);
+                                    recyclerView.setVisibility(View.GONE);
+                                }else {
+                                    textView.setVisibility(View.GONE);
+                                    recyclerView.setVisibility(View.VISIBLE);
+                                    adapter.getFilter().filter(s);
+                                }
+                            }
+
+                            else {
+//                                String error = task.getException().getMessage();
+//                                Toast.makeText(SearchActivity.this, error, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+
+                ////// For Wooden Products //////
+
+                for (final String tag:tags){
+                    tag.trim();
+                    FirebaseFirestore.getInstance().collection("CATEGORIES").document("WOODEN")
+                            .collection("TOP_DEALS").whereArrayContains("tags" ,tag)
+                            .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()){
+                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                                    long no_of_products = (long) documentSnapshot.get("no_of_products");
+                                    for (long x = 1; x < no_of_products + 1; x++) {
+                                        WishlistModel model = new WishlistModel(documentSnapshot.getId(), documentSnapshot.get("product_image_" + x).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_"+ x)).toString());
+
+                                        model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
+
+                                        if (!ids.contains(model.getProductId())) ;
+                                        list.add(model);
+                                        ids.add(model.getProductId());
+                                    }
                                 }
 
                             }
@@ -102,8 +158,310 @@ public class SearchActivity extends AppCompatActivity {
                         }
                     });
                 }
+
+                ////// For Ceramic Products //////
+
+                for (final String tag:tags){
+                    tag.trim();
+                    FirebaseFirestore.getInstance().collection("CATEGORIES").document("CERAMIC")
+                            .collection("TOP_DEALS").whereArrayContains("tags" ,tag)
+                            .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()){
+                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                                    long no_of_products = (long) documentSnapshot.get("no_of_products");
+                                    for (long x = 1; x < no_of_products + 1; x++) {
+                                        WishlistModel model = new WishlistModel(documentSnapshot.getId(), documentSnapshot.get("product_image_" + x).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_"+ x)).toString());
+
+                                        model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
+
+                                        if (!ids.contains(model.getProductId())) ;
+                                        list.add(model);
+                                        ids.add(model.getProductId());
+                                    }
+                                }
+
+                            }
+
+                            if(tag.equals(tags[tags.length-1])){
+
+                                if(list.size() == 0){
+                                    textView.setVisibility(View.VISIBLE);
+                                    recyclerView.setVisibility(View.GONE);
+                                }else {
+                                    textView.setVisibility(View.GONE);
+                                    recyclerView.setVisibility(View.VISIBLE);
+                                    adapter.getFilter().filter(s);
+                                }
+                            }
+
+                            else {
+//                                String error = task.getException().getMessage();
+//                                Toast.makeText(SearchActivity.this, error, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+
+                ////// For Premium Pots Products //////
+
+                for (final String tag:tags){
+                    tag.trim();
+                    FirebaseFirestore.getInstance().collection("CATEGORIES").document("PREMIUM POTS")
+                            .collection("TOP_DEALS").whereArrayContains("tags" ,tag)
+                            .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()){
+                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                                    long no_of_products = (long) documentSnapshot.get("no_of_products");
+                                    for (long x = 1; x < no_of_products + 1; x++) {
+                                        WishlistModel model = new WishlistModel(documentSnapshot.getId(), documentSnapshot.get("product_image_" + x).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_"+ x)).toString());
+
+                                        model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
+
+                                        if (!ids.contains(model.getProductId())) ;
+                                        list.add(model);
+                                        ids.add(model.getProductId());
+                                    }
+                                }
+
+                            }
+
+                            if(tag.equals(tags[tags.length-1])){
+
+                                if(list.size() == 0){
+                                    textView.setVisibility(View.VISIBLE);
+                                    recyclerView.setVisibility(View.GONE);
+                                }else {
+                                    textView.setVisibility(View.GONE);
+                                    recyclerView.setVisibility(View.VISIBLE);
+                                    adapter.getFilter().filter(s);
+                                }
+                            }
+
+                            else {
+//                                String error = task.getException().getMessage();
+//                                Toast.makeText(SearchActivity.this, error, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+
+                ////// For Cutlery Products //////
+
+                for (final String tag:tags){
+                    tag.trim();
+                    FirebaseFirestore.getInstance().collection("CATEGORIES").document("CUTLERY")
+                            .collection("TOP_DEALS").whereArrayContains("tags" ,tag)
+                            .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()){
+                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                                    long no_of_products = (long) documentSnapshot.get("no_of_products");
+                                    for (long x = 1; x < no_of_products + 1; x++) {
+                                        WishlistModel model = new WishlistModel(documentSnapshot.getId(), documentSnapshot.get("product_image_" + x).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_"+ x)).toString());
+
+                                        model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
+
+                                        if (!ids.contains(model.getProductId())) ;
+                                        list.add(model);
+                                        ids.add(model.getProductId());
+                                    }
+                                }
+
+                            }
+
+                            if(tag.equals(tags[tags.length-1])){
+
+                                if(list.size() == 0){
+                                    textView.setVisibility(View.VISIBLE);
+                                    recyclerView.setVisibility(View.GONE);
+                                }else {
+                                    textView.setVisibility(View.GONE);
+                                    recyclerView.setVisibility(View.VISIBLE);
+                                    adapter.getFilter().filter(s);
+                                }
+                            }
+
+                            else {
+//                                String error = task.getException().getMessage();
+//                                Toast.makeText(SearchActivity.this, error, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+
+                ////// For Glassware Products //////
+
+                for (final String tag:tags){
+                    tag.trim();
+                    FirebaseFirestore.getInstance().collection("CATEGORIES").document("GLASSWARE")
+                            .collection("TOP_DEALS").whereArrayContains("tags" ,tag)
+                            .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()){
+                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                                    long no_of_products = (long) documentSnapshot.get("no_of_products");
+                                    for (long x = 1; x < no_of_products + 1; x++) {
+                                        WishlistModel model = new WishlistModel(documentSnapshot.getId(), documentSnapshot.get("product_image_" + x).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_"+ x)).toString());
+
+                                        model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
+
+                                        if (!ids.contains(model.getProductId())) ;
+                                        list.add(model);
+                                        ids.add(model.getProductId());
+                                    }
+                                }
+
+                            }
+
+                            if(tag.equals(tags[tags.length-1])){
+
+                                if(list.size() == 0){
+                                    textView.setVisibility(View.VISIBLE);
+                                    recyclerView.setVisibility(View.GONE);
+                                }else {
+                                    textView.setVisibility(View.GONE);
+                                    recyclerView.setVisibility(View.VISIBLE);
+                                    adapter.getFilter().filter(s);
+                                }
+                            }
+
+                            else {
+//                                String error = task.getException().getMessage();
+//                                Toast.makeText(SearchActivity.this, error, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+
+                ////// For Opalware Products //////
+
+                for (final String tag:tags){
+                    tag.trim();
+                    FirebaseFirestore.getInstance().collection("CATEGORIES").document("OPALWARE")
+                            .collection("TOP_DEALS").whereArrayContains("tags" ,tag)
+                            .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()){
+                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                                    long no_of_products = (long) documentSnapshot.get("no_of_products");
+                                    for (long x = 1; x < no_of_products + 1; x++) {
+                                        WishlistModel model = new WishlistModel(documentSnapshot.getId(), documentSnapshot.get("product_image_" + x).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_"+ x)).toString());
+
+                                        model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
+
+                                        if (!ids.contains(model.getProductId())) ;
+                                        list.add(model);
+                                        ids.add(model.getProductId());
+                                    }
+                                }
+
+                            }
+
+                            if(tag.equals(tags[tags.length-1])){
+
+                                if(list.size() == 0){
+                                    textView.setVisibility(View.VISIBLE);
+                                    recyclerView.setVisibility(View.GONE);
+                                }else {
+                                    textView.setVisibility(View.GONE);
+                                    recyclerView.setVisibility(View.VISIBLE);
+                                    adapter.getFilter().filter(s);
+                                }
+                            }
+
+                            else {
+//                                String error = task.getException().getMessage();
+//                                Toast.makeText(SearchActivity.this, error, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+
+                ////// For Gifting Products //////
+
+                for (final String tag:tags){
+                    tag.trim();
+                    FirebaseFirestore.getInstance().collection("CATEGORIES").document("GIFTING")
+                            .collection("TOP_DEALS").whereArrayContains("tags" ,tag)
+                            .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()){
+                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                                    long no_of_products = (long) documentSnapshot.get("no_of_products");
+                                    for (long x = 1; x < no_of_products + 1; x++) {
+                                        WishlistModel model = new WishlistModel(documentSnapshot.getId(), documentSnapshot.get("product_image_" + x).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_"+ x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_"+ x)).toString());
+
+                                        model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
+
+                                        if (!ids.contains(model.getProductId())) ;
+                                        list.add(model);
+                                        ids.add(model.getProductId());
+                                    }
+                                }
+
+                            }
+
+                            if(tag.equals(tags[tags.length-1])){
+
+                                if(list.size() == 0){
+                                    textView.setVisibility(View.VISIBLE);
+                                    recyclerView.setVisibility(View.GONE);
+                                }else {
+                                    textView.setVisibility(View.GONE);
+                                    recyclerView.setVisibility(View.VISIBLE);
+                                    adapter.getFilter().filter(s);
+                                }
+                            }
+
+                            else {
+//                                String error = task.getException().getMessage();
+//                                Toast.makeText(SearchActivity.this, error, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+
                 return false;
             }
+
 
             @Override
             public boolean onQueryTextChange(String s) {
