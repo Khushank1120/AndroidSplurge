@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import java.util.Objects;
 
-
 public class WhatsAppActivity extends AppCompatActivity {
 
     @Override
