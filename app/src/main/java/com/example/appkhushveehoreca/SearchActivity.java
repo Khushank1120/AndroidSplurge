@@ -46,7 +46,7 @@ public class SearchActivity extends AppCompatActivity {
         final List<WishlistModel> list=new ArrayList<>();
         final List<String> ids=new ArrayList<>();
 
-        adapter = new Adapter(list,false);
+        adapter = new Adapter(list, false);
         adapter.setFromSearch(true);
         recyclerView.setAdapter(adapter);
 
@@ -72,7 +72,7 @@ public class SearchActivity extends AppCompatActivity {
                                 for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                                     long no_of_products = (long) documentSnapshot.get("no_of_products");
                                     for (long x = 1; x < no_of_products + 1; x++) {
-                                        WishlistModel model = new WishlistModel(documentSnapshot.getId(), documentSnapshot.get("product_image_" + x).toString()
+                                        WishlistModel model = new WishlistModel(documentSnapshot.getId(), Objects.requireNonNull(documentSnapshot.get("product_image_" + x)).toString()
                                                 , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
                                                 , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
                                                 , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
@@ -471,7 +471,7 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-    class Adapter extends WishlistAdapter implements Filterable{
+    static class Adapter extends WishlistAdapter implements Filterable{
 
         private List<WishlistModel> originalList;
         public Adapter(List<WishlistModel> wishlistModelList, Boolean wishlist) {

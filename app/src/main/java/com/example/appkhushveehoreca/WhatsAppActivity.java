@@ -30,12 +30,56 @@ public class WhatsAppActivity extends AppCompatActivity {
         final EditText editTextMessage = findViewById(R.id.editText_whatsApp);
 
         TextView whatsapp = findViewById(R.id.whatsapp_textview);
+        TextView khushveeHorecaWebLink = findViewById(R.id.textViewKhushveeHorecaWebLink);
+
+        ImageView facebook = findViewById(R.id.imageViewFacebook);
+        ImageView instagram = findViewById(R.id.imageViewInstagram);
+        ImageView linkedin = findViewById(R.id.imageViewLinkedIn);
+        ImageView pinterest = findViewById(R.id.imageViewPinterest);
+        ImageView twitter = findViewById(R.id.imageViewTwitter);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         String title = "Contact Us through WhatsApp";
+
         Objects.requireNonNull(getSupportActionBar()).setTitle(title);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         whatsapp.setMovementMethod(LinkMovementMethod.getInstance());
+        khushveeHorecaWebLink.setMovementMethod(LinkMovementMethod.getInstance());
+
+
+        facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToUrl("https://www.facebook.com/KhushveeHorecaIndia");
+            }
+        });
+        instagram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToUrl("https://www.instagram.com/khushveehoreca/");
+            }
+        });
+
+        linkedin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToUrl("https://www.linkedin.com/company/khushveehoreca/");
+            }
+        });
+        pinterest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToUrl("https://in.pinterest.com/khushveehoreca/");
+            }
+        });
+        twitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToUrl("https://twitter.com/KhushveeH");
+            }
+        });
+
 
 
         sendButton.setOnClickListener(new View.OnClickListener() {
@@ -70,4 +114,8 @@ public class WhatsAppActivity extends AppCompatActivity {
         return app_installed;
     }
 
+    public void goToUrl(String s){
+        Uri uri = Uri.parse(s);
+        startActivity(new Intent(Intent.ACTION_VIEW,uri));
+    }
 }

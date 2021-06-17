@@ -24,6 +24,24 @@
     <string name="VisionArtWebLink">
         <a href="https://visionartinfotech.com/">www.visionartinfotech.com</a>
     </string>
+    <string name="KhushveeHorecaWebLink">
+        <a href="http://www.khushveehoreca.com/">www.khushveehoreca.com</a>
+    </string>
+    <string name="FacebookLink">
+        <a href="https://www.facebook.com/KhushveeHorecaIndia">W ----------------- p W -- - - - - - - - - p  W - - - - - - - - - - p  W - - - - - - - - ---p W--- - - - - - - - - - - p</a>
+    </string>
+    <string name="InstagramLink">
+        <a href="https://www.instagram.com/khushveehoreca/">www.khushveehoreca.com</a>
+    </string>
+    <string name="LinkedInLink">
+        <a href="https://www.linkedin.com/company/khushveehoreca/">www.khushveehoreca.com</a>
+    </string>
+    <string name="TwitterLink">
+        <a href="https://twitter.com/KhushveeH">www.khushveehoreca.com</a>
+    </string>
+    <string name="PinterestLink">
+        <a href="https://in.pinterest.com/khushveehoreca/">www.khushveehoreca.com</a>
+    </string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
