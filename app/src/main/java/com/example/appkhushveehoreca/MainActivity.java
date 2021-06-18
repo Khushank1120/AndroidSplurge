@@ -173,9 +173,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     invalidateOptionsMenu();
                     setFragment(new HomeFragment(),HOME_FRAGMENT);
                 }else if(id == R.id.nav_my_account){
-                    goToFragment("My Account",new MyAccountFragment(),ACCOUNT_FRAGMENT);
+                    goToFragment("About Us",new MyAccountFragment(),ACCOUNT_FRAGMENT);
                 }else if(id == R.id.nav_my_offers){
-                    goToFragment("My Rewards",new MyRewardsFragment(),REWARDS_FRAGMENT);
+                    goToFragment("Offers",new MyRewardsFragment(),REWARDS_FRAGMENT);
                 }else if(id == R.id.nav_sign_out) {
                     FirebaseAuth.getInstance().signOut();
                     Intent registerIntent = new Intent(MainActivity.this,RegisterActivity.class);

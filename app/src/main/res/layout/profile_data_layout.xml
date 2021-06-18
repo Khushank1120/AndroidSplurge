@@ -32,12 +32,11 @@
         android:id="@+id/linearLayout5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:background="@drawable/slider_background"
         android:elevation="10dp"
+        android:gravity="center"
         android:orientation="vertical"
         android:padding="10dp"
-        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileimage">
@@ -56,97 +55,91 @@
             android:id="@+id/useremail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="For inquiry and best offers! \n Call us on:9909975572 \n Email:khushveehorecas@gmail.com \n \n Address:56, Sankalp Industrial park, Opp. HP CNG Mother Station, N.H.8, Nr. S.P. Ring Road, Nana Chiloda-382330, Ahmedabad, Gujarat, India."
-            android:textStyle="bold"
-            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:textAlignment="center"
+            android:layout_marginRight="10dp"
+            android:text="For inquiry and best offers! \n  Call us on:9909975572 \n  Email:khushveehorecas@gmail.com \n \nAddress:56, Sankalp Industrial park, Opp. HP CNG Mother Station, N.H.8, Nr. S.P. Ring Road, Nana Chiloda-382330, Ahmedabad, Gujarat, India."
             android:textColor="@color/colorLogoBlue"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CLICK ON THE BELOW ICON TO REACH US ON WHATSAPP :"
-            android:textSize="15sp"
-            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text="CLICK ON THE BELOW ICON TO REACH US ON WHATSAPP :"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
-            android:textStyle="bold"
-            />
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/whatsapp_textview"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/WhatsApp"
-            android:textColor="#24D432"
-            android:textColorLink="#24D432"
-            android:layout_weight="0"
-            android:elevation="10dp"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:layout_marginBottom="0dp"
-            android:background="@drawable/whatsapp1" />
-
-        <TextView
-            android:id="@+id/location_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="400dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="0"
-            android:background="@drawable/location"
-            android:padding="13dp"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:text="@string/OurLocation"
-            android:textColor="@color/colorLogoBlue"
-            android:textColorLink="@color/colorLogoBlue"
-            android:textSize="18sp"
-            android:elevation="10dp"
-            android:textStyle="bold"
-            android:visibility="visible" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="340dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/aboutus"
-            />
+                <ImageView
+                    android:id="@+id/whatsapp_textview"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0"
+                    android:elevation="10dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/whatsapp1" />
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:textStyle="bold"
-            android:textColor="@color/colorLogoBlue"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:background="@color/colorWhite"
-            android:elevation="10dp"
-            android:text="Created and Managed by \n VISION ART INFOTECH"
-            />
+                    <ImageView
+                    android:id="@+id/location_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/locationmin"
+                    android:padding="13dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:textSize="18sp"
+                    android:elevation="10dp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
 
-        <TextView
-            android:id="@+id/visionArtWebLink"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="10dp"
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:textColor="@color/colorLogoBlue"
-            android:gravity="center"
-            android:background="@color/colorWhite"
-            android:textSize="20sp"
-            android:elevation="10dp"
-            android:textColorLink="@color/colorLogoBlue"
-            android:text="@string/VisionArtWebLink"
-            />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="340dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/aboutus"
+                    android:elevation="5dp"
+                    />
 
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:background="@color/colorLogoBlue"
+                    android:elevation="10dp"
+                    android:text="Created and Managed by \n VISION ART INFOTECH"
+                    />
+
+                <TextView
+                    android:id="@+id/visionArtWebLink"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"
+                    android:background="@color/colorLogoBlue"
+                    android:textSize="20sp"
+                    android:elevation="10dp"
+                    android:textColorLink="@color/colorWhite"
+                    android:text="@string/VisionArtWebLink"
+                    />
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -60,6 +60,7 @@
         android:layout_marginStart="14dp"
         android:layout_marginTop="35dp"
         android:elevation="5dp"
+        android:textSize="6dp"
         android:textColor="#24D432"
         android:textColorLink="#24D432"
         android:foreground="?attr/selectableItemBackgroundBorderless"
