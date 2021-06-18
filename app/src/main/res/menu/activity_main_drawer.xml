@@ -18,7 +18,7 @@
             android:title="Offers" />
         <item
             android:id="@+id/nav_my_account"
-            android:icon="@drawable/ic_baseline_person_24"
+            android:icon="@drawable/ic_baseline_people_24"
             android:title="About Us" />
     </group>
 

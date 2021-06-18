@@ -4,9 +4,8 @@
     <item
         android:id="@+id/whatsapp_icon"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_baseline_person_24_white"
+        android:icon="@drawable/ic_baseline_people_24"
         android:title="About Us"
-        android:text="@string/WhatsApp"
         app:showAsAction="always" />
 
     <item
