@@ -34,17 +34,17 @@
 
 
     <LinearLayout
-        android:onClick="goToLogin"
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="46dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
         android:background="@drawable/slider_background"
         android:elevation="16dp"
+        android:onClick="goToLogin"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,18 +62,54 @@
             android:layout_width="328dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@color/colorBlack"
             android:text="Continue To Login"
+            android:textColor="@color/colorBlack"
             android:textSize="20sp" />
 
 
     </LinearLayout>
 
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayout3"-->
+<!--        android:layout_width="382dp"-->
+<!--        android:layout_height="47dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:background="@drawable/slider_background"-->
+<!--        android:elevation="16dp"-->
+<!--        android:foreground="?attr/selectableItemBackgroundBorderless"-->
+<!--        android:onClick="goToPhoneLogin"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/textView"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"-->
+<!--        tools:ignore="OnClick">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="32dp"-->
+<!--            android:layout_height="32dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_margin="8dp"-->
+<!--            android:src="@drawable/ic_baseline_local_phone_24" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="328dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:text="Continue With Phone"-->
+<!--            android:textColor="@color/colorBlack"-->
+<!--            android:textSize="20sp" />-->
+
+
+<!--    </LinearLayout>-->
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="40dp"
         android:text="By continuing, you agree to our Term Of Service, Privacy \n Policy, Content Policy "
         android:textAlignment="center"
         android:textColor="@color/colorWhite"

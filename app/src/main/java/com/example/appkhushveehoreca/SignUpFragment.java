@@ -24,17 +24,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 public class SignUpFragment extends Fragment {
 
@@ -53,6 +49,7 @@ public class SignUpFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
     private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+.[a-z]+";
+    private String phonePattern = "^\\+?\\(?[0-9]{1,3}\\)? ?-?[0-9]{1,3} ?-?[0-9]{3,5} ?-?[0-9]{4}( ?-?[0-9]{3})?\n";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -210,54 +207,56 @@ public class SignUpFragment extends Fragment {
 
 
         if(email.getText().toString().matches(emailPattern)){
+            if(mobileNumber.getText().toString().length()>9 && mobileNumber.getText().toString().length()<13) {
 
-            progressBar.setVisibility(View.VISIBLE);
-            signUpBtn.setEnabled(false);
+                progressBar.setVisibility(View.VISIBLE);
+                signUpBtn.setEnabled(false);
 
-            firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString())
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
+                firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
 
-                                Map<Object,String> userdata = new HashMap<>();
-                                userdata.put("email",email.getText().toString());
-                                userdata.put("fullname",name.getText().toString());
-                                userdata.put("mobilenumber",mobileNumber.getText().toString());
+                                    Map<Object, String> userdata = new HashMap<>();
+                                    userdata.put("email", email.getText().toString());
+                                    userdata.put("fullname", name.getText().toString());
+                                    userdata.put("mobilenumber", mobileNumber.getText().toString());
 
 
-                                firebaseFirestore.collection("USERS")
-                                        .add(userdata)
-                                        .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<DocumentReference> task) {
-                                                if(task.isSuccessful()){
-                                                    mainIntent();
-                                                }else{
-                                                    progressBar.setVisibility(View.INVISIBLE);
-                                                    signUpBtn.setEnabled(true);
-                                                    String error = task.getException().getMessage();
-                                                    Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
+                                    firebaseFirestore.collection("USERS")
+                                            .add(userdata)
+                                            .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<DocumentReference> task) {
+                                                    if (task.isSuccessful()) {
+                                                        mainIntent();
+                                                    } else {
+                                                        progressBar.setVisibility(View.INVISIBLE);
+                                                        signUpBtn.setEnabled(true);
+                                                        String error = task.getException().getMessage();
+                                                        Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
 
+                                                    }
                                                 }
-                                            }
-                                        });
-                            }else{
-                                progressBar.setVisibility(View.INVISIBLE);
-                                signUpBtn.setEnabled(true);
-                                String error = task.getException().getMessage();
-                                Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
+                                            });
+                                } else {
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    signUpBtn.setEnabled(true);
+                                    String error = task.getException().getMessage();
+                                    Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
+                                }
                             }
-
-                        }
-                    });
+                        });
+            }else{
+                mobileNumber.setError("Invalid Phone Number");
+            }
         }else{
             email.setError("Invalid Email!");
 
         }
 
     }
-
     private void mainIntent(){
         Intent mainIntent = new Intent(getActivity(),MainActivity.class);
         startActivity(mainIntent);

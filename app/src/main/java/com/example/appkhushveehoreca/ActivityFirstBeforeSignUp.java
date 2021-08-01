@@ -91,4 +91,9 @@ public class ActivityFirstBeforeSignUp extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+    public void goToPhoneLogin(View view) {
+        Intent intent = new Intent(ActivityFirstBeforeSignUp.this, OTPSend.class);
+        startActivity(intent);
+        finish();
+    }
 }

@@ -36,10 +36,11 @@ public class WhatsAppActivity extends AppCompatActivity {
         ImageView linkedin = findViewById(R.id.imageViewLinkedIn);
         ImageView pinterest = findViewById(R.id.imageViewPinterest);
         ImageView twitter = findViewById(R.id.imageViewTwitter);
+        ImageView pdf = findViewById(R.id.downloadPdf);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        String title = "Contact Us through WhatsApp";
+        String title = "Contact Us";
 
         Objects.requireNonNull(getSupportActionBar()).setTitle(title);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -47,43 +48,54 @@ public class WhatsAppActivity extends AppCompatActivity {
         khushveeHorecaWebLink.setMovementMethod(LinkMovementMethod.getInstance());
 
 
+
+        pdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToUrl("https://drive.google.com/drive/folders/1SpkmDnPr_2ViLbUlZKRSmUkTen7Yx_6B?usp=sharing");
+            }
+        });
+
         facebook.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 goToUrl("https://www.facebook.com/KhushveeHorecaIndia");
             }
         });
+
+
         instagram.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 goToUrl("https://www.instagram.com/khushveehoreca/");
             }
         });
 
         linkedin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 goToUrl("https://www.linkedin.com/company/khushveehoreca/");
             }
         });
         pinterest.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 goToUrl("https://in.pinterest.com/khushveehoreca/");
             }
         });
         twitter.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 goToUrl("https://twitter.com/KhushveeH");
             }
         });
 
 
 
+
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
 
                 String message = editTextMessage.getText().toString();
 

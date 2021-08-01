@@ -99,7 +99,7 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
             productTitle.setText(title);
             productTitle1.setText(title1);
             freeCoupons.setText(freeCouponsNo);
-            productPrice.setText("RS." + price + "/-");
+            productPrice.setText("Rs." + price + "/-");
             cuttedPrice.setText("Rs" + cuttedPriceValue + "/-");
 
             if (wishlist) {
