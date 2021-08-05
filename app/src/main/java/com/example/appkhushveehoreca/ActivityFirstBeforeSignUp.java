@@ -50,12 +50,12 @@ public class ActivityFirstBeforeSignUp extends AppCompatActivity {
 
 
             plateModelList = new ArrayList<>();
-            plateModelList.add(new PlateModel(R.drawable.splashlogin2));
-            plateModelList.add(new PlateModel(R.drawable.splashlogin1));
-            plateModelList.add(new PlateModel(R.drawable.splashlogin3));
-            plateModelList.add(new PlateModel(R.drawable.splashlogin5));
-            plateModelList.add(new PlateModel(R.drawable.splashlogin4));
-            plateModelList.add(new PlateModel(R.drawable.splashlogin6));
+            plateModelList.add(new PlateModel(R.drawable.splashlogin2min));
+            plateModelList.add(new PlateModel(R.drawable.splashlogin1min));
+            plateModelList.add(new PlateModel(R.drawable.splashlogin3min));
+            plateModelList.add(new PlateModel(R.drawable.splashlogin5min));
+            plateModelList.add(new PlateModel(R.drawable.splashlogin6min));
+            plateModelList.add(new PlateModel(R.drawable.splashlogin4min));
 
             plateAdapter = new PlateAdapter(plateModelList, this);
             recyclerView.setAdapter(plateAdapter);

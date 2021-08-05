@@ -66,7 +66,6 @@ public class HorizontalProductScrollAdapter extends RecyclerView.Adapter<Horizon
         private TextView cuttedPrice;
 
 
-
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
@@ -101,4 +100,3 @@ public class HorizontalProductScrollAdapter extends RecyclerView.Adapter<Horizon
 
         }
     }
-
