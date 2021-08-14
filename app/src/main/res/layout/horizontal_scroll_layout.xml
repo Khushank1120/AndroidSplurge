@@ -12,15 +12,17 @@
 
     <TextView
         android:id="@+id/horizontal_scroll_layout_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:elevation="100dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="10dp"
         android:text="Latest Product Collection"
         android:textColor="@color/colorLogoBlue"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/horizontal_scroll_view_all_btn"
+        app:layout_constraintEnd_toStartOf="@+id/horizontal_scroll_view_all_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/horizontal_scroll_view_all_btn" />
 
@@ -31,7 +33,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="@color/colorLogoBlue"
-        android:elevation="100dp"
+        android:elevation="10dp"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:text="View All"
         android:textColor="@color/colorWhite"
@@ -43,7 +45,7 @@
         android:id="@+id/horizontal_scroll_layout_recyclerView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:elevation="100dp"
+        android:elevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horizontal_scroll_view_all_btn" />

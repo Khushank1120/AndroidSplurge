@@ -276,7 +276,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             ///// in put extra 0 is for recycler view code and 1 for grid view code ///////
             container.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(color)));
             horizontalLayoutTitle.setText(title);
-            if(horizontalProductScrollModelList.size() >= 5 ){
+            if(horizontalProductScrollModelList.size() >= 2 ){
                 horizontalLayoutViewAllBtn.setVisibility(View.VISIBLE);
                 horizontalLayoutViewAllBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -339,20 +339,20 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 productTitle.setText(horizontalProductScrollModelList.get(x).getProductTitle());
                 productDescription.setText(horizontalProductScrollModelList.get(x).getProductDescription());
                 productDescription1.setText(horizontalProductScrollModelList.get(x).getProductDescription1());
-                productPrice.setText("Rs." + horizontalProductScrollModelList.get(x).getProductPrice() + "/-");
-                cuttedPrice.setText("Rs." + horizontalProductScrollModelList.get(x).getCuttedPrice() + "/-");;
+                productPrice.setText(horizontalProductScrollModelList.get(x).getProductPrice());
+                cuttedPrice.setText(horizontalProductScrollModelList.get(x).getCuttedPrice());;
 
 
-                if(title.equals("")) {
-                    gridProductLayout.getChildAt(x).setBackgroundColor(Color.parseColor("#ffffff"));
-                    gridProductLayout.getChildAt(x).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent productDetailsIntent = new Intent(itemView.getContext(), ProductDetailsActivity.class);
-                            itemView.getContext().startActivity(productDetailsIntent);
-                        }
-                    });
-                }
+//                if(title.equals("")) {
+//                    gridProductLayout.getChildAt(x).setBackgroundColor(Color.parseColor("#ffffff"));
+//                    gridProductLayout.getChildAt(x).setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            Intent productDetailsIntent = new Intent(itemView.getContext(), ProductDetailsActivity.class);
+//                            itemView.getContext().startActivity(productDetailsIntent);
+//                        }
+//                    });
+//                }
             }
 
             if(!title.equals("")) {

@@ -8,6 +8,7 @@
 
     <application
         android:allowBackup="true"
+        android:screenOrientation="portrait"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -27,7 +28,8 @@
         <activity
             android:name=".WhatsAppActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".ViewAllActivity" />
+        <activity android:name=".ViewAllActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".ProductDetailsActivity" />
         <activity android:name=".CategoryActivity" />
         <activity

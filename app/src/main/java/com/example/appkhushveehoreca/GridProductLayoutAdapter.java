@@ -58,8 +58,8 @@ public class GridProductLayoutAdapter extends BaseAdapter {
             productTitle.setText(horizontalProductScrollModelList.get(position).getProductTitle());
             productDescription.setText(horizontalProductScrollModelList.get(position).getProductDescription());
             productDescription1.setText(horizontalProductScrollModelList.get(position).getProductDescription1());
-            productPrice.setText("Rs."+horizontalProductScrollModelList.get(position).getProductPrice()+"/-");
-            cuttedPrice.setText("Rs."+horizontalProductScrollModelList.get(position).getCuttedPrice()+"/-");
+            productPrice.setText(horizontalProductScrollModelList.get(position).getProductPrice());
+            cuttedPrice.setText(horizontalProductScrollModelList.get(position).getCuttedPrice());
 
         }else{
             view = convertView;
