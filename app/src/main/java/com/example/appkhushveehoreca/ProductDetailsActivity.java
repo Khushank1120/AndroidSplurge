@@ -1,10 +1,5 @@
 package com.example.appkhushveehoreca;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -12,6 +7,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -27,7 +27,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private ViewPager productDetailsViewpager;
     private TabLayout productDetailsTablayout;
 
-    public static  boolean fromSearch = false;
+    public static boolean fromSearch = false;
 
     private FloatingActionButton addToWishlistBtn;
     private static boolean ALREADY_ADDED_TO_WISHLIST = false;
@@ -54,23 +54,23 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productDetailsTablayout = findViewById(R.id.product_details_tablayout);
 
         List<Integer> productImages = new ArrayList<>();
-               productImages.add(R.drawable.steelone);
-               productImages.add(R.drawable.steeltwo);
-               productImages.add(R.drawable.steelthree);
-               productImages.add(R.drawable.steelfour);
+        productImages.add(R.drawable.steelone);
+        productImages.add(R.drawable.steeltwo);
+        productImages.add(R.drawable.steelthree);
+        productImages.add(R.drawable.steelfour);
 
-               ProductImagesAdapter productImagesAdapter = new ProductImagesAdapter(productImages);
-               productImagesViewPager.setAdapter(productImagesAdapter);
+        ProductImagesAdapter productImagesAdapter = new ProductImagesAdapter(productImages);
+        productImagesViewPager.setAdapter(productImagesAdapter);
 
-        viewPagerIndicator.setupWithViewPager(productImagesViewPager,true);
+        viewPagerIndicator.setupWithViewPager(productImagesViewPager, true);
         addToWishlistBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                if(ALREADY_ADDED_TO_WISHLIST){
+                if (ALREADY_ADDED_TO_WISHLIST) {
                     ALREADY_ADDED_TO_WISHLIST = false;
                     addToWishlistBtn.setSupportImageTintList(ColorStateList.valueOf(Color.parseColor("#CCCCCC")));
-                }else{
+                } else {
                     ALREADY_ADDED_TO_WISHLIST = true;
                     addToWishlistBtn.setSupportImageTintList(getResources().getColorStateList(R.color.colorLogoBlue));
 
@@ -79,7 +79,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
 
-        productDetailsViewpager.setAdapter(new ProductDetailsAdapter(getSupportFragmentManager(),productDetailsTablayout.getTabCount()));
+        productDetailsViewpager.setAdapter(new ProductDetailsAdapter(getSupportFragmentManager(), productDetailsTablayout.getTabCount()));
         productDetailsViewpager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(productDetailsTablayout));
         productDetailsTablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -116,20 +116,20 @@ public class ProductDetailsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if(id == android.R.id.home){
+        if (id == android.R.id.home) {
             finish();
             return true;
-        }else if(id == R.id.main_search_icon){
-            if (fromSearch){
+        } else if (id == R.id.main_search_icon) {
+            if (fromSearch) {
                 finish();
-            }else{
+            } else {
                 Intent searchIntent = new Intent(this, SearchActivity.class);
                 startActivity(searchIntent);
 
                 return true;
             }
 
-        }else if (id == R.id.main_cart_icon){
+        } else if (id == R.id.main_cart_icon) {
 
             /// todo: cart
 

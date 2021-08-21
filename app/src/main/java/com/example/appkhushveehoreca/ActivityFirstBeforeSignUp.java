@@ -66,24 +66,25 @@ public class ActivityFirstBeforeSignUp extends AppCompatActivity {
 
     }
 
-    public void autoScroll(){
+    public void autoScroll() {
         final int speedScroll = 0;
         final Handler handler = new Handler();
         final Runnable runnable = new Runnable() {
             int count = 0;
+
             @Override
             public void run() {
 
-                if(count == plateAdapter.getItemCount())
-                    count=0;
-                if(count < plateAdapter.getItemCount()){
-                    recyclerView.smoothScrollToPosition(++ count);
-                    handler.postDelayed(this,speedScroll);
+                if (count == plateAdapter.getItemCount())
+                    count = 0;
+                if (count < plateAdapter.getItemCount()) {
+                    recyclerView.smoothScrollToPosition(++count);
+                    handler.postDelayed(this, speedScroll);
                 }
             }
 
         };
-        handler.postDelayed(runnable,speedScroll);
+        handler.postDelayed(runnable, speedScroll);
     }
 
     public void goToLogin(View view) {
@@ -91,6 +92,7 @@ public class ActivityFirstBeforeSignUp extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
     public void goToPhoneLogin(View view) {
         Intent intent = new Intent(ActivityFirstBeforeSignUp.this, OTPSend.class);
         startActivity(intent);

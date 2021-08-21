@@ -34,7 +34,7 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
         this.fromSearch = fromSearch;
     }
 
-    public WishlistAdapter(List<WishlistModel> wishlistModelList, Boolean wishlist){
+    public WishlistAdapter(List<WishlistModel> wishlistModelList, Boolean wishlist) {
         this.wishlistModelList = wishlistModelList;
         this.wishlist = wishlist;
     }
@@ -51,7 +51,7 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.wishlist_item_layout,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.wishlist_item_layout, viewGroup, false);
         return new ViewHolder(view);
     }
 
@@ -65,7 +65,7 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
         String productPrice = wishlistModelList.get(position).getProductPrice();
         String cuttedPrice = wishlistModelList.get(position).getCuttedPrice();
 
-        viewHolder.setData(resource,title,title1,freeCoupon,productPrice,cuttedPrice);
+        viewHolder.setData(resource, title, title1, freeCoupon, productPrice, cuttedPrice);
 
     }
 
@@ -74,7 +74,7 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
         return wishlistModelList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView productImage;
         private TextView productTitle;
@@ -97,6 +97,7 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
             deleteBtn = itemView.findViewById(R.id.delete_btn);
 
         }
+
         private void setData(String resource, String title, String title1, String freeCouponsNo, String price, String cuttedPriceValue) {
             Glide.with(itemView.getContext()).load(resource).apply(new RequestOptions().placeholder(R.drawable.ic_baseline_home_24)).into(productImage);
             productTitle.setText(title);
@@ -121,7 +122,7 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(fromSearch){
+                        if (fromSearch) {
                             ProductDetailsActivity.fromSearch = true;
 
                         }

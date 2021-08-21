@@ -11,7 +11,7 @@ public class HorizontalProductScrollModel {
     private String cuttedPrice;
 
 
-    public HorizontalProductScrollModel(String productID,String productImage, String productTitle, String productDescription, String productDescription1, String productPrice, String cuttedPrice) {
+    public HorizontalProductScrollModel(String productID, String productImage, String productTitle, String productDescription, String productDescription1, String productPrice, String cuttedPrice) {
         this.productID = productID;
         this.productImage = productImage;
         this.productTitle = productTitle;

@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@color/colorAccent"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="2dp"
-    android:layout_height="wrap_content">
+    android:background="@color/colorAccent">
 
     <ImageView
         android:id="@+id/product_image"
@@ -25,9 +25,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="Steel Vessel"
-        android:textStyle="bold"
         android:textColor="@color/colorLogoBlue"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/product_image"
         app:layout_constraintTop_toTopOf="parent" />
 
