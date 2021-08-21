@@ -19,6 +19,9 @@ import java.util.List;
 
 public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHolder> {
 
+
+    public static boolean ALREADY_ADDED_TO_CARTLIST;
+
     private boolean fromSearch;
     private List<WishlistModel> wishlistModelList;
     private Boolean wishlist;

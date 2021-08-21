@@ -2,12 +2,6 @@ package com.example.appkhushveehoreca;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -22,14 +16,22 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SignUpFragment extends Fragment {
@@ -41,11 +43,11 @@ public class SignUpFragment extends Fragment {
     private TextView alreadyHaveAnAccount1;
     private FrameLayout parentFrameLayout;
 
-    private EditText email,name,mobileNumber,password;
+    public static boolean disableCloseBtn = false;
     private ImageButton closeBtn;
     private Button signUpBtn;
     private ProgressBar progressBar;
-
+    private EditText email, name, mobileNumber, password;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
     private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+.[a-z]+";
@@ -74,7 +76,12 @@ public class SignUpFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
+        if (disableCloseBtn) {
+            closeBtn.setVisibility(View.GONE);
 
+        } else {
+            closeBtn.setVisibility(View.VISIBLE);
+        }
         return view;
     }
 
@@ -173,41 +180,44 @@ public class SignUpFragment extends Fragment {
             }
         });
     }
+
+
+
     private void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(parentFrameLayout.getId(),fragment);
+        fragmentTransaction.replace(parentFrameLayout.getId(), fragment);
         fragmentTransaction.commit();
     }
 
     private void checkInputs() {
 
-        if(!TextUtils.isEmpty(email.getText())){
-            if(!TextUtils.isEmpty(name.getText())){
-                if(!TextUtils.isEmpty(mobileNumber.getText()) && mobileNumber.length() >=10){
-                    if(!TextUtils.isEmpty(password.getText()) && password.length() >=8){
+        if (!TextUtils.isEmpty(email.getText())) {
+            if (!TextUtils.isEmpty(name.getText())) {
+                if (!TextUtils.isEmpty(mobileNumber.getText()) && mobileNumber.length() >= 10) {
+                    if (!TextUtils.isEmpty(password.getText()) && password.length() >= 8) {
                         signUpBtn.setEnabled(true);
-                    }else{
+                    } else {
                         signUpBtn.setEnabled(true);
                     }
-                }else{
+                } else {
                     signUpBtn.setEnabled(true);
                 }
-            }else{
+            } else {
                 signUpBtn.setEnabled(true);
             }
-        }else{
+        } else {
             signUpBtn.setEnabled(false);
         }
     }
 
-    private void checkEmailAndPassword(){
+    private void checkEmailAndPassword() {
 
 
         /// Create drawable here for change in error icon ///
 
 
-        if(email.getText().toString().matches(emailPattern)){
-            if(mobileNumber.getText().toString().length()>9 && mobileNumber.getText().toString().length()<13) {
+        if (email.getText().toString().matches(emailPattern)) {
+            if (mobileNumber.getText().toString().length() > 9 && mobileNumber.getText().toString().length() < 13) {
 
                 progressBar.setVisibility(View.VISIBLE);
                 signUpBtn.setEnabled(false);
@@ -230,36 +240,71 @@ public class SignUpFragment extends Fragment {
                                                 @Override
                                                 public void onComplete(@NonNull Task<DocumentReference> task) {
                                                     if (task.isSuccessful()) {
-                                                        mainIntent();
+
+                                                        CollectionReference userDataReference = firebaseFirestore.collection("USERS").document(firebaseAuth.getUid()).collection("USER_DATA");
+
+                                                        //// MAPS ////
+
+                                                        Map<String, Object> cartMap = new HashMap<>();
+                                                        cartMap.put("list_size", (long) 0);
+
+                                                        List<String> documentNames = new ArrayList<>();
+                                                        documentNames.add("MY_CART");
+
+                                                        final List<Map<String, Object>> documentFields = new ArrayList<>();
+                                                        documentFields.add(cartMap);
+
+                                                        for (int x = 0; x < documentNames.size(); x++) {
+                                                            final int finalX = x;
+                                                            userDataReference.document(documentNames.get(x))
+                                                                    .set(documentFields.get(x))
+                                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                        @Override
+                                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                                            if (task.isSuccessful()) {
+                                                                                if (finalX == documentFields.size() - 1) {
+                                                                                    if (disableCloseBtn) {
+                                                                                        disableCloseBtn = false;
+                                                                                    } else {
+                                                                                        startActivity(new Intent(getActivity(), MainActivity.class));
+                                                                                    }
+                                                                                    getActivity().finish();
+                                                                                }
+
+
+                                                                            } else {
+                                                                                progressBar.setVisibility(View.INVISIBLE);
+                                                                                signUpBtn.setEnabled(true);
+                                                                                String error = task.getException().getMessage();
+                                                                                Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
+
+                                                                            }
+                                                                        }
+                                                                    });
+                                                        }
                                                     } else {
                                                         progressBar.setVisibility(View.INVISIBLE);
                                                         signUpBtn.setEnabled(true);
                                                         String error = task.getException().getMessage();
                                                         Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
-
                                                     }
                                                 }
                                             });
                                 } else {
-                                    progressBar.setVisibility(View.INVISIBLE);
-                                    signUpBtn.setEnabled(true);
-                                    String error = task.getException().getMessage();
-                                    Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
+                                    mobileNumber.setError("Invalid Phone Number");
                                 }
                             }
                         });
-            }else{
-                mobileNumber.setError("Invalid Phone Number");
+            } else {
+                email.setError("Invalid Email!");
+
             }
-        }else{
-            email.setError("Invalid Email!");
 
         }
-
     }
-    private void mainIntent(){
-        Intent mainIntent = new Intent(getActivity(),MainActivity.class);
-        startActivity(mainIntent);
-        getActivity().finish();
+        private void mainIntent() {
+            Intent mainIntent = new Intent(getActivity(), MainActivity.class);
+            startActivity(mainIntent);
+            getActivity().finish();
+        }
     }
-}

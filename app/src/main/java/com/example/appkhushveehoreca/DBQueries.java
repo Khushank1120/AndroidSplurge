@@ -35,6 +35,10 @@ public class DBQueries {
     public static List<List<HomePageModel>> lists = new ArrayList<>();
     public static List<String> loadCategoriesNames = new ArrayList<>();
 
+    public static List<String> cartList = new ArrayList<>();
+    public static List<CartItemModel> cartItemModelList = new ArrayList<>();
+
+
     /// List inside list parent child logic
 
     public static void loadCategories(final RecyclerView categoriesRecyclerView, final Context context){

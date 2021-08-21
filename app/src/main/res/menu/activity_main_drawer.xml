@@ -17,6 +17,10 @@
             android:icon="@drawable/ic_baseline_card_reward_24"
             android:title="Offers" />
         <item
+            android:id="@+id/nav_my_cart"
+            android:icon="@drawable/ic_baseline_shopping_cart_24"
+            android:title="My Cart" />
+        <item
             android:id="@+id/nav_my_account"
             android:icon="@drawable/ic_baseline_people_24"
             android:title="About Us" />

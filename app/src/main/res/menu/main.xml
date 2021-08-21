@@ -16,10 +16,10 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/main_notification_icon"
+        android:id="@+id/main_cart_icon"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_baseline_notifications_24"
-        android:title="Notification"
+        android:icon="@drawable/ic_baseline_shopping_cart_24"
+        android:title="My Cart"
         app:showAsAction="always" />
 <!--    <item-->
 <!--        android:id="@+id/main_cart_icon"-->

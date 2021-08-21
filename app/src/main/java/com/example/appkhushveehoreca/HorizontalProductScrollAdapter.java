@@ -17,6 +17,8 @@ import java.util.List;
 
 public class HorizontalProductScrollAdapter extends RecyclerView.Adapter<HorizontalProductScrollAdapter.ViewHolder> {
 
+    public static boolean ALREADY_ADDED_TO_CARTLIST;
+
     private List<HorizontalProductScrollModel> horizontalProductScrollModelList;
 
     public HorizontalProductScrollAdapter(List<HorizontalProductScrollModel> horizontalProductScrollModelList) {

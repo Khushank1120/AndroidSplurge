@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:background="@drawable/slider_background"
+    android:backgroundTint="#F6F6F6"
+    android:elevation="3dp">
+
+
+    <ImageView
+        android:id="@+id/product_image"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:elevation="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/steelfour" />
+
+    <TextView
+        android:id="@+id/product_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
+        android:text="Steel Vessel"
+        android:textColor="@color/colorLogoBlue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/product_image"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/product_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:text="Rs.49999/-"
+        android:textColor="@color/colorLogoBlue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/product_title"
+        app:layout_constraintTop_toBottomOf="@+id/product_title" />
+
+    <TextView
+        android:id="@+id/cutted_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Rs.59999/-"
+        app:layout_constraintStart_toStartOf="@+id/product_price"
+        app:layout_constraintTop_toBottomOf="@+id/product_price" />
+
+    <View
+        android:id="@+id/price_cut_divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/cutted_price"
+        app:layout_constraintEnd_toEndOf="@+id/cutted_price"
+        app:layout_constraintStart_toStartOf="@+id/cutted_price"
+        app:layout_constraintTop_toTopOf="@+id/cutted_price" />
+
+    <TextView
+        android:id="@+id/product_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/border_background"
+        android:backgroundTint="#000000"
+        android:drawableEnd="@drawable/arrow_drop_down"
+        android:drawablePadding="4dp"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:padding="3dp"
+        android:text=" Qty: 1"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="@+id/cutted_price"
+        app:layout_constraintTop_toBottomOf="@+id/cutted_price" />
+
+    <LinearLayout
+        android:id="@+id/remove_item_btn"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/slider_background"
+        android:backgroundTint="@color/colorLogoBlue"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_quantity">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableStart="@drawable/ic_baseline_delete_24"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            android:text="Remove item"
+            android:textColor="#F6F6F6" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

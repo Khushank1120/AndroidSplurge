@@ -30,7 +30,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int HOME_FRAGMENT = 0;
     private static final int REWARDS_FRAGMENT = 1;
     private static final int ACCOUNT_FRAGMENT = 2;
-//    private static final int WISHLIST_FRAGMENT = 3;
+    private static final int CART_FRAGMENT = 3;
+
 
     public MenuItem whatsAppIcon;
 
@@ -128,9 +129,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent searchIntent = new Intent(this, SearchActivity.class);
             startActivity(searchIntent);
             return true;
-        }else if(id == R.id.main_notification_icon){
+        }else if(id == R.id.main_cart_icon){
 
-            /// todo: notification
+            myCart();
 
             return true;
         }else if (id == R.id.whatsapp_icon){
@@ -141,6 +142,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void myCart() {
+        invalidateOptionsMenu();
+        setFragment(new MyCartFragment(),CART_FRAGMENT);
+        navigationView.getMenu().getItem(2).setChecked(true);
+
     }
 
     public void goToFragment(String title,Fragment fragment, int fragmentNo){
@@ -172,6 +180,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     actionBarLogo.setVisibility(View.VISIBLE);
                     invalidateOptionsMenu();
                     setFragment(new HomeFragment(),HOME_FRAGMENT);
+                }else if(id == R.id.nav_my_cart){
+                    myCart();
                 }else if(id == R.id.nav_my_account){
                     goToFragment("About Us",new MyAccountFragment(),ACCOUNT_FRAGMENT);
                 }else if(id == R.id.nav_my_offers){
