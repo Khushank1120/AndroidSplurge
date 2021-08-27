@@ -15,9 +15,10 @@
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="410dp"
-            android:layout_height="240dp"
-            android:src="@drawable/logo"
+            android:layout_height="180dp"
+            android:src="@drawable/logocut"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,7 +38,7 @@
             android:id="@+id/linearLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="180dp"
+            android:layout_marginTop="160dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -114,7 +115,7 @@
             android:id="@+id/signUpBtn"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/slider_background"
             android:enabled="false"
             android:foreground="?attr/selectableItemBackgroundBorderless"
@@ -128,13 +129,13 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:elevation="200dp"
             android:text="OR"
             android:textColor="@color/colorWhite"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signUpBtn" />
+            app:layout_constraintTop_toBottomOf="@+id/signUpProgressBar" />
 
 
         <View
@@ -164,13 +165,13 @@
             android:id="@+id/alreadyHaveAnAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Already Have An Account Sign In!"
+            android:layout_marginTop="8dp"
             android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:text="Already Have An Account Sign In!"
             android:textColor="@color/colorWhite"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -178,15 +179,14 @@
         <ProgressBar
             android:id="@+id/signUpProgressBar"
             style="?android:attr/progressBarStyle"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/alreadyHaveAnAccount" />
+            app:layout_constraintTop_toBottomOf="@+id/signUpBtn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

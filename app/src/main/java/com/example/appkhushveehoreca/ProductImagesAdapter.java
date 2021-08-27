@@ -22,13 +22,13 @@ public class ProductImagesAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         ImageView productImage = new ImageView(container.getContext());
         productImage.setImageResource(productImages.get(position));
-        container.addView(productImage,0);
+        container.addView(productImage, 0);
         return productImage;
     }
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((ImageView)object);
+        container.removeView((ImageView) object);
     }
 
     @Override

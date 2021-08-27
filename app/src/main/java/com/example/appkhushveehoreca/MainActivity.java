@@ -54,10 +54,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this,drawer,toolbar,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        setFragment(new HomeFragment(),HOME_FRAGMENT);
+        setFragment(new HomeFragment(), HOME_FRAGMENT);
 
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -75,9 +75,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 //        NavigationUI.setupWithNavController(navigationView, navController);
 
-        if(currentUser == null){
+        if (currentUser == null) {
             navigationView.getMenu().getItem(navigationView.getMenu().size() - 1).setEnabled(false);
-        }else{
+        } else {
             navigationView.getMenu().getItem(navigationView.getMenu().size() - 1).setEnabled(true);
         }
 
@@ -89,18 +89,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if(drawer.isDrawerOpen(GravityCompat.START)){
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }else{
-            if(currentFragment == HOME_FRAGMENT){
+        } else {
+            if (currentFragment == HOME_FRAGMENT) {
                 currentFragment = -1;
                 super.onBackPressed();
-            }else{
+            } else {
                 actionBarLogo.setVisibility(View.VISIBLE);
                 invalidateOptionsMenu();
-                setFragment(new HomeFragment(),HOME_FRAGMENT);
+                setFragment(new HomeFragment(), HOME_FRAGMENT);
                 navigationView.getMenu().getItem(0).setChecked(true);
             }
         }
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
 
-        if(currentFragment == HOME_FRAGMENT) {
+        if (currentFragment == HOME_FRAGMENT) {
             getMenuInflater().inflate(R.menu.main, menu);
             Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         }
@@ -124,17 +124,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if(id ==  R.id.main_search_icon){
+        if (id == R.id.main_search_icon) {
 
             Intent searchIntent = new Intent(this, SearchActivity.class);
             startActivity(searchIntent);
             return true;
-        }else if(id == R.id.main_cart_icon){
+        } else if (id == R.id.main_cart_icon) {
 
             myCart();
 
             return true;
-        }else if (id == R.id.whatsapp_icon){
+        } else if (id == R.id.whatsapp_icon) {
             startActivity(new Intent(this, WhatsAppActivity.class));
             /// todo: cart
 
@@ -146,23 +146,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void myCart() {
         invalidateOptionsMenu();
-        setFragment(new MyCartFragment(),CART_FRAGMENT);
+        setFragment(new MyCartFragment(), CART_FRAGMENT);
         navigationView.getMenu().getItem(2).setChecked(true);
 
     }
 
-    public void goToFragment(String title,Fragment fragment, int fragmentNo){
+    public void goToFragment(String title, Fragment fragment, int fragmentNo) {
         actionBarLogo.setVisibility(View.GONE);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(true);
         getSupportActionBar().setTitle(title);
         invalidateOptionsMenu();
-        setFragment(fragment,fragmentNo);
+        setFragment(fragment, fragmentNo);
 //        if(fragmentNo == REWARDS_FRAGMENT){
 //            navigationView.getMenu().getItem(1).setChecked(true);
 //        }
     }
 
     MenuItem menuItem;
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -176,19 +177,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
                 int id = menuItem.getItemId();
-                if(id == R.id.nav_my_khushveeHoreca){
+                if (id == R.id.nav_my_khushveeHoreca) {
                     actionBarLogo.setVisibility(View.VISIBLE);
                     invalidateOptionsMenu();
-                    setFragment(new HomeFragment(),HOME_FRAGMENT);
-                }else if(id == R.id.nav_my_cart){
+                    setFragment(new HomeFragment(), HOME_FRAGMENT);
+                } else if (id == R.id.nav_my_cart) {
                     myCart();
-                }else if(id == R.id.nav_my_account){
-                    goToFragment("About Us",new MyAccountFragment(),ACCOUNT_FRAGMENT);
-                }else if(id == R.id.nav_my_offers){
-                    goToFragment("Offers",new MyRewardsFragment(),REWARDS_FRAGMENT);
-                }else if(id == R.id.nav_sign_out) {
+                } else if (id == R.id.nav_my_account) {
+                    goToFragment("About Us", new MyAccountFragment(), ACCOUNT_FRAGMENT);
+                } else if (id == R.id.nav_my_offers) {
+                    goToFragment("Offers", new MyRewardsFragment(), REWARDS_FRAGMENT);
+                } else if (id == R.id.nav_sign_out) {
                     FirebaseAuth.getInstance().signOut();
-                    Intent registerIntent = new Intent(MainActivity.this,RegisterActivity.class);
+                    Intent registerIntent = new Intent(MainActivity.this, RegisterActivity.class);
                     startActivity(registerIntent);
                     finish();
                 }
@@ -199,11 +200,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private void setFragment(Fragment fragment,int fragmentNo){
-        if(fragmentNo != currentFragment) {
+    private void setFragment(Fragment fragment, int fragmentNo) {
+        if (fragmentNo != currentFragment) {
             currentFragment = fragmentNo;
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(frameLayout.getId(),fragment);
+            fragmentTransaction.replace(frameLayout.getId(), fragment);
             fragmentTransaction.commit();
         }
     }

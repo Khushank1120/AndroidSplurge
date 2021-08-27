@@ -1,14 +1,13 @@
 package com.example.appkhushveehoreca;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,9 +35,9 @@ public class MyRewardsFragment extends Fragment {
         rewardsRecyclerView.setLayoutManager(layoutManager);
 
         List<RewardModel> rewardModelList = new ArrayList<>();
-        rewardModelList.add(new RewardModel(" Contact Us For Special Offers ","Till Dec 2021","For best offers email us or call us on 94234234242"));
-        rewardModelList.add(new RewardModel(" Contact Us For Special Offers ","Till Dec 2021","For best offers email khushveehorecas@gmail.com"));
-        rewardModelList.add(new RewardModel(" Contact Us For Special Offers ","Till Dec 2021","For best prices and orders Contact Us"));
+        rewardModelList.add(new RewardModel(" Contact Us For Special Offers ", "Till Dec 2021", "For best offers email us or call us on 94234234242"));
+        rewardModelList.add(new RewardModel(" Contact Us For Special Offers ", "Till Dec 2021", "For best offers email khushveehorecas@gmail.com"));
+        rewardModelList.add(new RewardModel(" Contact Us For Special Offers ", "Till Dec 2021", "For best prices and orders Contact Us"));
 
         MyRewardAdapter myRewardAdapter = new MyRewardAdapter(rewardModelList);
         rewardsRecyclerView.setAdapter(myRewardAdapter);

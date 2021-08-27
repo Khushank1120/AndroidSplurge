@@ -12,6 +12,7 @@ public class CartItemModel {
     private String productTitle;
     private String productPrice;
     private String cuttedPrice;
+
     public CartItemModel(int type, int productImage, String productTitle, String productPrice, String cuttedPrice) {
         this.type = type;
 //        this.productQuantity = productQuantity;

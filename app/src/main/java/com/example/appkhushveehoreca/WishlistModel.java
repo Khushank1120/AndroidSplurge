@@ -13,7 +13,7 @@ public class WishlistModel {
     private String productPrice;
     private String cuttedPrice;
 
-    private ArrayList<String>tags;
+    private ArrayList<String> tags;
 
     public WishlistModel(String id, String productImage, String productTitle, String productTitle1, String freeCoupons, String productPrice, String cuttedPrice) {
         this.productImage = productImage;

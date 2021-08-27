@@ -4,11 +4,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Filter;
 import android.widget.Filterable;
-import androidx.appcompat.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,8 +43,8 @@ public class SearchActivity extends AppCompatActivity {
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
-        final List<WishlistModel> list=new ArrayList<>();
-        final List<String> ids=new ArrayList<>();
+        final List<WishlistModel> list = new ArrayList<>();
+        final List<String> ids = new ArrayList<>();
 
         adapter = new Adapter(list, false);
         adapter.setFromSearch(true);
@@ -62,23 +62,23 @@ public class SearchActivity extends AppCompatActivity {
 
                 ////// For Steel Products //////
 
-                for (final String tag:tags){
+                for (final String tag : tags) {
                     tag.trim();
                     FirebaseFirestore.getInstance().collection("CATEGORIES").document("STEEL")
-                            .collection("TOP_DEALS").whereArrayContains("tags" ,tag)
+                            .collection("TOP_DEALS").whereArrayContains("tags", tag)
                             .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if(task.isSuccessful()){
-                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                            if (task.isSuccessful()) {
+                                for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                                     long no_of_products = (long) documentSnapshot.get("no_of_products");
                                     for (long x = 1; x < no_of_products + 1; x++) {
                                         WishlistModel model = new WishlistModel(documentSnapshot.getId(), Objects.requireNonNull(documentSnapshot.get("product_image_" + x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_price_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_"+ x)).toString());
+                                                , Objects.requireNonNull(documentSnapshot.get("product_title_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_" + x)).toString());
 
                                         model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
 
@@ -86,23 +86,21 @@ public class SearchActivity extends AppCompatActivity {
                                         list.add(model);
                                         ids.add(model.getProductId());
                                     }
-                                    }
+                                }
 
                             }
 
-                            if(tag.equals(tags[tags.length-1])){
+                            if (tag.equals(tags[tags.length - 1])) {
 
-                                if(list.size() == 0){
+                                if (list.size() == 0) {
                                     textView.setVisibility(View.VISIBLE);
                                     recyclerView.setVisibility(View.GONE);
-                                }else {
+                                } else {
                                     textView.setVisibility(View.GONE);
                                     recyclerView.setVisibility(View.VISIBLE);
                                     adapter.getFilter().filter(s);
                                 }
-                            }
-
-                            else {
+                            } else {
 //                                String error = task.getException().getMessage();
 //                                Toast.makeText(SearchActivity.this, error, Toast.LENGTH_SHORT).show();
                             }
@@ -110,23 +108,23 @@ public class SearchActivity extends AppCompatActivity {
                     });
                 }
 
-                for (final String tag:tags){
+                for (final String tag : tags) {
                     tag.trim();
                     FirebaseFirestore.getInstance().collection("CATEGORIES").document("100%MELAMINE")
-                            .collection("TOP_DEALS").whereArrayContains("tags" ,tag)
+                            .collection("TOP_DEALS").whereArrayContains("tags", tag)
                             .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if(task.isSuccessful()){
-                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                            if (task.isSuccessful()) {
+                                for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                                     long no_of_products = (long) documentSnapshot.get("no_of_products");
                                     for (long x = 1; x < no_of_products + 1; x++) {
                                         WishlistModel model = new WishlistModel(documentSnapshot.getId(), Objects.requireNonNull(documentSnapshot.get("product_image_" + x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_price_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_"+ x)).toString());
+                                                , Objects.requireNonNull(documentSnapshot.get("product_title_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_" + x)).toString());
 
                                         model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
 
@@ -138,42 +136,40 @@ public class SearchActivity extends AppCompatActivity {
 
                             }
 
-                            if(tag.equals(tags[tags.length-1])){
+                            if (tag.equals(tags[tags.length - 1])) {
 
-                                if(list.size() == 0){
+                                if (list.size() == 0) {
                                     textView.setVisibility(View.VISIBLE);
                                     recyclerView.setVisibility(View.GONE);
-                                }else {
+                                } else {
                                     textView.setVisibility(View.GONE);
                                     recyclerView.setVisibility(View.VISIBLE);
                                     adapter.getFilter().filter(s);
                                 }
-                            }
-
-                            else {
+                            } else {
 //                                String error = task.getException().getMessage();
 //                                Toast.makeText(SearchActivity.this, error, Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
                 }
-                for (final String tag:tags){
+                for (final String tag : tags) {
                     tag.trim();
                     FirebaseFirestore.getInstance().collection("CATEGORIES").document("MELAMINE")
-                            .collection("TOP_DEALS").whereArrayContains("tags" ,tag)
+                            .collection("TOP_DEALS").whereArrayContains("tags", tag)
                             .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if(task.isSuccessful()){
-                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                            if (task.isSuccessful()) {
+                                for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                                     long no_of_products = (long) documentSnapshot.get("no_of_products");
                                     for (long x = 1; x < no_of_products + 1; x++) {
                                         WishlistModel model = new WishlistModel(documentSnapshot.getId(), Objects.requireNonNull(documentSnapshot.get("product_image_" + x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_price_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_"+ x)).toString());
+                                                , Objects.requireNonNull(documentSnapshot.get("product_title_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_" + x)).toString());
 
                                         model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
 
@@ -185,19 +181,17 @@ public class SearchActivity extends AppCompatActivity {
 
                             }
 
-                            if(tag.equals(tags[tags.length-1])){
+                            if (tag.equals(tags[tags.length - 1])) {
 
-                                if(list.size() == 0){
+                                if (list.size() == 0) {
                                     textView.setVisibility(View.VISIBLE);
                                     recyclerView.setVisibility(View.GONE);
-                                }else {
+                                } else {
                                     textView.setVisibility(View.GONE);
                                     recyclerView.setVisibility(View.VISIBLE);
                                     adapter.getFilter().filter(s);
                                 }
-                            }
-
-                            else {
+                            } else {
 //                                String error = task.getException().getMessage();
 //                                Toast.makeText(SearchActivity.this, error, Toast.LENGTH_SHORT).show();
                             }
@@ -206,23 +200,23 @@ public class SearchActivity extends AppCompatActivity {
                 }
                 ////// For Wooden Products //////
 
-                for (final String tag:tags){
+                for (final String tag : tags) {
                     tag.trim();
                     FirebaseFirestore.getInstance().collection("CATEGORIES").document("WOODEN")
-                            .collection("TOP_DEALS").whereArrayContains("tags" ,tag)
+                            .collection("TOP_DEALS").whereArrayContains("tags", tag)
                             .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if(task.isSuccessful()){
-                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                            if (task.isSuccessful()) {
+                                for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                                     long no_of_products = (long) documentSnapshot.get("no_of_products");
                                     for (long x = 1; x < no_of_products + 1; x++) {
                                         WishlistModel model = new WishlistModel(documentSnapshot.getId(), documentSnapshot.get("product_image_" + x).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_price_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_"+ x)).toString());
+                                                , Objects.requireNonNull(documentSnapshot.get("product_title_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_" + x)).toString());
 
                                         model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
 
@@ -234,19 +228,17 @@ public class SearchActivity extends AppCompatActivity {
 
                             }
 
-                            if(tag.equals(tags[tags.length-1])){
+                            if (tag.equals(tags[tags.length - 1])) {
 
-                                if(list.size() == 0){
+                                if (list.size() == 0) {
                                     textView.setVisibility(View.VISIBLE);
                                     recyclerView.setVisibility(View.GONE);
-                                }else {
+                                } else {
                                     textView.setVisibility(View.GONE);
                                     recyclerView.setVisibility(View.VISIBLE);
                                     adapter.getFilter().filter(s);
                                 }
-                            }
-
-                            else {
+                            } else {
 //                                String error = task.getException().getMessage();
 //                                Toast.makeText(SearchActivity.this, error, Toast.LENGTH_SHORT).show();
                             }
@@ -256,23 +248,23 @@ public class SearchActivity extends AppCompatActivity {
 
                 ////// For Ceramic Products //////
 
-                for (final String tag:tags){
+                for (final String tag : tags) {
                     tag.trim();
                     FirebaseFirestore.getInstance().collection("CATEGORIES").document("CERAMIC")
-                            .collection("TOP_DEALS").whereArrayContains("tags" ,tag)
+                            .collection("TOP_DEALS").whereArrayContains("tags", tag)
                             .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if(task.isSuccessful()){
-                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                            if (task.isSuccessful()) {
+                                for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                                     long no_of_products = (long) documentSnapshot.get("no_of_products");
                                     for (long x = 1; x < no_of_products + 1; x++) {
                                         WishlistModel model = new WishlistModel(documentSnapshot.getId(), documentSnapshot.get("product_image_" + x).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_price_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_"+ x)).toString());
+                                                , Objects.requireNonNull(documentSnapshot.get("product_title_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_" + x)).toString());
 
                                         model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
 
@@ -284,19 +276,17 @@ public class SearchActivity extends AppCompatActivity {
 
                             }
 
-                            if(tag.equals(tags[tags.length-1])){
+                            if (tag.equals(tags[tags.length - 1])) {
 
-                                if(list.size() == 0){
+                                if (list.size() == 0) {
                                     textView.setVisibility(View.VISIBLE);
                                     recyclerView.setVisibility(View.GONE);
-                                }else {
+                                } else {
                                     textView.setVisibility(View.GONE);
                                     recyclerView.setVisibility(View.VISIBLE);
                                     adapter.getFilter().filter(s);
                                 }
-                            }
-
-                            else {
+                            } else {
 //                                String error = task.getException().getMessage();
 //                                Toast.makeText(SearchActivity.this, error, Toast.LENGTH_SHORT).show();
                             }
@@ -306,23 +296,23 @@ public class SearchActivity extends AppCompatActivity {
 
                 ////// For Premium Pots Products //////
 
-                for (final String tag:tags){
+                for (final String tag : tags) {
                     tag.trim();
                     FirebaseFirestore.getInstance().collection("CATEGORIES").document("PREMIUM POTS")
-                            .collection("TOP_DEALS").whereArrayContains("tags" ,tag)
+                            .collection("TOP_DEALS").whereArrayContains("tags", tag)
                             .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if(task.isSuccessful()){
-                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                            if (task.isSuccessful()) {
+                                for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                                     long no_of_products = (long) documentSnapshot.get("no_of_products");
                                     for (long x = 1; x < no_of_products + 1; x++) {
                                         WishlistModel model = new WishlistModel(documentSnapshot.getId(), documentSnapshot.get("product_image_" + x).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_price_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_"+ x)).toString());
+                                                , Objects.requireNonNull(documentSnapshot.get("product_title_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_" + x)).toString());
 
                                         model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
 
@@ -334,19 +324,17 @@ public class SearchActivity extends AppCompatActivity {
 
                             }
 
-                            if(tag.equals(tags[tags.length-1])){
+                            if (tag.equals(tags[tags.length - 1])) {
 
-                                if(list.size() == 0){
+                                if (list.size() == 0) {
                                     textView.setVisibility(View.VISIBLE);
                                     recyclerView.setVisibility(View.GONE);
-                                }else {
+                                } else {
                                     textView.setVisibility(View.GONE);
                                     recyclerView.setVisibility(View.VISIBLE);
                                     adapter.getFilter().filter(s);
                                 }
-                            }
-
-                            else {
+                            } else {
 //                                String error = task.getException().getMessage();
 //                                Toast.makeText(SearchActivity.this, error, Toast.LENGTH_SHORT).show();
                             }
@@ -356,23 +344,23 @@ public class SearchActivity extends AppCompatActivity {
 
                 ////// For Cutlery Products //////
 
-                for (final String tag:tags){
+                for (final String tag : tags) {
                     tag.trim();
                     FirebaseFirestore.getInstance().collection("CATEGORIES").document("CUTLERY")
-                            .collection("TOP_DEALS").whereArrayContains("tags" ,tag)
+                            .collection("TOP_DEALS").whereArrayContains("tags", tag)
                             .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if(task.isSuccessful()){
-                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                            if (task.isSuccessful()) {
+                                for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                                     long no_of_products = (long) documentSnapshot.get("no_of_products");
                                     for (long x = 1; x < no_of_products + 1; x++) {
                                         WishlistModel model = new WishlistModel(documentSnapshot.getId(), documentSnapshot.get("product_image_" + x).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_price_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_"+ x)).toString());
+                                                , Objects.requireNonNull(documentSnapshot.get("product_title_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_" + x)).toString());
 
                                         model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
 
@@ -384,19 +372,17 @@ public class SearchActivity extends AppCompatActivity {
 
                             }
 
-                            if(tag.equals(tags[tags.length-1])){
+                            if (tag.equals(tags[tags.length - 1])) {
 
-                                if(list.size() == 0){
+                                if (list.size() == 0) {
                                     textView.setVisibility(View.VISIBLE);
                                     recyclerView.setVisibility(View.GONE);
-                                }else {
+                                } else {
                                     textView.setVisibility(View.GONE);
                                     recyclerView.setVisibility(View.VISIBLE);
                                     adapter.getFilter().filter(s);
                                 }
-                            }
-
-                            else {
+                            } else {
 //                                String error = task.getException().getMessage();
 //                                Toast.makeText(SearchActivity.this, error, Toast.LENGTH_SHORT).show();
                             }
@@ -406,23 +392,23 @@ public class SearchActivity extends AppCompatActivity {
 
                 ////// For Glassware Products //////
 
-                for (final String tag:tags){
+                for (final String tag : tags) {
                     tag.trim();
                     FirebaseFirestore.getInstance().collection("CATEGORIES").document("GLASSWARE")
-                            .collection("TOP_DEALS").whereArrayContains("tags" ,tag)
+                            .collection("TOP_DEALS").whereArrayContains("tags", tag)
                             .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if(task.isSuccessful()){
-                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                            if (task.isSuccessful()) {
+                                for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                                     long no_of_products = (long) documentSnapshot.get("no_of_products");
                                     for (long x = 1; x < no_of_products + 1; x++) {
                                         WishlistModel model = new WishlistModel(documentSnapshot.getId(), documentSnapshot.get("product_image_" + x).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_price_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_"+ x)).toString());
+                                                , Objects.requireNonNull(documentSnapshot.get("product_title_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_" + x)).toString());
 
                                         model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
 
@@ -434,19 +420,17 @@ public class SearchActivity extends AppCompatActivity {
 
                             }
 
-                            if(tag.equals(tags[tags.length-1])){
+                            if (tag.equals(tags[tags.length - 1])) {
 
-                                if(list.size() == 0){
+                                if (list.size() == 0) {
                                     textView.setVisibility(View.VISIBLE);
                                     recyclerView.setVisibility(View.GONE);
-                                }else {
+                                } else {
                                     textView.setVisibility(View.GONE);
                                     recyclerView.setVisibility(View.VISIBLE);
                                     adapter.getFilter().filter(s);
                                 }
-                            }
-
-                            else {
+                            } else {
 //                                String error = task.getException().getMessage();
 //                                Toast.makeText(SearchActivity.this, error, Toast.LENGTH_SHORT).show();
                             }
@@ -456,23 +440,23 @@ public class SearchActivity extends AppCompatActivity {
 
                 ////// For Opalware Products //////
 
-                for (final String tag:tags){
+                for (final String tag : tags) {
                     tag.trim();
                     FirebaseFirestore.getInstance().collection("CATEGORIES").document("OPALWARE")
-                            .collection("TOP_DEALS").whereArrayContains("tags" ,tag)
+                            .collection("TOP_DEALS").whereArrayContains("tags", tag)
                             .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if(task.isSuccessful()){
-                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                            if (task.isSuccessful()) {
+                                for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                                     long no_of_products = (long) documentSnapshot.get("no_of_products");
                                     for (long x = 1; x < no_of_products + 1; x++) {
                                         WishlistModel model = new WishlistModel(documentSnapshot.getId(), documentSnapshot.get("product_image_" + x).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_price_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_"+ x)).toString());
+                                                , Objects.requireNonNull(documentSnapshot.get("product_title_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_" + x)).toString());
 
                                         model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
 
@@ -484,19 +468,17 @@ public class SearchActivity extends AppCompatActivity {
 
                             }
 
-                            if(tag.equals(tags[tags.length-1])){
+                            if (tag.equals(tags[tags.length - 1])) {
 
-                                if(list.size() == 0){
+                                if (list.size() == 0) {
                                     textView.setVisibility(View.VISIBLE);
                                     recyclerView.setVisibility(View.GONE);
-                                }else {
+                                } else {
                                     textView.setVisibility(View.GONE);
                                     recyclerView.setVisibility(View.VISIBLE);
                                     adapter.getFilter().filter(s);
                                 }
-                            }
-
-                            else {
+                            } else {
 //                                String error = task.getException().getMessage();
 //                                Toast.makeText(SearchActivity.this, error, Toast.LENGTH_SHORT).show();
                             }
@@ -506,23 +488,23 @@ public class SearchActivity extends AppCompatActivity {
 
                 ////// For Gifting Products //////
 
-                for (final String tag:tags){
+                for (final String tag : tags) {
                     tag.trim();
                     FirebaseFirestore.getInstance().collection("CATEGORIES").document("GIFTING")
-                            .collection("TOP_DEALS").whereArrayContains("tags" ,tag)
+                            .collection("TOP_DEALS").whereArrayContains("tags", tag)
                             .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if(task.isSuccessful()){
-                                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                            if (task.isSuccessful()) {
+                                for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                                     long no_of_products = (long) documentSnapshot.get("no_of_products");
                                     for (long x = 1; x < no_of_products + 1; x++) {
                                         WishlistModel model = new WishlistModel(documentSnapshot.getId(), documentSnapshot.get("product_image_" + x).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_title_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("product_price_"+ x)).toString()
-                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_"+ x)).toString());
+                                                , Objects.requireNonNull(documentSnapshot.get("product_title_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_subtitle2_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("product_price_" + x)).toString()
+                                                , Objects.requireNonNull(documentSnapshot.get("cutted_price_" + x)).toString());
 
                                         model.setTags((ArrayList<String>) documentSnapshot.get("tags"));
 
@@ -534,19 +516,17 @@ public class SearchActivity extends AppCompatActivity {
 
                             }
 
-                            if(tag.equals(tags[tags.length-1])){
+                            if (tag.equals(tags[tags.length - 1])) {
 
-                                if(list.size() == 0){
+                                if (list.size() == 0) {
                                     textView.setVisibility(View.VISIBLE);
                                     recyclerView.setVisibility(View.GONE);
-                                }else {
+                                } else {
                                     textView.setVisibility(View.GONE);
                                     recyclerView.setVisibility(View.VISIBLE);
                                     adapter.getFilter().filter(s);
                                 }
-                            }
-
-                            else {
+                            } else {
 //                                String error = task.getException().getMessage();
 //                                Toast.makeText(SearchActivity.this, error, Toast.LENGTH_SHORT).show();
                             }
@@ -566,9 +546,10 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-    static class Adapter extends WishlistAdapter implements Filterable{
+    static class Adapter extends WishlistAdapter implements Filterable {
 
         private List<WishlistModel> originalList;
+
         public Adapter(List<WishlistModel> wishlistModelList, Boolean wishlist) {
             super(wishlistModelList, wishlist);
 
@@ -588,19 +569,19 @@ public class SearchActivity extends AppCompatActivity {
 
                     final String[] tags = constraint.toString().toLowerCase().split(" ");
 
-                    for(WishlistModel model : originalList){
+                    for (WishlistModel model : originalList) {
                         ArrayList<String> presentTags = new ArrayList<>();
-                        for(String tag : tags){
-                            if(model.getTags().contains(tag)){
+                        for (String tag : tags) {
+                            if (model.getTags().contains(tag)) {
                                 presentTags.add(tag);
 
                             }
                         }
                         model.setTags(presentTags);
                     }
-                    for(int i = tags.length-1; i >= 0; i--){
-                        for(WishlistModel model: originalList){
-                            if(model.getTags().size() == i){
+                    for (int i = tags.length - 1; i >= 0; i--) {
+                        for (WishlistModel model : originalList) {
+                            if (model.getTags().size() == i) {
                                 filteredList.add(model);
                             }
                         }
@@ -616,7 +597,7 @@ public class SearchActivity extends AppCompatActivity {
                 @Override
                 protected void publishResults(CharSequence constraint, FilterResults results) {
 
-                    if(results.count > 0){
+                    if (results.count > 0) {
                         setWishlistModelList((List<WishlistModel>) results.values);
                     }
 

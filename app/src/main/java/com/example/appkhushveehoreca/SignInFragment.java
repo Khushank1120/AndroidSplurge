@@ -2,12 +2,6 @@ package com.example.appkhushveehoreca;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -21,6 +15,11 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -36,10 +35,10 @@ public class SignInFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private TextView dontHaveAnAccount1,forgotPassword;
+    private TextView dontHaveAnAccount1, forgotPassword;
     private FrameLayout parentFrameLayout;
 
-    private EditText email,password;
+    private EditText email, password;
 
     private ImageButton closeBtn;
     private Button signInBtn;
@@ -69,7 +68,6 @@ public class SignInFragment extends Fragment {
         signInBtn = view.findViewById(R.id.signUpBtn);
 
         firebaseAuth = FirebaseAuth.getInstance();
-
 
 
         return view;
@@ -145,37 +143,38 @@ public class SignInFragment extends Fragment {
 
     private void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(parentFrameLayout.getId(),fragment);
+        fragmentTransaction.replace(parentFrameLayout.getId(), fragment);
         fragmentTransaction.commit();
     }
 
     private void checkInputs() {
-        if(!TextUtils.isEmpty(email.getText())){
-            if(!TextUtils.isEmpty(password.getText())){
+        if (!TextUtils.isEmpty(email.getText())) {
+            if (!TextUtils.isEmpty(password.getText())) {
                 signInBtn.setEnabled(true);
-            }else{
+            } else {
                 signInBtn.setEnabled(false);
             }
 
-        }else{
+        } else {
             signInBtn.setEnabled(false);
         }
 
     }
-    private void checkEmailAndPassword(){
-        if(email.getText().toString().matches(emailPattern)){
-            if(password.length() >=8){
+
+    private void checkEmailAndPassword() {
+        if (email.getText().toString().matches(emailPattern)) {
+            if (password.length() >= 8) {
 
                 progressBar.setVisibility(View.VISIBLE);
                 signInBtn.setEnabled(false);
 
-                firebaseAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString())
+                firebaseAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()){
+                                if (task.isSuccessful()) {
                                     mainIntent();
-                                }else{
+                                } else {
                                     progressBar.setVisibility(View.INVISIBLE);
                                     signInBtn.setEnabled(true);
                                     String error = task.getException().getMessage();
@@ -185,16 +184,16 @@ public class SignInFragment extends Fragment {
                             }
                         });
 
-            }else{
+            } else {
                 Toast.makeText(getActivity(), "Incorrect Email Or Password!", Toast.LENGTH_SHORT).show();
             }
-        }else{
+        } else {
             Toast.makeText(getActivity(), "Incorrect Email Or Password!", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void mainIntent(){
-        Intent mainIntent = new Intent(getActivity(),MainActivity.class);
+    private void mainIntent() {
+        Intent mainIntent = new Intent(getActivity(), MainActivity.class);
         startActivity(mainIntent);
         getActivity().finish();
 

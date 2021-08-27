@@ -1,12 +1,6 @@
 package com.example.appkhushveehoreca;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -21,6 +15,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -106,13 +105,13 @@ public class ResetPasswordFragment extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
 
-                                if(task.isSuccessful()){
+                                if (task.isSuccessful()) {
 
                                     /// todo left to add buttons ///
 
                                     Toast.makeText(getActivity(), "Email sent successfully! Check Your Inbox", Toast.LENGTH_SHORT).show();
 
-                                }else{
+                                } else {
                                     String error = task.getException().getMessage();
 
                                     emailIconText.setText(error);
@@ -137,16 +136,18 @@ public class ResetPasswordFragment extends Fragment {
         });
 
     }
-    public void checkInputs(){
-        if(TextUtils.isEmpty(registeredEmail.getText().toString())){
+
+    public void checkInputs() {
+        if (TextUtils.isEmpty(registeredEmail.getText().toString())) {
             resetPasswordBtn.setEnabled(false);
-        }else{
+        } else {
             resetPasswordBtn.setEnabled(true);
         }
     }
+
     private void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(parentFrameLayout.getId(),fragment);
+        fragmentTransaction.replace(parentFrameLayout.getId(), fragment);
         fragmentTransaction.commit();
     }
 }

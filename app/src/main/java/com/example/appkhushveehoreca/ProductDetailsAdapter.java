@@ -15,7 +15,7 @@ public class ProductDetailsAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int i) {
-        switch (i){
+        switch (i) {
             case 0:
                 ProductDescriptionFragment productDescriptionFragment1 = new ProductDescriptionFragment();
                 return productDescriptionFragment1;

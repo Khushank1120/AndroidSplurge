@@ -26,7 +26,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -182,7 +181,6 @@ public class SignUpFragment extends Fragment {
     }
 
 
-
     private void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(parentFrameLayout.getId(), fragment);
@@ -234,14 +232,14 @@ public class SignUpFragment extends Fragment {
                                     userdata.put("mobilenumber", mobileNumber.getText().toString());
 
 
-                                    firebaseFirestore.collection("USERS")
-                                            .add(userdata)
-                                            .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                    firebaseFirestore.collection("USERS").document(firebaseAuth.getUid())
+                                            .set(userdata)
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
-                                                public void onComplete(@NonNull Task<DocumentReference> task) {
+                                                public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
-
-                                                        CollectionReference userDataReference = firebaseFirestore.collection("USERS").document(firebaseAuth.getUid()).collection("USER_DATA");
+                                                        CollectionReference userDataReference = firebaseFirestore.collection("USERS").document(firebaseAuth.getUid())
+                                                                .collection("USER_DATA");
 
                                                         //// MAPS ////
 
@@ -302,9 +300,10 @@ public class SignUpFragment extends Fragment {
 
         }
     }
-        private void mainIntent() {
-            Intent mainIntent = new Intent(getActivity(), MainActivity.class);
-            startActivity(mainIntent);
-            getActivity().finish();
-        }
+
+    private void mainIntent() {
+        Intent mainIntent = new Intent(getActivity(), MainActivity.class);
+        startActivity(mainIntent);
+        getActivity().finish();
     }
+}

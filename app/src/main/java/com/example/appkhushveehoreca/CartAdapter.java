@@ -63,7 +63,7 @@ public class CartAdapter extends RecyclerView.Adapter {
                 String productPrice = cartItemModelList.get(position).getProductPrice();
                 String cuttedPrice = cartItemModelList.get(position).getCuttedPrice();
 
-                ((CartItemViewHolder)viewHolder).setItemDetails(resource,title,productPrice,cuttedPrice);
+                ((CartItemViewHolder) viewHolder).setItemDetails(resource, title, productPrice, cuttedPrice);
 
                 break;
             case CartItemModel.TOTAL_AMOUNT:

@@ -3,17 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="2dp"
-    android:background="@color/colorAccent">
+    android:layout_margin="4dp"
+    android:background="@drawable/slider_background"
+    android:elevation="5dp">
 
     <ImageView
         android:id="@+id/product_image"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/steelfour" />
@@ -22,49 +24,54 @@
         android:id="@+id/product_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
         android:text="Steel Vessel"
         android:textColor="@color/colorLogoBlue"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/product_image"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider8" />
 
     <TextView
         android:id="@+id/free_coupon"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="8dp"
         android:text="For more offers contact us"
         android:textColor="@color/colorBlack"
-        app:layout_constraintStart_toEndOf="@+id/product_image"
+        android:textSize="15.5sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/product_title1"
         app:layout_constraintTop_toBottomOf="@+id/product_title1" />
 
     <TextView
         android:id="@+id/product_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
         android:text="Rs.1200/-"
         android:textColor="@color/colorLogoBlue"
-        android:textSize="16.5sp"
+        android:elevation="5dp"
         android:textStyle="bold"
+        android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/product_image"
+        app:layout_constraintStart_toStartOf="@+id/free_coupon"
         app:layout_constraintTop_toBottomOf="@+id/free_coupon" />
 
     <TextView
         android:id="@+id/cutted_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
         android:text="Rs.1400/-"
+        android:textSize="15sp"
         android:textColor="@color/colorBlack"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/product_price"
         app:layout_constraintTop_toBottomOf="@+id/product_price" />
 
@@ -72,14 +79,14 @@
         android:id="@+id/product_title1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="5dp"
+        android:elevation="5dp"
         android:background="@color/colorLogoBlue"
         android:padding="2dp"
         android:text="SC-125"
         android:textColor="@color/colorWhite"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/product_image"
+        app:layout_constraintStart_toStartOf="@+id/product_title"
         app:layout_constraintTop_toBottomOf="@+id/product_title" />
 
     <View
@@ -102,18 +109,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/add_to_cart_btn"
-        android:layout_width="80dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/colorLogoBlue"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:text=" Add To Cart "
-        android:textColor="@color/colorWhite"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/cutted_price"
-        app:layout_constraintTop_toBottomOf="@+id/cutted_price" />
+    <View
+        android:id="@+id/divider8"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="2dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_image" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

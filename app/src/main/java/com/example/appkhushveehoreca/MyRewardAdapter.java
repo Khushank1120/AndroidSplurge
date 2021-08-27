@@ -21,7 +21,7 @@ public class MyRewardAdapter extends RecyclerView.Adapter<MyRewardAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.rewards_item_layout,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.rewards_item_layout, viewGroup, false);
         return new ViewHolder(view);
     }
 
@@ -32,7 +32,7 @@ public class MyRewardAdapter extends RecyclerView.Adapter<MyRewardAdapter.ViewHo
         String date = rewardModelList.get(position).getExpiryDate();
         String body = rewardModelList.get(position).getCouponBody();
 
-        viewHolder.setData(title,date,body);
+        viewHolder.setData(title, date, body);
 
     }
 
@@ -41,7 +41,7 @@ public class MyRewardAdapter extends RecyclerView.Adapter<MyRewardAdapter.ViewHo
         return rewardModelList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView couponTitle;
         private TextView couponExpiryDate;
@@ -55,7 +55,8 @@ public class MyRewardAdapter extends RecyclerView.Adapter<MyRewardAdapter.ViewHo
             couponBody = itemView.findViewById(R.id.coupon_body);
 
         }
-        private void setData(String title,String date, String body){
+
+        private void setData(String title, String date, String body) {
             couponTitle.setText(title);
             couponExpiryDate.setText(date);
             couponBody.setText(body);

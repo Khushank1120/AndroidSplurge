@@ -32,10 +32,10 @@ public class MyCartFragment extends Fragment {
         cartItemsRecyclerView.setLayoutManager(layoutManager);
 
         List<CartItemModel> cartItemModelList = new ArrayList<>();
-        cartItemModelList.add(new CartItemModel(0,R.drawable.steelfour,"Steel Vessel","Rs:1400","Rs.1400"));
-        cartItemModelList.add(new CartItemModel(0,R.drawable.steeltwo,"Steel Two","Rs:400","Rs.400"));
-        cartItemModelList.add(new CartItemModel(0,R.drawable.steelone,"Steel One","Rs:1600","Rs.1600"));
-        cartItemModelList.add(new CartItemModel(0,R.drawable.woodenfive,"Wooden Vessel","Rs:700","Rs.700"));
+        cartItemModelList.add(new CartItemModel(0, R.drawable.steelfour, "Steel Vessel", "Rs:1400", "Rs.1400"));
+        cartItemModelList.add(new CartItemModel(0, R.drawable.steeltwo, "Steel Two", "Rs:400", "Rs.400"));
+        cartItemModelList.add(new CartItemModel(0, R.drawable.steelone, "Steel One", "Rs:1600", "Rs.1600"));
+        cartItemModelList.add(new CartItemModel(0, R.drawable.woodenfive, "Wooden Vessel", "Rs:700", "Rs.700"));
 
 
         CartAdapter cartAdapter = new CartAdapter(cartItemModelList);

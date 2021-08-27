@@ -45,15 +45,15 @@ public class HorizontalProductScrollAdapter extends RecyclerView.Adapter<Horizon
         String cuttedPrice = horizontalProductScrollModelList.get(position).getCuttedPrice();
 
 
-        viewHolder.setData(resource,title,description,description1,price,cuttedPrice);
+        viewHolder.setData(resource, title, description, description1, price, cuttedPrice);
 
     }
 
     @Override
     public int getItemCount() {
-        if(horizontalProductScrollModelList.size() > 8){
+        if (horizontalProductScrollModelList.size() > 8) {
             return 8;
-        }else{
+        } else {
             return horizontalProductScrollModelList.size();
         }
     }
@@ -89,7 +89,7 @@ public class HorizontalProductScrollAdapter extends RecyclerView.Adapter<Horizon
 //            productPrice.setText("Rs." + price + "/-");
             cuttedPrice.setText(cuttedPriceValue);
 
-            if(title.equals("")) {
+            if (title.equals("")) {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -101,5 +101,5 @@ public class HorizontalProductScrollAdapter extends RecyclerView.Adapter<Horizon
             }
         }
 
-        }
     }
+}

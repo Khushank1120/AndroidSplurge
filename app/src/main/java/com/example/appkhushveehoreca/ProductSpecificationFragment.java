@@ -1,14 +1,13 @@
 package com.example.appkhushveehoreca;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,12 +36,11 @@ public class ProductSpecificationFragment extends Fragment {
         productSpecificationRecyclerView.setLayoutManager(linearLayoutManager);
 
         List<ProductSpecificationModel> productSpecificationModelList = new ArrayList<>();
-        productSpecificationModelList.add(new ProductSpecificationModel(0,"Product Info"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"-125","Steel"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"SC-","Wooden"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"-","Ceramic"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"SC-125","Pot"));
-
+        productSpecificationModelList.add(new ProductSpecificationModel(0, "Product Info"));
+        productSpecificationModelList.add(new ProductSpecificationModel(1, "-125", "Steel"));
+        productSpecificationModelList.add(new ProductSpecificationModel(1, "SC-", "Wooden"));
+        productSpecificationModelList.add(new ProductSpecificationModel(1, "-", "Ceramic"));
+        productSpecificationModelList.add(new ProductSpecificationModel(1, "SC-125", "Pot"));
 
 
         ProductSpecificationAdapter productSpecificationAdapter = new ProductSpecificationAdapter(productSpecificationModelList);

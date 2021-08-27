@@ -30,7 +30,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public CategoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.category_item,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.category_item, viewGroup, false);
 
         return new ViewHolder(view);
     }
@@ -40,10 +40,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         String icon = categoryModelList.get(position).getCategoryIconLink();
         String name = categoryModelList.get(position).getCategoryName();
-        viewHolder.setCategory(name,position);
+        viewHolder.setCategory(name, position);
         viewHolder.setCategoryIcon(icon);
 
-        if(lastPosition < position) {
+        if (lastPosition < position) {
             Animation animation = AnimationUtils.loadAnimation(viewHolder.itemView.getContext(), R.anim.fade_in);
             viewHolder.itemView.setAnimation(animation);
             lastPosition = position;
@@ -55,7 +55,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public int getItemCount() {
         return categoryModelList.size();
     }
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView categoryIcon;
         private TextView categoryName;
@@ -68,10 +69,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         }
 
-        private void setCategoryIcon(String iconUrl){
+        private void setCategoryIcon(String iconUrl) {
             if (!iconUrl.equals("null")) {
                 Glide.with(itemView.getContext()).load(iconUrl).apply(new RequestOptions().placeholder(R.drawable.placeholder)).into(categoryIcon);
-            }else {
+            } else {
                 categoryIcon.setImageResource(R.drawable.ic_baseline_home_24);
             }
         }

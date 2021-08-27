@@ -1,8 +1,5 @@
 package com.example.appkhushveehoreca;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -14,6 +11,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import java.util.Objects;
 
@@ -46,7 +46,6 @@ public class WhatsAppActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         whatsapp.setMovementMethod(LinkMovementMethod.getInstance());
         khushveeHorecaWebLink.setMovementMethod(LinkMovementMethod.getInstance());
-
 
 
         pdf.setOnClickListener(new View.OnClickListener() {
@@ -91,8 +90,6 @@ public class WhatsAppActivity extends AppCompatActivity {
         });
 
 
-
-
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,11 +98,11 @@ public class WhatsAppActivity extends AppCompatActivity {
 
                 boolean installed = appInstalledOrNot("com.whatsapp");
 
-                if (installed){
+                if (installed) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("https://api.whatsapp.com/send?phone=+919909975572&text="+message));
+                    intent.setData(Uri.parse("https://api.whatsapp.com/send?phone=+919909975572&text=" + message));
                     startActivity(intent);
-                }else{
+                } else {
                     Toast.makeText(WhatsAppActivity.this, "WhatsApp not Installed on your Device!", Toast.LENGTH_LONG).show();
                 }
             }
@@ -116,17 +113,17 @@ public class WhatsAppActivity extends AppCompatActivity {
         PackageManager packageManager = getPackageManager();
         boolean app_installed;
         try {
-            packageManager.getPackageInfo(s,PackageManager.GET_ACTIVITIES);
+            packageManager.getPackageInfo(s, PackageManager.GET_ACTIVITIES);
             app_installed = true;
-        }catch (PackageManager.NameNotFoundException e){
+        } catch (PackageManager.NameNotFoundException e) {
             app_installed = false;
             e.printStackTrace();
         }
         return app_installed;
     }
 
-    public void goToUrl(String s){
+    public void goToUrl(String s) {
         Uri uri = Uri.parse(s);
-        startActivity(new Intent(Intent.ACTION_VIEW,uri));
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
 }

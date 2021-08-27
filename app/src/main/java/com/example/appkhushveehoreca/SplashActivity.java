@@ -1,13 +1,13 @@
 package com.example.appkhushveehoreca;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,9 +23,9 @@ public class SplashActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window w = getWindow();
-            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
 
         /// Status Bar Hide End ///
@@ -40,7 +40,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onStart();
 
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        if(currentUser == null){
+        if (currentUser == null) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -49,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
                     finish();
                 }
             }, 2000);
-        }else{
+        } else {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
